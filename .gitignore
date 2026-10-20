@@ -1,0 +1,8 @@
+.env
+.venv/
+__pycache__/
+*.pyc
+
+# Local/derived scratch outputs
+ouput/txt/cat_rows.txt
+ouput/txt/changed_cells.txt

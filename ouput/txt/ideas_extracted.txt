@@ -1,0 +1,673 @@
+This is an open access article published under an ACS AuthorChoice License, which permits
+copying and redistribution of the article or any adaptations for non-commercial purposes.
+
+Cite This: J. Agric. Food Chem. 2018, 66, 13141-13151                                  Article
+                                                                           pubs.acs.org/JAFC
+
+Systematic Screening of Optimal Signal Peptides for Secretory                                                                                  Downloaded from pubs.acs.org/jafcau/article-pdf/66/50/13141/67029894/acs.jafc.8b04183.pdf by guest on 16 October 2026
+Production of Heterologous Proteins in Bacillus subtilis
+
+Gang Fu,, Jinlan Liu,, Jinshan Li,, Beiwei Zhu, and Dawei Zhang*,,,§,
+
+Tianjin Institute of Industrial Biotechnology, Chinese Academy of Sciences, Tianjin 300308, P.R. China
+Key Laboratory of Systems Microbial Biotechnology, Chinese Academy of Sciences, Tianjin 300308, P. R. China
+§National Engineering Laboratory for Industrial Enzymes, Tianjin 300308, China
+School of Food Science and Technology, Dalian Polytechnic University, National Engineering Research Center of Seafood, Dalian
+116034, P.R. China
+
+  *S Supporting Information
+
+ABSTRACT: Bacillus subtilis is widely used for large-scale industrial production of heterologous proteins. Because of its high
+intrinsic secretory capacity, it can efficiently secrete proteins into the culture supernatant via the general Sec-type secretion
+pathway. In this study, the -amylase AmyS was used as a reporter to construct a library encompassing 173 Sec-type signal
+peptides (SPs) from B. subtilis using a fast, sequence-independent method. The resulting library DNA which harbored different
+signal peptides in the expression vector was used to transform B. subtilis directly at high efficiency, and 15 SPs which produced a
+significantly increased yield of AmyS were identified using a starch-iodine-based high-throughput assay. Furthermore, the
+correlation between the sequences of the best-performing signal peptides and their secretion efficiency was analyzed, which
+revealed several common properties of these SPs. Finally, high-cell-density fermentation of the -amylase-producing strain with
+the best-performing signal peptide yielded a maximum of 5086 U/mL amylase at 66 h with a high productivity of 77.1 U/mL·h.
+
+KEYWORDS: Bacillus subtilis, signal peptide, high-throughput screening, -amylase
+
+ INTRODUCTION                                                              which greatly promoted the construction of improved
+                                                                           production strains using different genetic engineering tools.4
+Recombinant protein production in microbial cells is an
+important aspect of the modern biotechnological industry.                    While recent findings have shown that E. coli is capable of
+Although intracellular expression of heterologous proteins in              secreting target proteins, heterologous proteins leading with a
+host cells is widely admitted and performed, recent achieve-               N-Terminal signal peptide can be secreted to the periplasm
+ments in secretory expression of recombinant proteins have                 and eventually leaked and accumulated into the culture
+encouraged both the scientific and industrial communities to               medium. Recent studies reveal that the extracellular leaking
+explore the potency of using bacteria with a secretory ability             expression of heterologous proteins in E. coli may be caused by
+for protein production. By using these secretory-type host cells,          the hyperproduction of the target proteins,5 and because of the
+synthesized target proteins could be directly secreted and                 absence of native secretory pathway in E. coli, its secretory
+accumulated in the extracellular medium, which provides a                  production is often extremely low when compared with other
+cost-effective downstream purification processing. Besides,                native secretory-type expression hosts like B. subtilis. There-
+secretory expression of recombinant proteins prevents severe               fore, B. subtilis is often a better choice for industrial-scale
+accumulation of heterologous proteins within host cells, which             recombinant protein production. In B. subtilis, the export of
+often results in cell toxicity and incorrect protein folding.1,2           protein is generally accomplished by the Sec-type secretion
+                                                                           pathway, which governs over 90 percent of the secretory
+  Bacillus subtilis is a Gram-positive model bacterium which is            proteins found in B. subtilis. The N-terminal sequence of a
+widely used for industrial production of recombinant proteins              secreted protein carries a specific secretion signal known as
+such as alpha-amylase, protease, lipase, and other industrial              signal peptide. After the nascent peptide with the signal
+enzymes. Because of the ability of the bacteria to secrete large           peptide was synthesized, it can be recognized and translocated
+amounts of a target protein into the culture medium and the                by the components of the Sec-type secretory pathway through
+availability of a low-cost downstream production and                       the membrane into the extracellular medium. Therefore, the
+purification process, over 60% of commercial industrial                    signal peptide is definitely a key factor that determines the best
+enzymes are produced in Bacillus subtilis and relative Bacillus            pathway for the target protein and how it is secreted across the
+species.3 In contrast to the frequently used recombinant                   membrane.6-8 The Sec-type signal peptides often consist of
+protein expression host Escherichia coli, Bacillus subtilis has no
+risk of endotoxin contamination and has been certificated as a             Received: August 3, 2018
+GRAS (generally regarded as safe) organism by the FDA,                     Revised: November 21, 2018
+which makes it a better choice for food-grade and                          Accepted: November 22, 2018
+pharmatheutical protein production. The complete genome                    Published: November 22, 2018
+sequence of the B. subtilis model strain 168 is also available,
+
+© 2018 American Chemical Society                                    13141                     DOI: 10.1021/acs.jafc.8b04183
+                                                                           J. Agric. Food Chem. 2018, 66, 13141-13151
+Journal of Agricultural and Food Chemistry                                                                                                     Article
+
+Table 1. Bacterial Strains and Plasmids Used in This Study
+
+     name                         description                  source               name                          description                  source   Downloaded from pubs.acs.org/jafcau/article-pdf/66/50/13141/67029894/acs.jafc.8b04183.pdf by guest on 16 October 2026
+                                Strains
+1A751p      B. subtilis, his apr npr eglS(DELTA)102 bglT/bglS  lab             pMA5                            Plasmids                        lab
+1A751pSPwt    (DELTA)EV, amyE::prsA                              stock         pMA5-AmyS                                                         stock
+1A751pSP1   1A751-prsA harboring pSPwt vector                                  pMA5-PaprE-  Bacillus expression vector, HpaII promoter, RepB,
+1A751pSP2   1A751-prsA harboring pSP1 vector                   this                           Kmr                                              this
+1A751pSP3   1A751-prsA harboring pSP2 vector                     study           AmyS                                                            study
+1A751pSP4   1A751-prsA harboring pSP3 vector                                   pSPwt        pMA5 vector containing the alpha-amylase gene
+1A751pSP5   1A751-prsA harboring pSP4 vector                   this            pSP1           amyS from B. stearothermophilus                  this
+1A751pSP6   1A751-prsA harboring pSP5 vector                     study         pSP2                                                              study
+1A751pSP7   1A751-prsA harboring pSP6 vector                                   pSP3         pMA5-AmyS vector in which the HpaII promoter
+1A751pSP8   1A751-prsA harboring pSP7 vector                   this            pSP4           was replaced by the aprE promoter                this
+1A751pSP9   1A751-prsA harboring pSP8 vector                     study         pSP5                                                              study
+1A751pSP10  1A751-prsA harboring pSP9 vector                                   pSP6         pMA5-PaprE-Amys derivative, with amyS signal
+1A751pSP11  1A751-prsA harboring pSP10 vector                  this            pSP7           peptide                                          this
+1A751pSP12  1A751-prsA harboring pSP11 vector                    study         pSP8                                                              study
+1A751pSP13  1A751-prsA harboring pSP12 vector                                  pSP9         pMA5-PaprE-Amys derivative, with yvce signal
+1A751pSP14  1A751-prsA harboring pSP13 vector                  this            pSP10          peptide                                          this
+1A751pSP15  1A751-prsA harboring pSP14 vector                    study         pSP11                                                             study
+            1A751-prsA harboring pSP15 vector                                  pSP12        pMA5-PaprE-Amys derivative, with yoqm signal
+                                                               this            pSP13          peptide                                          this
+                                                                 study         pSP14                                                             study
+                                                                               pSP15        pMA5-PaprE-Amys derivative, with yuab signal
+                                                               this                           peptide                                          this
+                                                                 study                                                                           study
+                                                                                            pMA5-PaprE-Amys derivative, with pel signal
+                                                               this                           peptide                                          this
+                                                                 study                                                                           study
+                                                                                            pMA5-PaprE-Amys derivative, with yoaw signal
+                                                               this                           peptide                                          this
+                                                                 study                                                                           study
+                                                                                            pMA5-PaprE-Amys derivative, with yqxi signal
+                                                               this                           peptide                                          this
+                                                                 study                                                                           study
+                                                                                            pMA5-PaprE-Amys derivative, with pelb signal
+                                                               this                           peptide                                          this
+                                                                 study                                                                           study
+                                                                                            pMA5-PaprE-Amys derivative, with lipa signal
+                                                               this                           peptide                                          this
+                                                                 study                                                                           study
+                                                                                            pMA5-PaprE-Amys derivative, with lipb signal
+                                                               this                           peptide                                          this
+                                                                 study                                                                           study
+                                                                                            pMA5-PaprE-Amys derivative, with yoqh signal
+                                                               this                           peptide                                          this
+                                                                 study                                                                           study
+                                                                                            pMA5-PaprE-Amys derivative, with sacb signal
+                                                               this                           peptide                                          this
+                                                                 study                                                                           study
+                                                                                            pMA5-PaprE-Amys derivative, with ybfo signal
+                                                               this                           peptide                                          this
+                                                                 study                                                                           study
+                                                                                            pMA5-PaprE-Amys derivative, with bgls signal
+                                                                                              peptide                                          this
+                                                                                                                                                 study
+                                                                                            pMA5-PaprE-Amys derivative, with yddt signal
+                                                                                              peptide                                          this
+                                                                                                                                                 study
+                                                                                            pMA5-PaprE-Amys derivative, with yobb signal
+                                                                                              peptide
+
+three specific domains: a positively charged N-domain, a                       derived from Corynebacterium glutamicum R using the alpha-
+hydrophobic H-domain, and a C-domain containing the signal                     amylase from Geobacillus stearothermophilus as the reporter
+peptidase digestion motif.9 For efficient secretory production                 protein. As a result, 11 optimal signal peptides were identified
+of recombinant proteins in B. subtilis, targeting secreted protein             and shown a 50-150 times secretory amylase activity
+to the secretory machinery, the translocation and release                      improvement than the classical corynebacterial secretory
+process, and precise processing by signal peptidase (SPase)                    protein PS2 signal peptide. Brockmeier et al.12 and Degering
+and signal peptide peptidase (SPP), these major bottlenecks in                 et al.14 screened hundreds of in silico predicted Sec-type signal
+a secreted pathway should be addressed as a first priority.10                  peptides from B. subtilis and B. licheniformis for optimizing
+This means the optimal choice of the signal peptide is always                  amylase and protease secretory expression level. These studies
+the first and most important factor to be considered. In a                     revealed that the secretory expression level of target protein
+previous study, Chen et al. reported that the production of                    can be greatly affected by different signal peptides, and the
+alpha-amylase AmyL from B. licheniformis and AmyS from B.                      optimum signal peptide for one recombinant protein was not
+amyloliquefaciens in B. subtilis reached 1352 and 2300 U/mL                    always the best choice for another target protein, eventually
+after promoter and signal peptide optimization.6,11 Because of                 was not compatible with the new target protein. This
+our limited knowledge of the characteristics of signal peptides                phenomenon was also proved by a previous study that a
+that are required for efficient protein secretion, the in silico               library of 76 Sec-type signal peptides was constructed and
+prediction of the optimum signal peptide for a specific target                 screened for high secretory production of two recombinant
+protein is not feasible to date.12 Notwithstanding, the optimal                proteins (staphylococcal nuclease NucA and lactobacterial
+signal peptide sequence can be identified by construction and                  amylase AmyA) in Lactobacillus plantarum.15 Because of the
+screening of a high-capacity signal peptide library which the                  great enhancement of the secretory expression level by
+target protein was leading by different signal peptides in the                 optimized signal peptides, constructing and evaluating a signal
+expression vector. Combined with a suitable high-throughput                    peptide library should be a reasonable and feasible way to
+screening method, this strategy has been proved feasible in                    improve the secretion efficiency of target proteins. However,
+optimizing secretory efficiency for many heterologous proteins.                the signal peptide library construction strategy used in these
+Watanabe et al.13 constructed and screened 108 signal peptides                 approaches has a low efficiency and is therefore time-
+
+                                                                        13142                                  DOI: 10.1021/acs.jafc.8b04183
+                                                                                            J. Agric. Food Chem. 2018, 66, 13141-13151
+Journal of Agricultural and Food Chemistry                                       Article
+
+consuming and costly, involving either ligating every signal                     multimeric plasmid DNA (1 g DNA solution per 1 mL aliquot) was              Downloaded from pubs.acs.org/jafcau/article-pdf/66/50/13141/67029894/acs.jafc.8b04183.pdf by guest on 16 October 2026
+peptide separately to ensure library integrity or cloning a                      added, and the samples were incubated for 1-3 h at 37 °C.
+mixture of all PCR-amplified signal peptides by introducing a                    Transformants were selected on LB-agar plates with suitable
+unique restriction endonuclease site. It is also challenging to                  antibiotics.
+choose an appropriate RE-site, and the resulting ligation
+products may not be transformed into Bacillus subtilis                              PCR Amplification of Signal Peptides. Signal peptide-encoding
+efficiently due to the low transformation rate of Bacillus sp.                   sequences of B. subtilis 168 were retrieved from the Signal Sequence
+(103-104 transformants per g of DNA), which limits the                           Database (http://www.signalpeptide.de/index.php). A total of 173
+effective library-generation capacity and follow-up screening                    signal peptide-encoding fragments from B. subtilis were amplified and
+work. Thus, developing a strategy for fast and efficient signal                  used for library construction. AmyS with the wild-type signal peptide
+peptide library construction and transformation in Bacillus                      originating from B. stearothermophilus was used as the benchmark
+subtilis is of utmost importance. The low transformation rate                    construct. Amplification of different signal peptide-encoding sequen-
+may be due to the different DNA uptake process during the                        ces was performed under standard PCR protocol in a 50 L reaction
+competence period of B. subtilis. Early research found that                      volume, which contains 0.5 mol of forward/reverse primer, 1 U of
+linearized multimeric plasmids are much more effective in                        Q5 high fidelity polymerase (New England Biolabs, U.S.A.), and 50
+DNA transformation than circular forms.16,17 Mottes et al. also                  ng of Bacillus subtilis genomic DNA. After gel electrophoresis, the
+found that multimeric plasmids can be directly transformed                       amplified DNA was purified using the EZNA Cycle-Pure kit
+into Bacillus subtilis with very high efficiency.18                              (OMEGA, U.S.A.) and quantified with Nanodrop 2000 (Thermo-
+                                                                                 fisher, U.S.A.).
+  Here we present a novel strategy to improve the extracellular
+production of alpha-amylase (AmyS) from Geobacillus                                 Plasmid Construction and Cloning Strategy. The amylase
+stearothermophilus by generating and screening a high-capacity                   gene from B. stearothermophilus was cloned between the NdeI and
+signal peptide library in Bacillus subtilis easily and effectively. A            BamHI sites of the pMA5 vector, yielding plasmid pMA5-amys. To
+total of 173 Sec-type signal peptides from B. subtilis were fused                achieve a higher amylase expression level, vector pMA5-PaprE-amys
+to the target protein by a sequence-independent, PCR-based                       was constructed by replacing the original hpaII promoter from pMA5
+cloning method without using a restriction endonuclease or                       with the aprE promoter from B. subtilis using a sequence-independent
+ligase.19 The resulting multimeric plasmid library DNA                           cloning method called "multimeric cloning" described by Chun You
+harboring different signal peptides was transformed into B.                      et al.19 The inserted fragment encoding the aprE promoter was
+subtilis efficiently, and it was screened for constructs with high               amplified from genomic DNA of B. subtilis 168 using the primers
+extracellular alpha-amylase activity by a simple starch-iodine                   PaprE-F/R which contained 3 and 5 25- to 30-bp overhangs
+based high-throughput method. Furthermore, signal peptides                       homologous to vector sequences. The vector backbone was amplified
+optimized for the secretory expression of AmyS were identified                   from pMA5 using the primers pMA5-F2 and pMA5-R2 which
+and validated by high-density fermentation. Finally, the                         contained 3 and 5 25- to 30-bp overhangs homologous to the inset
+potential correlation between the optimal signal peptides'                       sequence. Finally, the desired expression vector pMA5-PaprE-amys
+sequence constitution and their secretion capacity was also                      was generated by fusing these DNA templates at a molar ratio of 1:1
+explored.                                                                        by prolonged overlap extension PCR (POE-PCR) with Q5
+                                                                                 polymerase, and the POE-PCR products (multimeric plasmid)
+ MATERIALS AND METHODS                                                           were used to transform competent Bacillus subtilis cells directly,
+                                                                                 yielding the desired plasmid.
+   Bacterial Strains and Plasmids. The bacterial strains and
+plasmids used in this study are listed in Table 1. The primers used to              Construction of a 173 Sec-Type Signal Peptide Library in
+construct the amylase expression vector are listed in Table 3, and               Bacillus subtilis. To generate the signal peptide library, signal
+those used to amplify the 173 Sec-type signal peptides from B. subtilis          peptides from B. subtilis were PCR amplified and cloned into the
+168 are provided in Table S1. B. subtilis strain 1A751p, which                   pMA5-PaprE-amys vector using the strategy described above with
+overexpresses the PrsA foldase gene, was used as an expression host              minor modifications as follows: Signal peptide-encoding sequences of
+and for cloning and plasmid preparation.11 All DNA manipulations                 B. subtilis 168 were retrieved from the Signal Sequence Database
+followed standard procedures.20                                                  (http://www.signalpeptide.de/index.php). All 173 Sec-type signal
+                                                                                 peptide -encoding fragments predicted in the genome of B. subtilis
+   Media, Growth Conditions, and Preparation of Culture                          were amplified with different primers which both contained 5 and 3
+Supernatants. E. coli strains were grown in Luria-Bertani (LB)                   20-bp overhangs homologous to the vector sequence. The vector
+broth (5 g/L yeast extract, 10 g/L tryptone, 10 g/L NaCl, pH 7) at 37            backbone was amplified from pMA5-PaprE-amys using the primers
+°C with constant shaking at 200 rpm. Bacillus subtilis was cultivated in         pMA5-PaprE-amys-F1 and pMA5-PaprE-amys-R1. In order to
+SR (super-rich) medium (25 g/L yeast extract, 15g/L tryptone, 3g/L               guarantee a sufficient ligation efficiency for signal peptides with
+K2HPO4, pH 7.2) at 37 °C supplemented with 50 mg/L kanamycin                     different lengths, the amplified signal peptide fragments were divided
+or 5 mg/L chloramphenicol. Amylase production was monitored on                   into three groups based on their DNA lengths (55-72 nt, 75-96 nt,
+agar plates containing 1% (w/v) soluble starch (Solarbio, China). For            102-126 nt), and each was mixed with vector backbone at equimolar
+screening, the cultures that inoculated from single colony were grown            ratios, generating three AmyS expression vector sublibraries with
+for 20 h at 37 °C in 96-deep-well plates (Greiner, Germany) using a              different signal peptides using the multimeric cloning method
+high-throughput microplate shaker (600 rpm, 80% relative humidity;               described previously.19 Finally, the three sublibraries were mixed
+Minitron-INFORS; Biogen, Spain). The plates were sealed with                     together to yield the intact signal peptide library with all 173 different
+silicone membrane (Solarbio, China) to prevent evaporation. Culture              signal peptides from B. subtilis. AmyS with the native signal peptide
+supernatants were collected by centrifuging at 4 °C, 3200g for 20 min,           originating from B. stearothermophilus was used as the benchmark
+and samples were used immediately to determine alpha-amylase                     construct.
+activity.
+                                                                                    High-Throughput Screening of Amylase High-Secretion
+   Transformation of Bacillus subtilis. B. subtilis was transformed              Strains. The extracellular amylase activity was determined in agar
+by the two-step transformation method as described by Spizizen et                plates and 96-well microplates. First, the transformants harboring
+al.21 with minor modifications as follows: The B. subtilis culture was           different signal peptides were reinoculated and cultured on a trypan
+growth in Growth-Medium II until it reached a cell density of OD600              blue-starch agar plate at 37 °C for 16 h. The amylase activity was
+= 1. Subsequently, the culture was divided into 1 mL aliquots,                   verified by observing the clear zones on the agar plate. Colonies with
+                                                                                 clear zones were transferred to individual wells of a 96-well microtiter
+                                                                                 plate with LB medium. To minimize evaporative loss during
+                                                                                 incubation, a silicone membrane (Solarbio, China) was used to
+                                                                                 cover the microplate. After they were cultured at 37 °C and 800 rpm
+
+                                                                          13143                     DOI: 10.1021/acs.jafc.8b04183
+                                                                                 J. Agric. Food Chem. 2018, 66, 13141-13151
+Journal of Agricultural and Food Chemistry                                     Article
+
+for 21 h, the microplates were centrifuged at 4000g for 10 min to              host. In this study, signal peptide-encoding sequences of B.           Downloaded from pubs.acs.org/jafcau/article-pdf/66/50/13141/67029894/acs.jafc.8b04183.pdf by guest on 16 October 2026
+collect the supernatants. To prepare amylase assay samples, the                subtilis 168 were retrieved from the Signal Sequence Database
+collected supernatants were diluted 200 times with 0.1 M pH 6.0                (http://www.signalpeptide.de/index.php) to construct the
+phosphate-buffered saline (PBS). An aliquot comprising 40 L of the             signal peptide library. The length of the selected signal
+resulting buffered amylase sample was mixed with 40 L amylose (1               peptides varied from 19 to 42 residues. To minimize the
+mg/mL; Solarbio, China) and incubated in a PCR heat block for 5                differences of cloning efficiency of signal peptides with
+min at 70 °C. The reaction was then terminated by adding 20 L of               different lengths, the chosen signal peptides were first divided
+1N acetic acid, followed by adding 100 L iodine reagent (0.2%                  into three groups on the basis of their length range (Figure 1),
+iodine and 2% potassium iodide). For the blank control, the amylase
+sample was replaced with an equal volume of 0.1 M phosphate buffer             Figure 1. Length distribution of 173 Sec-type signal peptides from B.
+(pH 6.0). Following the color development, the absorbance at 570               subtilis 168. To avoid differences of ligation efficiency, the signal
+nm was measured using a microplate reader (Bio-TEK Instruments,                peptides were divided into three groups: Group I (55-72nt), Group
+Winooski, VT, U.S.A.).                                                         II (75-96nt), and Group III (102-126nt), and they were ligated
+                                                                               separately at the same molar ratio to the vector backbone.
+   Scale-Up Fermentation and -Amylase Activity Assay. The
+recombinant B. subtilis 1A751pSP4 harboring the amylase expression             followed by generating three corresponding signal peptide
+vector pMA5-PaprE-pel-amys was used to perform a 7.5-L scale-up                sublibraries. Each sublibrary was constructed by fusing signal
+fermentation with BioFlo 310 fermenter (New Brunswick Scientific,              peptides in-frame to the mature AmyS amylase encoding
+U.S.A.) utilizing a fed-batch strategy. Temperature was maintained at          sequence downstream of its constitutive aprE promoter in
+37 °C, and the pH value was maintained at pH 7.0 by feeding 25%                plasmid pMA5 using a "multimeric plasmid PCR cloning"
+ammonia and 30% phosphoric acid. Aeration rate was controlled at 6             strategy with minor modifications, as described in the Methods
+L/min, and the DO was maintained around 20% of the air saturation              section. By using this cloning strategy (Figure 2), there is no
+via a cascaded tuning of the stirring speed. Foam was controlled by            need to introduce any restriction endonuclease sites between
+supplement of the silicone-based antifoaming agent A8011 Antifoam              the signal peptide and target gene, which avoids the insertion
+C (Sigma-Aldrich, U.S.A.). To perform the fermentation, 8% of the              of any additional residues into the mature target protein, or
+seed inoculum was inoculated into the 7.5 L fermenter with 3.5 L of            interference with signal peptide cleavage at the C-terminus of
+the initial fresh fermentation medium (3% tryptone (Oxoid, U.S.A.),            the signal peptide. Furthermore, a previous report16 revealed
+5% yeast extract (Oxoid, U.S.A.), and 0.6% K2HPO4) supplemented                that the Gram-positive bacterium B. subtilis prefers to uptake
+with 50 g/mL kanamycin (Solarbio, China) and 5 g/mL                            large, oligomeric plasmid DNA fragments during the
+chloramphenicol (Solarbio, China). When the cell growth rate                   competent period. Therefore, a multimeric plasmid containing
+reached the stable phase, feeding medium (5% yeast extract) was                different signal peptides could yield a high transformation rate
+fed to the fermenter at a constant flow rate of 20 mL/h. The amylase           in B. subtilis directly, without the need to employ a shuttle host.
+activity was measured according to the 3,5-dinitrosalicylic acid (DNS)         Finally, the multimeric plasmid DNA products of three
+method.22 One unit of -amylase activity was defined as the amount              sublibraries were combined, yielding the complete signal
+of enzyme required to produce 1 mol of glucose per min at 75 °C.               peptide-library DNA with all 173 different Sec-type signal
+All assays were carried out in duplicates. To determine the amylase            peptides from B. subtilis.
+activity, 80 L of the substrate stock solution (1% (m/v) soluble
+starch (Solarbio, China) in 100 mM sodium acetate buffer, pH 6.0)                To further guarantee the high transformation rate of the
+was mixed with 40 L of diluted enzyme solution. After the solution             signal peptide library construct, factors which may affect the
+was incubated for 20 min at 75 °C, 200 L of 1% DNS (Solarbio,                  efficiency of the multimeric plasmid PCR cloning method,
+China) was added to the solution, and the mixture was incubated in a           such as signal peptide-encoding fragment concentration and
+boiling water bath for 10 min. After it was cooled to room                     PCR cycle number, were also optimized (Figure 3). The
+temperature, the absorbance of the solution supernatant at 540 nm              results indicated that 2-5 to 1 ng/L of the signal peptide
+was measured using a SpectraMax M5 microplate reader (Molecular                DNA fragment, and 2-3 ng/L achieved the highest trans-
+Devices LLC, San Jose, CA, U.S.A.). The enzyme-free blank sample               formation efficiency, yielding over 1400 CFU (colony-forming
+was prepared in the same way as a negative control. All measurements           unit) on a 110 mm agar plate. Increasing or decreasing the
+were performed in triplicate.                                                  fragment concentration drastically reduced the transformation
+                                                                               rate in B. subtilis. In the test of PCR cycle numbers, the
+   SDS-PAGE Analysis. Culture samples were harvested and                       transformation efficiency gradually increased from 30 to 55
+centrifuged at 12 000g and 4 °C for 10 min to collect the amylase-             cycles, which implied that the tandem form of the multimeric
+containing supernatant. After the SDS-PAGE loading buffer was                  plasmid DNA is preferentially taken up by the host cells.
+added (Solarbio, China), the supernatants were incubated in a boiling          Finally, over 1800 colonies per plate were obtained using the
+water bath for 10 min and equal amounts of protein were loaded and
+separated on a NuPAGE 12% Bis-Tris Gel (Invitrogen Life
+Technologies, U.S.A.) with MOPS SDS Running Buffer (Invitrogen
+Life Technologies, U.S.A.) according to the manufacturer's
+instructions. The PageRuler Prestained Protein Ladder (Invitrogen
+Life Technologies, U.S.A.) was used as a molecular mass marker
+covering the 10- to 180-kDa range. Following electrophoresis,
+proteins were visualized by Coomassie Brilliant Blue R-250.
+
+ RESULTS
+
+   Design and Construction of a Library Encompassing
+All Sec-Type Signal Peptides of B. subtilis. In order to
+improve the secretory expression of heterologous amylase in
+Bacillus subtilis strains, a signal peptide library consisting of 173
+Sec-type signal peptides was constructed. The alpha-amylase
+from Geobacillus stearothermophilus (AmyS) served as the
+target protein, and the B. subtilis strain 1A751p which
+overexpressed the prsA foldase gene was used as the expression
+
+                                                                        13144                     DOI: 10.1021/acs.jafc.8b04183
+                                                                               J. Agric. Food Chem. 2018, 66, 13141-13151
+Journal of Agricultural and Food Chemistry         Article
+
+Figure 2. Cloning strategy and high-throughput screening workflow of the signal peptide library with 173 different signal peptides from B. subtilis.  Downloaded from pubs.acs.org/jafcau/article-pdf/66/50/13141/67029894/acs.jafc.8b04183.pdf by guest on 16 October 2026
+(A) Cloning strategy of 173 different signal peptides directly into the AmyS expression vector without introducing any RE sites or additional linker
+sequences. (B) Workflow of signal peptide-library construction and high-throughput screening.
+
+Figure 3. Optimization of the conditions of multimeric PCR for signal peptide-library construction. Transformation efficiency of DNA products
+obtained using different PCR conditions was determined by counting the colonies formed on the agar plate (CFU). The concentration of signal
+peptide fragments was optimized at a range of 2-5 to 1 ng/L; the cycle number which determined the length of multimeric plasmid DNA was
+optimized at a range of 30 to 60 cycles.
+
+                                            13145                     DOI: 10.1021/acs.jafc.8b04183
+                                                   J. Agric. Food Chem. 2018, 66, 13141-13151
+Journal of Agricultural and Food Chemistry                                                              Article
+
+Figure 4. High-throughput screening of the secretory expression levels of amylase using a 96-well starch-iodine assay. Each open circle indicates the  Downloaded from pubs.acs.org/jafcau/article-pdf/66/50/13141/67029894/acs.jafc.8b04183.pdf by guest on 16 October 2026
+relative secretory amylase activity (number of folds) of a single clone picked from the trypan blue-starch prescreening agar plate.
+
+Table 2. Information on the 15 Selected Best-Performing Signal Peptides for AmyS Amylase Secretion
+
+name  length (aa)    N domain        H domain                                 C domain  D-score   pI    G of folding (kcal/mol)
+
+yvcE       30      MRKSL       ITLGLASVIGTSSFLI                           PFTSKTASA      0.722   11.82             -35.5
+yoqM       25      MKLRK       VLTGSVLSLGLL                               VSASPAFA       0.539   11.82             -29.2
+yuaB       30      MKRKL       LSSLAISALSLGLL                             VSAPTASFAAE    0.872   10.79             -34.4
+pel        21      MKKVM       LATALF                                     LGLTPAGANA     0.611   10.81             -28.0
+pelB       24      MKRLC       LWFTVFSLFL                                 VLLPGKALG      0.589   10.79             -31.9
+yoaW       24      MKKMLM      LAFTFLL                                    ALTIHVGEASA    0.554    9.54             -35.5
+yqxI       28      MFKKL       LLATSALTFSLSLV                             LPLDGHAKA      0.688   10.51             -32.0
+lipA       32      MKFVKRR     IIALVTILMLSVTS                             LFALQPSAKAA    0.797   12.55             -39.1
+lipB       28      MKKVL       MAFIICLSLILS                               VLAAPPSGAKA    0.656   10.51             -32.5
+yoqH       23      MKRFI       LVLSFL                                     SIIVAYPIQTNA   0.431   10.45             -25.5
+ybfO       28      MKRMIVR     MTLPLLIVCLA                                FSSFSASARA     0.63    12.22             -35.1
+sacB       29      MNIKKFAKQ   TVLTFTTALL                                 AGGATQAFA      0.527   11.1              -34.4
+bglS       28      MPYLKR      VLLLLVTGLFMS                               LFAVTATASA     0.668   10.45             -32.1
+yddT       28      MRKKR       VITCVMAASLTLG                              SLLPAGYASA     0.649   10.89             -37.1
+yobB       25      MKIRK       ILLSSALSFGM                                LISAVPALA      0.51    11.82             -40.2
+
+optimized PCR cloning conditions, which could meet the                    signal peptide library. As shown in Figure 4, a large variation in
+demands of a library with 173 signal peptides. The resulting              the secretion capacity was observed among the different clones.
+signal peptide-library DNA was then transformed and screened              Importantly, only about 1% of the clones had no significant
+for extracellular amylase activity in B. subtilis. The AmyS               amylase activity in the culture supernatant, while the others
+expression vector with its native signal peptide originating from         yielded a continuum of activity levels spanning from 15% to
+B. stearothermophilus was used as the benchmark construct.                212% of the activity secreted using the native AmyS signal
+                                                                          peptide. About 100 clones with improved secretion capacity
+   High-Throughput Screening of -Amylase Secretion                        over the native signal peptide of AmyS were chosen, and their
+Capacity. For screening purposes, the B. subtilis strain 1A751p           plasmids were isolated and sequenced to determine the
+which overexpressed the prsA foldase gene11 was transformed               optimal signal peptide. Finally, 15 signal peptides (see in
+with the signal peptide-library DNA. Over 1500 clones (8-fold             Table 2) were identified as candidates for improving the
+oversampling) were obtained and then reinoculated onto agar               secretory expression of the alpha-amylase AmyS in B. subtilis.
+plates containing trypan blue and starch, which can be used to
+visualize amylase activity. About 90% of the clones formed a                To further validate the optimal effect of the chosen signal
+clear halo around the colony, and these colonies were picked              peptides on the -amylase secretion level in B. subtilis, we
+for cultivation in different microtiter plates. The strain                performed shake-flask fermentations of the 15 constructs.
+harboring the expression vector with the native signal peptide            Plasmids with optimal signal peptides were retransformed into
+of AmyS from B. stearothermophilus was used as the wild-type              B. subtilis strain 1A751p to exclude the influence of strain
+signal peptide control. To measure the secretion capacity of              variation during the HTP screening procedure, which resulted
+strains with different signal peptides in the library, cells were         in 15 denovo constructed recombinant strains. As shown in
+harvested at OD600  1.8 (late logarithmic phase). The culture             Figures 5 and S2, after 48 h of cultivation, and the extracellular
+supernatants were collected, diluted, and their amylase                   -amylase activity of the strains 1A751pSP1(yvce),
+activities were determined by a starch-iodine based assay.                1A751pSP2(yoqm), 1A751pSP3(yuab), 1A751pSP4(pel),
+Five rounds of screening were performed to cover the entire               1A751pSP5(yoaw), 1A751pSP6(yqxi), 1A751pSP7(pelb),
+
+                                                                   13146                                            DOI: 10.1021/acs.jafc.8b04183
+                                                                                                 J. Agric. Food Chem. 2018, 66, 13141-13151
+Journal of Agricultural and Food Chemistry                                                                                                                     Article  Downloaded from pubs.acs.org/jafcau/article-pdf/66/50/13141/67029894/acs.jafc.8b04183.pdf by guest on 16 October 2026
+
+Figure 5. Amylase flask fermentation results of 15 recombinant strains            Correlation between Signal Peptide Properties and
+with the screened best-performing signal peptides. The expression              Secretion Efficiency. To explore the correlation between
+vector with the native signal peptide of AmyS is labeled as pSPwt, and         signal peptide sequence properties and secretion efficiency, we
+the vectors carrying the 15 selected signal peptides after high-               performed different analyses on the basis of the secretory
+throughput screening are labeled as pSP1(yvce), pSP2(yoqm),                    efficiency (AmyS amylase activity in culture medium) and the
+pSP3(yuab), pSP4(pel), pSP5(yoaw), pSP6(yqxi), pSP7(pelb),                     properties of the 15 best-performing signal peptide sequences.
+pSP8(lipa), pSP9(lipb), pSP10(yoqh), pSP11(sacb), pSP12(ybfo),                 D-scores and pI values of the native signal peptide of AmyS
+pSP13(bgls), pSP14(yddt), and pSP15(yobb). The extracellular                   and the 15 signal peptides from B. subtilis were calculated using
+amylase activity obtained with the native SP (pSPwt) of AmyS was               the SignalP 4.1 web server and the ExPASy Compute pI/Mw
+defined as the benchmark.                                                      tool, and they were plotted against amylase activity to explore
+                                                                               the potential correlation between them. However, no direct
+1A751pSP8(lipa), 1A751pSP9(lipb), 1A751pSP10(yoqh),                            correlation was found between the secretory efficiency and D-
+1A751pSP11(sacb), 1A751pSP12(ybfo), 1A751pSP13(bgls),                          score or pI value of these high-performing signal peptides
+1A751pSP14(yddt), 1A751pSP15(yobb) reached 1064.05,                            (Figure 6A,C). Furthermore, given that the encoding
+1211.85, 1153.4, 1487.85, 871, 1394.15, 1360, 1191.6,                          sequences of some of the signal peptides possibly form a
+1238.25, 1181.75, 1019.1, 1270.1, 1379.55, 882.05, and                         stable hairpin structure at the 5 end of the amylase mRNA
+1096.2 U/mL, respectively (Table S2). Consistently with the                    transcript, which may affect the translation initiation efficiency
+HTP screening results, the extracellular -amylase activity of                  of the mRNA,23-26 we also calculated the Gibbs free energies
+the recombinant strain 1A751pSP4 was the highest, and it was                   of folding of transcripts within a 170-nt fragment correspond-
+about 68.4% higher than that of the strain with the native                     ing to the transcriptional initiation site (TIS) using the mfold
+signal peptide. Thus, it could be concluded that the signal                    program. This region of transcript interacts with the translation
+peptide pel is an excellent candidate for the secretory                        machinery earlier than the rest of the mRNA. As the predicted
+production of AmyS.                                                            free folding energy profiles demonstrated (Figure 6B), the
+                                                                               amylase activity of strains harboring the 15 signal peptides
+                                                                               gradually increased compared to the native signal peptide of
+                                                                               AmyS along with increasing folding free energy of the
+                                                                               corresponding mRNAs. It implies that the expression levels
+                                                                               of AmyS constructs with different signal peptides were affected
+                                                                               by their 5 terminal mRNA sequences, which may form a
+                                                                               complex secondary structure that buries the Shine-Dalgarno
+                                                                               (SD) sequences or initiator AUG region, resulting in a low
+                                                                               initiation efficiency of the translation machinery.24,27
+
+Figure 6. Correlation analysis between D-score, Gibbs free energy of folding, pI value, and amylase secretion efficiency of the 15 best-performing
+signal peptides and the wild-type signal peptide of AmyS. D-scores of different signal peptides were calculated using the SignalP 4.1 web server
+(http://www.cbs.dtu.dk/services/SignalP); the Gibbs free energies of folding of transcripts with different signal peptides were predicted using the
+mfold web server 3.6 (http://unafold.rna.albany.edu/?q=mfold/RNA-Folding-Form); the pI values of different signal peptides were predicted
+
+using the Compute pI/Mw tool on ExPASy (https://web.expasy.org/compute_pi/).
+
+                                                                        13147                     DOI: 10.1021/acs.jafc.8b04183
+                                                                               J. Agric. Food Chem. 2018, 66, 13141-13151
+Journal of Agricultural and Food Chemistry                                                                Article
+
+Table 3. Primers Used in This Studya
+
+                      primer                                                              sequence (5-3)
+
+                    AmyS-F                          TATCATCATATGAAACAACAAAAACGGCTTTACGC
+                    AmyS-R                          TCTAGAGGATCCTTAAGGCCATGCCACCAGTCTAGGC
+                    pMA5-F1                         TGGCCTTAAGGATCCTCTAGAGTCGAGCTCAAGCTAG
+                    pMA5-R1                         TGTTGTTTCATATGTAAATCGCTCCTTTTTAGGTG
+                    PaprE-F                         ATAAAGTATAGTGTGTTATACTCTATTTTCGTTCTTTTCTGTATG
+                    PaprE-R                         TTTTGTTGTTTCATATGTCTTTACCCTCTCCTTTTAAAAAA
+                    pMA5-F2                         GAGGGTAAAGACATATGAAACAACAAAAACGG
+                    pMA5-R2                         AAAAGAACGAAAATAGAGTATAACACACTATACTTTATATTCATAAAGTG
+
+aThe NdeI and BamHI site sequences are underlined.
+
+Figure 7. Sequence logos constructed from alignments of N-, H- and C-domains of the 15 best-performing signal peptides after HTP screening for       Downloaded from pubs.acs.org/jafcau/article-pdf/66/50/13141/67029894/acs.jafc.8b04183.pdf by guest on 16 October 2026
+AmyS secretion. The sequences were aligned using the MUSCLE algorithm of MEGA 5. Sequence logos were generated based on the alignments
+using WebLogo 3 (http://weblogo.threeplusone.com/create.cgi). Residues are colored according to their chemical features: polar (G, S, T, Y, C),
+green; neutral (Q, N), purple; basic (K, R, H), blue; acidic (D, E), red; hydrophobic (A, V, L, I,P, W, F, M), black). A probability value of 1.0 =
+100%.
+
+  To analyze the potential correlation between high secretory             solution comprising 8.0% (w/v) soluble starch was added at a
+efficiency and the amino acid composition of the best-                    constant flow rate until the concentration in the fermenter
+performing signal peptides, 15 signal peptides were divided               reached 4% (w/v). As shown in Figure 8, the maximum OD600
+into N-, H- and C-domains using the Hidden-Markov model
+(HMM) in SignalP 2.0. The N-domain was defined to span                    Figure 8. High-density fermentation results of the -amylase AmyS
+from the start codon methionine to the last positively charged            recombinant strain 1A751pSP4 with the optimal signal peptide pel in
+residue in the N-terminal part of the signal peptide. The rest of         a 7.5-L fermenter. To determine the -amylase activity and the
+the signal peptide sequence was separated into an H-domain                biomass, culture samples were collected every 6 h from 12 to 96 h.
+that is rich in hydrophobic amino acid, and a C-domain that               The solid squares indicate the biomass of the strain 1A751pSP4; solid
+ends with a predicted cleavage site of the signal peptidase               circles indicate the -amylase activity in the culture supernatant. The
+(Table 2). Sequence alignment of the N-, H-, and C-domains                results represent the means ± SD from three independent
+of the 15 best-performing signal peptides was conducted using             experiments.
+the MUSCLE algorithm in MEGA 5 software. On the basis of
+the alignment results, sequence logos of the different domains            in the fermenter reached 33.1 at 60 h. The activity of -
+were generated using the WebLogo 3 web server. The                        amylase in the medium continuously increased and reached a
+alignment results did show some common properties (Figure                 maximum of 5086 U/mL at 60 h with a high productivity of
+7): (1) a positively charged amino acid, lysine, occurs                   77.1 U/mL·h (Table S3). Culture supernatant samples
+frequently at the second to fourth codon in the N-domain,                 obtained at 24, 30, 42, 48, 54, 60, and 72 h were subjected
+especially at the second codon; (2) a highly hydrophobic H-               to SDS-PAGE analysis to determine the secretory expression
+domain arising from a stretch of leucine amino acids and a                levels during the fermentation. As shown in Figure S1, the
+helix breaker residue, serine or glycine, scattered between the           secreted -amylase was detected at an apparent size of
+leucine codons in the middle; and (3) unsurprisingly, the                 approximately 60 kDa, which was consistent with the
+consensus signal peptide cleavage motif A-X-A is particularly             theoretical molecular weight (58.8 kDa) of the mature AmyS
+favored at the end of the C-domain, while an unbiased codon               protein. No amylase precursor band was detected on the gel,
+composition was found in front of the cleavage motif.                     which indicates that the signal peptide pel led to the complete
+
+   Fermentation of the -Amylase-Producing Strain
+with Optimized Signal Peptide in 7.5-L Fermenter.
+
+Previously, Nathan et al. reported that A much higher
+productivity (9070 U mL-1) of amylase was achieved using
+large-scale fermentation in B. subtilis WB800.28 The extrac-
+ellular expression capacity of B. subtilis 1A751pSP4 with the pel
+signal peptide was further explored in a 7.5-L fermenter. The
+fermenter was inoculated with 5% (v/v) of freshly cultured
+1A751pSP4 (pMA5-PaprE-pel-amys) grown in SR medium at
+37 °C for 18 h. To achieve a high cell density and -amylase
+production, we performed the fermentation using a fed-batch
+strategy. Once the cell growth reached the steady state, a
+
+                                                                   13148                     DOI: 10.1021/acs.jafc.8b04183
+                                                                          J. Agric. Food Chem. 2018, 66, 13141-13151
+Journal of Agricultural and Food Chemistry                                  Article
+
+processing of the AmyS protein precursor. The secretory                     for the secretion of the esterase and vice versa. These results     Downloaded from pubs.acs.org/jafcau/article-pdf/66/50/13141/67029894/acs.jafc.8b04183.pdf by guest on 16 October 2026
+expression level of the AmyS protein continuously increased                 clearly demonstrated that for different target proteins, a
+from 24 h and achieved the highest level at 60 h, at which                  universal promising signal peptide can merely be identified, so
+point it constituted up over 70% of the total secreted proteins             individual optimum signal peptide for each target protein
+in the culture supernatant, as calculated using QuantityOne                 should be screened and identified.
+software.
+                                                                              To further explore the potential correlation between the
+ DISCUSSION                                                                 properties of the best-performing signal peptides and their high
+                                                                            secretion efficiency, we analyzed them with respect to their
+Bacillus subtilis is a Gram-positive bacterium which is widely              lengths, pI values, D-scores, and folding free energies of their
+used for large-scale industrial production of secreted                      corresponding mRNA structures. However, it seems that there
+recombinant proteins. Consequently, extensive research was                  is no direct correlation between the secretion efficiency of
+conducted on the optimization of the secretory expression of                AmyS and the D-score or pI value of the signal peptides.
+heterologous proteins in Bacillus subtilis. Several studies                 However, the Gibbs free energies of folding of the transcripts
+addressed strategies to relieve bottlenecks for the secretion               encoding the 15 best-performing SPs revealed an obvious
+of heterologous proteins.29,30 However, because the signal                  rising pattern along with the increase of the secretory
+peptides from some proteins that are secreted by B. subtilis in             expression level. Previously, Ng et al. also reported that a
+large amounts, such as AprE and AmyE, are often not optimal                 tight folding of the mRNA around the RBS yields low secretion
+for a given heterologous target protein,31 the screening of                 of amylase via the signal peptide Usp45 in Lactococcus lactis,
+signal peptide libraries in situ in the expression host seems               and secretion level gradually increased as the mRNA structure
+pertinent. However, given the low transformation efficiency of              around the RBS was relaxed. We therefore speculated that the
+B. subtilis cells, library DNA constructs could not be used                 secretory expression levels of the amylase protein with different
+directly. Consequently, cells with high DNA transformation                  signal peptides were mostly affected by the mRNA secondary
+efficiency such as E. coli were used as shuttle hosts to first              structure. In the relatively low-performing signal peptides, such
+construct the signal peptide-library, after which plasmids                  as yobb or the native signal peptide of AmyS, a complex
+harboring different signal peptides were isolated as a DNA                  structure at the 5 end of the mRNA transcript may bury the
+mixture followed by reintroduction into B. subtilis host                    Shine-Dalgarno (SD) sequences or initiator AUG regions,
+cells.12-15 Moreover, restriction endonuclease sites (RE sites)             resulting in a low translation initiation efficiency. By contrast,
+are widely used in signal peptide-library construction,14,15,32,33          in the best-performing signal peptides such as pel, a more open
+which introduces two additional residues into the target                    mRNA secondary structure with a higher folding free energy in
+protein after signal peptidase cleavage. Thus, the workflow of              the 5 UTR of the transcript was formed, which improved the
+the signal peptide-library construction was very time-                      access of the translation machinery. In further analysis, the
+consuming, and the additional residues introduced by the RE                 sequences of these signal peptides were divided into N-, H-,
+sites may influence the cleavage efficiency of the signal                   and C-domains using the HMM model of the SignalP 2.0
+peptidase, resulting in low efficiency of screening for optimal             webtool. The alignment results of N-, H-, and C-domains from
+signal peptides.                                                            15 best-performing signal peptides showed some common
+                                                                            properties. First, a net positively charged N-domain of signal
+  In this study, we used the -amylase AmyS from B.                          peptides was observed and the amino acid lysine occurred
+stearothermophilus as a model protein and studied the influence             frequently in this region, especially at the second codon
+of different Sec-type signal peptides on its secretion efficiency           downstream of the "ATG" start codon. The positive charges in
+directly in B. subtilis. A library consisting of 173 different Sec-         the N-domain is required for targeting the signal peptide
+type signal peptides fused to the AmyS encoding sequence was                sequence into the inner membrane by electrostatic interactions
+constructed rapidly using an enzyme-free, RE site-free cloning              between the loop-formed, negatively charged lipid head groups
+strategy called "multimeric PCR cloning". The resulting signal              and the lipid layer, which play an important role in protein
+peptide-library DNA was directly used to transform B. subtilis              translocation process. Furthermore, the AAA codon of lysine
+cells and was evaluated by a high-throughput activity screening             may permit strong translation initiation of the target protein.36
+method based on starch-iodine complexation in the culture                   Second, a highly hydrophobic H-domain arising from a stretch
+medium. Finally, 15 best-performing signal peptides were                    of leucines was observed. A sufficient level of hydrophobicity is
+selected, among which the pel signal peptide resulted in an                 needed for efficient processing of the signal peptide and
+almost 1.7-fold increase of amylase activity in the culture                 translocation of the protein. Rusch et al.37 demonstrated that
+medium compared with the native signal peptide of AmyS.                     signal peptides less than five hydrophobic residues (such as
+Interestingly, our screening did not identify some typical signal           leucine) in the H-domain exhibit very low secretory efficiency
+peptides such as those of AmyE or NprE, which were                          for the alkaline phosphatase. Additionally, the presence of a
+recognized to be secreted at high levels and were used widely               serine or glycine that breaks the congregating of the
+for the secretory expression of heterologous protein. Instead, 9            hydrophobic residues in the middle of the H-region may
+out of the 15 best-performing signal peptides originated from               orient the signal peptide away from the SRP component and
+uncharacterized so-called "Y" proteins. This corroborates the               toward the Sec pathway, due to the decrease of the highly
+hypothesis that universal optimal signal peptides that are                  hydrophobic signals of the SRP. Third, the consensus signal
+suitable for most heterologous proteins might not exist. Thus,              peptide cleavage motif "A-X-A" was particularly favored at the
+signal peptide-library construction and high-throughput                     end of the C-domain, which was consistent with the "-3, -1
+screening seem to be the only way to identify optimal signal                rule". These observations in these high secretory efficiency
+peptides for heterologous proteins. Similar observations were               signal peptides may indicate a new avenue for the rational
+also made in previous studies on optimizing the secretion of                optimization of signal peptides for the secretion of
+cutinase and esterase.12,34,35 The authors found that the best              heterologous proteins, especially for alpha-amylase.
+signal peptide for cutinase secretion was a poor signal peptide
+
+                                                                     13149                     DOI: 10.1021/acs.jafc.8b04183
+                                                                            J. Agric. Food Chem. 2018, 66, 13141-13151
+Journal of Agricultural and Food Chemistry                                                                                                                       Article  Downloaded from pubs.acs.org/jafcau/article-pdf/66/50/13141/67029894/acs.jafc.8b04183.pdf by guest on 16 October 2026
+
+ ASSOCIATED CONTENT                                                              optimization of heterologous protein secretion. Biotechnol. Adv.
+                                                                                 2007, 25 (1), 1-12.
+*S Supporting Information                                                         (10) Li, W.; Zhou, X.; Lu, P. Bottlenecks in the expression and
+                                                                                 secretion of heterologous proteins in Bacillus subtilis. Res. Microbiol.
+The Supporting Information is available free of charge on the                    2004, 155 (8), 605-610.
+ACS Publications website at DOI: 10.1021/acs.jafc.8b04183.                        (11) Chen, J.; Gai, Y.; Fu, G.; Zhou, W.; Zhang, D.; Wen, J.
+                                                                                 Enhanced extracellular production of alpha-amylase in Bacillus subtilis
+       SDS-PAGE analysis of the extracellular fraction of                        by optimization of regulatory elements and over-expression of PrsA
+       1A751pSP4 harboring the optimized pel signal peptide;                     lipoprotein. Biotechnol. Lett. 2015, 37 (4), 899-906.
+       oligonucleotides used for PCR-amplification of 173 Sec-                    (12) Brockmeier, U.; Caspers, M.; Freudl, R.; Jockwer, A.; Noll, T.;
+       dependent signal peptides (SPs) from B. subtilis 168;                     Eggert, T. Systematic screening of all signal peptides from Bacillus
+       alpha-amylase activity of 15 recombinant strains with the                 subtilis: a powerful strategy in optimizing heterologous protein
+       best-performing screened signal peptides after 36 h of                    secretion in Gram-positive bacteria. J. Mol. Biol. 2006, 362 (3), 393-
+       flask fermentation; and alpha-amylase activity of the                     402.
+       AmyS recombinant strain 1A751pSP4 with the best                            (13) Watanabe, K.; Tsuchida, Y.; Okibe, N.; Teramoto, H.; Suzuki,
+       signal peptide pel in a 7.5-L fermenter (PDF)                             N.; Inui, M.; Yukawa, H. Scanning the Corynebacterium glutamicum
+                                                                                 R genome for high-efficiency secretion signal sequences. Microbiology
+ AUTHOR INFORMATION                                                              2009, 155 (3), 741-750.
+                                                                                  (14) Degering, C.; Eggert, T.; Puls, M.; Bongaerts, J.; Evers, S.;
+Corresponding Author                                                             Maurer, K.-H. H.; Jaeger, K.-E. E. Optimization of protease secretion
+*E-mail: zhang_dw@tib.cas.cn.                                                    in Bacillus subtilis and Bacillus licheniformis by screening of
+                                                                                 homologous and heterologous signal peptides. Applied and environ-
+ORCID                                                                            mental microbiology 2010, 76 (19), 6370-6376.
+                                                                                  (15) Mathiesen, G.; Sveen, A.; Brurberg, M. B.; Fredriksen, L.;
+Dawei Zhang: 0000-0002-5857-394X                                                 Axelsson, L.; Eijsink, V. G. Genome-wide analysis of signal peptide
+                                                                                 functionality in Lactobacillus plantarum WCFS1. BMC Genomics
+Notes                                                                            2009, 10, 425.
+The authors declare no competing financial interest.                              (16) Mottes, M.; Grandi, G.; Sgaramella, V.; Canosi, U.; Morelli, G.;
+                                                                                 Trautner, T. A. Different specific activities of the monomeric and
+ ACKNOWLEDGMENTS                                                                 oligomeric forms of plasmid DNA in transformation of B. subtilis and
+                                                                                 E. coli. Mol. Gen. Genet. 1979, 174 (3), 281-6.
+This work was supported by the Tianjin Science Fund for                           (17) Canosi, U.; Morelli, G.; Trautner, T. The relationship between
+Distinguished Young Scholars (17JCJQJC45300), the National                       molecular structure and transformation efficiency of some S. aureus
+Nature Science Foundation of China (21506244), the Science                       plasmids isolated from B. subtilis. Mol. Gen. Genet. 1978, 166 (3),
+and Technology Service Network Initiative (STS) of the                           259-267.
+Chinese Academy of Sciences, the Natural Science Foundation                       (18) Shafikhani, S.; Siegel, R. A.; Ferrari, E.; Schellenberger, V.
+of Tianjin City (CN) (16JCYBJC23500), the Tianjin science                        Generation of large libraries of random mutants in Bacillus subtilis by
+and technology project (15PTCYSY00020), and the Key                              PCR-based plasmid multimerization. BioTechniques 1997, 23 (2),
+Laboratory of Systems Microbial Biotechnology, Tianjin                           304-10.
+Institute of Industrial Biotechnology, Chinese Academy of                         (19) You, C.; Zhang, X. Z.; Zhang, Y. H. Simple cloning via direct
+Sciences.                                                                        transformation of PCR product (DNA Multimer) to Escherichia coli
+                                                                                 and Bacillus subtilis. Appl. Environ. Microbiol. 2012, 78 (5), 1593-5.
+ REFERENCES                                                                       (20) Sambrook, J.; Russell, D. W. Molecular Cloning: A Laboratory
+                                                                                 Manual; Cold Spring Harbor Laboratory Press: Cold Spring Harbor,
+ (1) Mergulhao, F. J.; Summers, D. K.; Monteiro, G. A. Recombinant               NY, 2001.
+protein secretion in Escherichia coli. Biotechnol. Adv. 2005, 23 (3),             (21) Spizizen, J. Transformation of Biochemically Deficient Strains
+177-202.                                                                         of Bacillus Subtilis by Deoxyribonucleate. Proc. Natl. Acad. Sci. U. S. A.
+ (2) Song, Y.; Nikoloff, J. M.; Zhang, D. Improving Protein                      1958, 44 (10), 1072-8.
+Production on the Level of Regulation of both Expression and                      (22) Bernfeld, P. Amylases, Alpha and Beta. Methods Enzymol. 1955,
+Secretion Pathways in Bacillus subtilis. J. Microbiol. Biotechnol. 2015,         1, 149-158.
+25 (7), 963-77.                                                                   (23) Seo, S. W.; Yang, J.; Jung, G. Y. Quantitative Correlation
+ (3) Schallmey, M.; Singh, A.; Ward, O. P. Developments in the use               Between mRNA Secondary Structure Around the Region Down-
+of Bacillus species for industrial production. Can. J. Microbiol. 2004,          stream of the Initiation Codon and Translational Efficiency in
+50 (1), 1-17.                                                                    Escherichia coli. Biotechnol. Bioeng. 2009, 104 (3), 611-616.
+ (4) Dong, H.; Zhang, D. Current development in genetic                           (24) Seo, S. W.; Yang, J. S.; Cho, H. S.; Yang, J.; Kim, S. C.; Park, J.
+engineering strategies of Bacillus species. Microb. Cell Fact. 2014,             M.; Kim, S.; Jung, G. Y. Predictive combinatorial design of mRNA
+13, 63.                                                                          translation initiation regions for systematic optimization of gene
+ (5) Fu, Z. B.; Ng, K. L.; Lam, T. L.; Wong, W. K. Cell death caused             expression levels. Sci. Rep. 2015, 4, 4515.
+by hyper-expression of a secretory exoglucanase in Escherichia coli.              (25) Ivanovski, G.; Gubensek, F.; Pungercar, J. MRNA secondary
+Protein Expression Purif. 2005, 42 (1), 67-77.                                   structure can greatly affect production of recombinant phospholipase
+ (6) Chen, J.; Fu, G.; Gai, Y.; Zheng, P.; Zhang, D.; Wen, J.                    A(2) toxins in bacteria. Toxicon 2002, 40 (5), 543-549.
+Combinatorial Sec pathway analysis for improved heterologous                      (26) Babendure, J. R.; Babendure, J. L.; Ding, J. H.; Tsien, R. Y.
+protein secretion in Bacillus subtilis: identification of bottlenecks by         Control of mammalian translation by mRNA structure near caps.
+systematic gene overexpression. Microb. Cell Fact. 2015, 14, 92.                 RNA 2006, 12 (5), 851-861.
+ (7) Song, Y.; Fu, G.; Dong, H.; Li, J.; Du, Y.; Zhang, D. High-                  (27) Osterman, I. A.; Evfratov, S. A.; Sergiev, P. V.; Dontsova, O. A.
+Efficiency Secretion of beta-Mannanase in Bacillus subtilis through              Comparison of mRNA features affecting translation initiation and
+Protein Synthesis and Secretion Optimization. J. Agric. Food Chem.               reinitiation. Nucleic Acids Res. 2013, 41 (1), 474-486.
+2017, 65 (12), 2540-2548.
+ (8) Zhang, H.; Fu, G.; Zhang, D. Cloning, characterization, and
+production of a novel lysozyme by different expression hosts. J.
+Microbiol. Biotechnol. 2014, 24 (10), 1405-12.
+ (9) Fu, L. L.; Xu, Z. R.; Li, W. F.; Shuai, J. B.; Lu, P.; Hu, C. X.
+Protein secretion pathways in Bacillus subtilis: implication for
+
+                                                                          13150                     DOI: 10.1021/acs.jafc.8b04183
+                                                                                 J. Agric. Food Chem. 2018, 66, 13141-13151
+Journal of Agricultural and Food Chemistry                                        Article
+
+ (28) Nathan, S.; Nair, M. Engineering a repression-free catabolite-                                                                Downloaded from pubs.acs.org/jafcau/article-pdf/66/50/13141/67029894/acs.jafc.8b04183.pdf by guest on 16 October 2026
+enhanced expression system for a thermophilic alpha-amylase from
+Bacillus licheniformis MSG. J. Biotechnol. 2013, 168 (4), 394-402.
+ (29) Li, W.; Zhou, X.; Lu, P. Bottlenecks in the expression and
+secretion of heterologous proteins in Bacillus subtilis. Res. Microbiol.
+2004, 155 (8), 605-10.
+ (30) Nijland, R.; Kuipers, O. P. Optimization of protein secretion by
+Bacillus subtilis. Recent Pat. Biotechnol. 2008, 2 (2), 79-87.
+ (31) Chen, M.; Nagarajan, V. The Roles of Signal Peptide and
+Mature Protein in Rnase (Barnase) Export from Bacillus-Subtilis. Mol.
+Gen. Genet. 1993, 239 (3), 409-415.
+ (32) Ng, D. T.; Sarkar, C. A. Engineering signal peptides for
+enhanced protein secretion from Lactococcus lactis. Appl. Environ.
+Microbiol. 2013, 79 (1), 347-356.
+ (33) Tsuji, S.; Tanaka, K.; Takenaka, S.; Yoshida, K. Enhanced
+secretion of natto phytase by Bacillus subtilis. Biosci., Biotechnol.,
+Biochem. 2015, 79 (11), 1906-14.
+ (34) Freudl, R. Signal peptides for recombinant protein secretion in
+bacterial expression systems. Microb. Cell Fact. 2018, 17 (1), 52.
+ (35) Hemmerich, J.; Rohe, P.; Kleine, B.; Jurischka, S.; Wiechert,
+W.; Freudl, R.; Oldiges, M., Use of a Sec signal peptide library from
+Bacillus subtilis for the optimization of cutinase secretion in
+Corynebacterium glutamicum. Microb. Cell Fact. 2016, 15,
+DOI: 10.1186/s12934-016-0604-6
+ (36) Puziss, J. W.; Harvey, R. J.; Bassford, P. J. Alterations in the
+hydrophilic segment of the maltose-binding protein (MBP) signal
+peptide that affect either export or translation of MBP. J. Bacteriol.
+1992, 174 (20), 6488-6497.
+ (37) Rusch, S. L.; Chen, H.; Izard, J. W.; Kendall, D. A. Signal
+peptide hydrophobicity is finely tailored for function. J. Cell. Biochem.
+1994, 55 (2), 209-17.
+
+                                                                           13151                     DOI: 10.1021/acs.jafc.8b04183
+                                                                                  J. Agric. Food Chem. 2018, 66, 13141-13151
+

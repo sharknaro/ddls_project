@@ -1,0 +1,2395 @@
+Chapter 2
+
+Production & secretion of hydroxylated bovine collagen and
+other polymeric proteins in Bacillus subtilis
+
+Anargyros Alexiou1, Sheila I. Jensen1, Carsten Jers1, Mehdi
+Abdollahi3, Ivan Mijakovic2, Lei Yang1
+
+1Novo Nordisk Foundation Center for Biosustainability, Technical University of
+Denmark, Kgs. Lyngby, Denmark
+2Department of Life Sciences, Division of Systems and Synthetic Biology, Chalmers
+University of Technology, Gothenburg, Sweden
+3Department of Life Sciences, Division of Food and Nutrition Science, Chalmers
+University of Technology, Gothenburg, Sweden
+Abstract
+
+Collagen is a polymeric protein with unique functional properties, including high water-
+binding capacity, gel-forming ability, and emulsifying potential, making it widely used in
+the food and pharmaceutical industries. However, traditional animal-derived extraction
+methods raise ethical, environmental, and safety concerns. Precision fermentation offers
+a sustainable alternative, though major challenges remain in efficient secretion and
+proline hydroxylation, which are essential for collagen's structural and functional
+stability. In this study, we report the successful recombinant production and secretion of
+bovine collagen, and other polymeric proteins in Bacillus subtilis. By constructing and
+screening a library of 32 secretion tags, we identified several signal peptides that enabled
+efficient extracellular secretion of codon-optimized collagen fragments. Additionally, by
+extending the size of collagen constructs - from short bioactive sequences to full-length
+tropocollagen - we revealed the size-dependent limitations of collagen production,
+particularly in sequences containing the native C-terminal propeptide. To introduce
+proline hydroxylation, we co-expressed prolyl-4 hydroxylases (P4Hs) from Bacillus
+anthracis (BaP4H) and Giant Mimivirus (MimiP4H). Proteomic analysis indicated limited
+hydroxylation by BaP4H, while MimiP4H exhibited promising results, with >30% of
+collagen-derived peptides showing hydroxylation in intracellular fractions. We
+confirmed by using circular dichroism, the formation of triple-helical structures for all
+constructs, with a similar melting temperature of 29.9°C, regardless of hydroxylation
+status. Furthermore, we extended the secretion platform to other structural proteins,
+including resilin and elastin. To our knowledge, this study represents the first successful
+production of hydroxylated collagen and resilin in B. subtilis, laying the groundwork for
+sustainable production of protein-based biopolymers for applications in food, materials,
+and biomedical industries.
+
+Introduction
+
+Collagens are the most abundant proteins in the animal kingdom, accounting for
+approximately one-third of the total protein content. The collagen superfamily consists
+of 28 members in vertebrates (I - XXVIII) and all share a common structural motif, the
+triple-helix1-3. This supramolecular structure is composed of three polypeptide chains,
+stabilized by hydrogen bonds and the presence of the uniquely modified amino acid
+
+                                                       46
+hydroxyproline (Hyp - O)4,5. Each chain is composed of repeating Gly-X-Y sequences,
+where X and Y are often proline and hydroxyproline, respectively6,7. This arrangement
+provides collagen with characteristic tensile strength and thermal stability6. As a
+structural member of the extracellular matrix, it plays a crucial role in providing
+mechanical strength and resilience to connective tissues, while also promoting cell
+adhesion, differentiation, and growth8-11.
+
+Beyond its physiological role, collagen and its derivative, gelatin, exhibit unique
+properties, such as high water-holding capacity, gel-forming ability and emulsifying
+potential12. These attributes make collagen a coveted protein for applications in the
+pharmaceutical, cosmetic and food industries12-19. As of 2025, the global market for
+collagen and gelatin was valued at over 10 billion USD, with strong growth driven by the
+demand for novel functional foods and peptide health supplements20. However, the
+escalating demand for collagen-based products could be limited by the insufficient
+amount of current primary material sources, failing to meet the projected needs21.
+
+Traditionally, collagen has been extracted from animal tissues and bones, primarily from
+bovine and porcine origins. However, during the last few decades, there has been a
+significant shift away from these resources12,22. Animal agriculture has long been a key
+primary protein source for the global population. Nonetheless, it is now recognized as a
+significant contributor to greenhouse gas emissions and land use, both of which are
+central drivers of the current climate crisis23-25. Additionally, the consumption of bovine
+or porcine-derived products is restricted due to religious or ethical constraints, and
+isolating native collagen involves expensive extraction methods, batch-to-batch
+variations and the risk of transmissible diseases26-28. Hence, there is an urgent need for
+novel alternative sources of protein, including collagen29,30.
+
+Microbial fermentation has emerged as a compelling strategy for producing recombinant
+collagen and collagen-like proteins31,32. Unlike traditional methods, precision
+fermentation allows the controlled production of safe, high purity, and reproducible
+biomolecules using genetically engineered microorganisms33. Over the past decades,
+recombinant collagen has been produced with varying degrees of success in a diverse set
+of host organisms that include bacteria, yeast, insect cells, plant cells and transgenic
+plants33,34. Most of the efforts have suffered from low titers while the usual intracellular
+
+                                                       47
+production of recombinant collagen significantly increases the operating costs, hindering
+the economic viability of commercial-scale production32,34. Additionally, a critical barrier
+remains the inefficient post-translational modification of proline to hydroxyproline, a
+reaction that is catalyzed by prolyl-4 hydroxylase (P4H) which is essential for achieving
+the stable, functional structure of native collagen stable35. Expression of recombinant
+animal P4Hs demonstrated low levels of solubility or enzymatic activity. However,
+evidence suggests the presence of P4Hs in bacteria, algae, and viruses, could exhibit
+similar functions as animal P4Hs36,37. Specifically, Bacillus anthracis P4H (BaP4H) and
+Giant Virus Mimivirus P4H show higher hydroxylation efficiency when compared to their
+animal counterparts when expressed in E. coli38-41. However, it is uncertain whether
+similar activity can be achieved in other bacterial hosts.
+
+Among bacterial platforms, Bacillus subtilis stands out as a promising chassis for
+recombinant protein production due to its GRAS (generally regarded as safe) status, high
+protein secretion capacity, and robust genetic tools42,43. Unlike hosts with limited
+secretion capabilities, like E. coli, B. subtilis naturally secretes proteins into the
+extracellular medium, simplifying downstream processing and enhancing cost-
+effectiveness. These traits make it an ideal host to produce complex proteins, like
+collagen. However, the efficiency of protein secretion is dependent on the interplay
+between the secretion tag and the protein of interest. So far, no accurate prediction tools
+have been developed, making the experimental exploration of the appropriate tag
+essential44.
+
+In this study, we present the first successful production and secretion of hydroxylated
+recombinant collagen in Bacillus subtilis. To identify the best secretion signals for
+collagen, we integrated a library of secretion peptides into the genome of an engineered
+B. subtilis strain and conducted a systematic secretion assay. Based on these results, we
+developed integrative and expression vectors enabling the production and secretion of
+higher molecular-weight polymeric and collagen proteins. Additionally, we explored the
+hydroxylation effects of two P4Hs on the recombinant collagen and assessed its impact
+on the biophysical properties of collagen, such as triple-helix formation, which proved to
+be stable at 29.9°C regardless of the hydroxylation status. Our findings establish the
+foundation for an animal-free collagen production, paving the way for future applications
+in food technology.
+
+                                                       48
+Results and discussion
+
+    1. Efficient production and secretion of non-hydroxylated bovine collagen
+    Although Bacillus subtilis has been widely used in industry for the secretion of
+heterologous proteins and enzymes, the efficiency of secretion is dependent on the
+interplay between the secretion tag (SPs) and protein sequence of interest (POI).
+
+    To establish an efficient secretion chassis for recombinant bovine collagen, a 110
+amino acid sequence of bovine collagen type I alpha I (10kDa) was selected, codon-
+optimized and cloned with a library of 32 N-terminal secretion tags. The secretion tag
+library was constructed by amplifying native Bacillus subtilis sequences, while the
+collagen fragment was carefully chosen to (a) reflect the amino acid composition of full-
+length collagen (Supplementary Table 1), (b) originate from a region predicted to form
+a stable triple-helix, and (c) include putative bioactive motifs such as VPGDL and the
+integrin 21-binding sequence DGEA45-48 . The 10kDa collagen was named BsbColv2.
+
+    To achieve comparable results, integrative plasmids targeting the glmS locus of the
+Bacillus subtilis genome were employed. Expression of collagen constructs was driven by
+the strong constitutive promoter P3P49.
+
+     Figure 2 | Western blotting of secreted his-tagged collagen. Each lane represents the culture
+                                  supernatant of di7erent collagen secreting strains
+
+    Western blot results indicated that most strains were able to effectively produce and
+secrete collagen in the production media (Figure 2). Although the expected molecular
+weight (MW) of the collagen fragment is 10kDa, the bands showed reduced SDS-PAGE
+mobility, which corresponds to a higher MW (15kDa). This phenomenon is common for
+collagen and other collagenous proteins50. The most prominent strains were selected by
+comparing the intensity of the bands, normalized by the estimated total protein content.
+The experiments were performed in triplicates. Each secretion tag was compared directly
+to other tags in the same gel (Figures 3A-C).
+
+                                                       49
+A  B
+
+C  D
+
+      N-terminal secretion tag
+
+    Figure 3 | Quantification of secreted collagen levels per secretion tag. A-C, The intensity of the
+    western blot bands was measured and normalized by estimated total protein per lane. The mean
+    intensity per gel was used to estimate the fold-change of each construct. Each graph represents a
+    di7erent gel. The experiments were repeated at least three times, from production to westen blotting.
+    D. Graphical representation of the genomic expression of collagen with N-terminal secretion tag.
+
+    Unexpectedly, some of the strains produced consistently a secondary band at a higher
+molecular weight (Figure 2). This could be due to insufficient cleavage of the secretion
+tag or resistance to a potential degradation event. Notably, our selected collagen amino
+acid sequence lacks sufficient aromatic and charged amino acids to enable Coomassie-
+based visualization. Consequently, in-gel mass spectrometry analysis was not feasible,
+and the identity of the secondary band remained elusive.
+
+    To validate the best performers, an additional experiment with six of the best
+candidate secretion bacterial strains was completed. These correspond namely to SP3,
+SP4, SP5, SP19, SP26, S32 strains. The strain with SP2 secretion tag was included as an
+internal control of mid-level secretion (Fold change equal to 1).
+
+                                                       50
+   A   SP2 SP3 SP4 SP5 SP19 SP26 SP32
+
+25kDa  R1 R2 R1 R2 R1 R2 R1 R2 R1 R2 R1 R2 R1 R2
+15kDa
+10kDa                                         B
+25kDa
+15kDa   SP2 SP3 SP4 SP5 SP19 SP26 SP32
+10kDa
+        R1 R2 R1 R2 R1 R2 R1 R2 R1 R2 R1 R2 R1 R2
+
+ Figure 4 | Quantification of secreted collagen levels per secretion tag. The intensity of the western
+ blot bands was calculated as before. The strains SP4 and SP19 showed significanlty increased
+ secretion e7iciency compared to SP2 internal control. SP4 (Figure 4A) consistently produced a
+ secondary band, with lower mobility in the SDA-PAGE. The results were in biological and technical
+ replicates.
+
+    As shown in Figures 4A and 4B, every strain has outperformed SP2 strain, validating
+our previous results and the superiority of our selected secretion tags. Specifically, the
+SP4 strain showed statistically significantly elevated levels of secretion compared to
+strains SP32, SP3 and SP2. Interestingly, SP4 is the only strain that provides consistently
+a secondary band of higher MW. To avoid the production of multiple proteins
+simultaneously and maintain the reproducibility of the recombinant collagen, we decided
+not to include SP4 secretion tag in later experiments, despite its superior secretion. In
+conclusion, the signal peptides SP19, SP5, SP26 and SP3 were selected for further
+experiments.
+
+    2. Expanded pool of secreted collagen 1[I] sequences and polymeric proteins
+    To explore if the selected secretion tags can translate similar results to polymeric
+proteins of greater molecular weight, we decided to evaluate larger sequences stemming
+from bovine collagen type I, including full-length collagen and procollagen. Additionally,
+
+                                                       51
+we expanded the application of the strain to production of other protein-based
+biopolymers, such as elastin and resilin.
+
+Progressive extension of the codon-optimized collagen sequence size
+
+Based on literature review, we found out that a region close to our initial 10kDa
+
+recombinant collagen contained additional bioactive domains, including domains that
+
+control fibroblast adhesion and exhibit antioxidant activity. As these properties could
+
+prove beneficial in food applications, we included them in a newly designed 20kDa
+
+recombinant collagen (named Bacola225). The western blot results (Figure 5B) showed
+
+that the 20kDa collagen was successfully produced and secreted by all the secretion tags,
+
+with minor fluctuations in secretion efficiency. When compared to the previously
+
+produced 10kDa fragment (PC), the novel collagen shows similar or minor decreased
+
+titers.                               Bacola225
+               A
+                  B L PC NC SP3 SP5 SP1 S 9 P26
+
+      Figure 5 | Contruction and production of Bacola225. A. Graphical representation of the extension
+      from 110aa (BsbColv2) to 225aa (Bacola225). Bacola225 contains additional bioactive sites. B.
+      Western blotting of hig-tagged Bacola225 (C-terminal). L: Ladder, PC: Positive control - BsbColv2
+      (SP5), NC: Negative control - Supernatant of KO7S.
+
+    To evaluate the effect of increasing molecular weight on collagen's production, we
+designed extended constructs by doubling the codon-optimized sequence of collagen
+twice, while maintaining the amino acid sequence of native collagen. Therefore, our pool
+of collagens includes proteins of 110, 225, 450 and 900 amino acids that correspond to
+10, 20, 45 and 87kDa (Figure 6). To build the constructs, we extended the previously
+produced collagens towards the C-terminal by Gibson assembly and integrated them to
+the glmS site of Bacillus subtilis as previously. For this study, we restricted our constructs
+to include only secretion tag SP5. Unfortunately, the results showed that the production
+
+                                                       52
+for the 450 amino acid construct was limited only in the intracellular fraction and in
+insufficient amounts while the production and secretion of the 900 amino acid construct
+was not possible (Figure 6 and Supplementary Figure 1). It should be noted, that the
+900aa construct included the C-propeptide of collagen 1[I]. It is believed that C-
+propeptide promotes collagen solubility in native conditions, however it seems - from our
+data - that it might hinder the production of recombinant collagen in Bacillus subtilis
+systems.
+
+    The idea behind this substudy of progressive extension was to uncover putative
+mechanisms of stress, that are specific to collagen, with the employment of
+transcriptomic analyses. However, the limited to non-existent production of larger
+collagens was a significant factor in not pursuing further analysis. However, we conclude
+that the extensive resources required by expanded collagens, considerably hinder and
+stress B. subtilis production capabilities, is a size dependent manner.
+
+               A
+
+B C Bacillus KO7S (Both)
+
+    kDa  C C' S C C' S C C' S C C' S
+
+    250
+    130
+
+    100
+    70
+    55
+    35
+    25
+
+    15
+
+    10
+
+Figure 6 | Contruction and producion of progressively extented collagens. A. Graphical
+representation of doubling extension steps. Bacola900 contains the a1[I] C-propeptide. B, C:
+Western blots of his-tagged constructs. B, corresponds to media supernatant and C to both
+replicates of cell pellets (C, C') and S supernatant.
+
+The C-propeptide affects the secretion of 1[I] and 2[I] collagen chains
+         Furthermore, we focused on other regions that control the assembly of collagen.
+
+In nature, collagen type I is composed of a 2:1 ratio of alpha 1 (a1[I]) and alpha 2 (a2[I])
+
+53
+chains. The C-terminal propeptide, also known as the C-propeptide, plays a crucial role in
+collagen assembly and fibril formation both inside and outside cells. It guides the
+selection and association of collagen alpha chains, ensuring proper folding and
+preventing premature fibril formation within cells. Once the procollagen molecule is
+secreted, the C-propeptide is cleaved by specific native proteinases, leading to the release
+of the mature collagen molecule and subsequent fibril assembly. To investigate the
+manifestation of similar effects, we cloned the codon-optimized C-terminal sequences of
+both alpha I and alpha II chains with and without their respective C-propeptides. We
+found out that the secretion of alpha I chain with the C-propeptide was possible for three
+out of the four secretion tags, with peptide SP26 being the most efficient (Figure 7C). On
+the contrary, the alpha 2 chain sequence that maintains the C-propeptide, was not able to
+be secreted (Figure 7C). Further experiments showed that limited amounts of alpha 2
+collagen are produced and retained inside the bacterial cells (Supplementary Figure 2).
+Notably, the secretion of alpha 1 and alpha 2 sequences lacking their respective C-
+propeptides yields different results. Both chains are able to be secreted in the production
+media in relatively similar amounts (Figure 7D). Particularly, the consistency of
+secretion irrespectively of the presence of the C-propeptide or not, renders secretion tag
+SP26 an ideal partner for production of the 1[I] chain. Although the two chains are
+designed to have similar molecular weight, the electrophoretic mobility of 2 chain is
+higher than that of 1, a phenomenon that aligns with that of native 1[I] and 2[I]
+chains51. Interestingly, a single degradation band is visible for both chains, indicating a
+precise degradation pattern, possibly by an unknown host-specific protease. When
+compared against the previous 10kDa collagen, the production was visibly significantly
+lower.
+
+Successful production of full-length tropocollagen from bovine cDNA
+    As a next step, we explored the production of procollagen (138kDa) and tropocollagen
+
+type I alpha I (96kD) - full length collagens with and without their N- and C- terminal
+propeptides, respectively. The polymeric and high in GC% collagen sequence does not
+allow the production of long sequences from DNA synthesis companies, even with
+extensive codon-optimization. For this reason, we decided to amplify the bovine
+procollagen and collagen 1[I] sequences directly from purchased bovine skin cDNA. As
+with previous constructs, we integrated the genes and their respective secretion tags to
+
+                                                       54
+the glmS locus of Bacillus subtilis KO7S strain and tested their production. Interestingly,
+it was revealed that the production and secretion of tropocollagen is possible in B. subtilis
+for two out of four secretion peptides - SP5 and SP19, albeit in smaller amounts (Figure
+7F) However, this is an important milestone, as the number of successfully secreted
+proteins >90 kDa is limited in academic literature. By increasing the total volume loaded
+in SDS-PAGE, we found out that the production of tropocollagen is possible from the other
+secretion tags as well, but with a significant loss in titers (Figure 7G). Furthermore, it
+was apparent that thaw-freeze cycles or proteolytic activity produced degradation
+products (Figure 7G). On the contrary, procollagen was not produced in either
+intracellular or extracellular fraction, demonstrating that potentially sequences in N- or
+C-terminal propeptides hinder collagen production. Nevertheless, the expression and
+production of a full-length collagen from a mammalian cDNA remains remarkable as the
+sequence is not codon-optimized and Bacillus subtilis 168 does not exhibit high codon
+usage for codons like CCC which is prominent in collagen sequence and translates to
+proline.
+
+    To investigate if codon-optimized versions could prove advantageous for the
+production of procollagens 1[I] and 2[I], we assembled synthetic constructs by USER
+cloning codon-optimized segments to approximate the full-length sequences, while
+maintaining the native amino acid content. These constructs were integrated into the
+glmS locus and paired with the validated SP5 secretion tag as before. Western blotting
+showed that procollagen was produced in small amounts, but it was maintained inside
+the cell (Supplementary Figure 3). Future experiments will aim on testing more signal
+peptides to achieve secretion and compare the production of codon-optimized
+tropocollagen to the cDNA-derived tropocollagen.
+
+No.  Name by Scietist         Expected secreted kDa* AA Length   PIs              Source         Codon-Optimised
+                                                                 6.3                                       Yes
+1    BsbColv2                 9.9 kDa    108                             Bovine a1[I] collagen
+                                                                 8.3     Bovine a1[I] collagen             Yes
+2    Bacola225                20.3 kDa   225                              (contains BsbColv2)
+                                                                 9.3     Bovine a1[I] collagen           Native
+3 Bovine cDNA Collagen I      95.5 kDa   1063                          without N, C propeptides
+                                                                6.21     Bovine a1[I] collagen           Native
+4    a1[I] with C propeptide   48 kDa    470                    7.29     Bovine a1[I] collagen             Yes
+                              20.4 kDa   221                    9.69     Bovine a2[I] collagen             Yes
+5 a1[I] without C propeptide  20.6 kDa   222                    5.15                                       Yes
+                              56.8 kDa   604                    10.40       D. melanogaster                Yes
+6 a2[I] without C propeptide  68. 4 kDa  786                                      Human
+
+7    Resilin
+
+8    Elastin
+
+Table 1 | Overview of successfully produced and secreted proteins in this part of the study.
+Information about the expected MW of protein, amino acid length, source, pH isoelectric point and
+subjection to codon-optimization.
+
+                                         55
+A                                                              B
+
+C                                                              D a2 [I] with C a1[I] a2[I]
+
+   a1[I] with C  a2 [I] with                                                          propeptide without C without C
+
+   propeptide    propeptide
+
+                                                                                                                                                                 Ladder  SP3 9 6 3 9 6 3 5 19 26 SP5 SP1 SP2 SP SP5 SP1 SP2 SP SP SP SP
+                                                                                                                                PC
+
+           Ladder
+
+   PC
+   SP3 9 6 SP5 SP1 SP2 SP3 9 6 SP5 SP1 SP2
+
+                                                                      21 22 23 24 25 26 27 28 29 30                                                                                    0.1 0.2
+
+   21 22 23 24 25 26 27 28 29 30  0.1 0.2
+
+E
+
+   Experiment 1                             Experiment E1xperiment 2                                                                                                     Experiment 2
+
+F  (10µl)                                   (10(µ4l0) µl - Same samples) (40µl - Same samples)
+                                                               G
+                                                                                                                                                                         Experiment 1                                                    Experiment 2
+
+                                            Procollagen            CollagePnrocoll(a1g0eµnl)                                                                                           Collagen                                          (40µl - Same samples)
+
+                                                                                                                                                                                                            Procollagen
+
+                                                                                                                                                                                       SP3 SP5 SP1 SP2
+                                                                                                                                                                                                          96
+                                                                                                                                                                                                                       SP3 9 6 SP5 SP1 SP2
+                                                                                                                                                        Ladder                                                                                      Collagen
+                                                                                            Ladder
+                                            Ladder                                                                                                                                                                                                SP3 9 6 SP5 SP1 SP2
+                                            SP3 SP5 SP19 SP26  SP     SP SP SPSPSP5 SP                                                                                      SP2
+                                                                      51 2                                                                                               1
+                                                                  3   93 6                                                                                                96
+
+   21 22 23 24 25 26 27 28 2219 2320 23 24 02.51 02.62 27 28 29 30                                                                                                       0.1 0.2
+
+                                                                      21 22 23 24 25 26 27 28 29 30                                                                                                                                      0.1 0.2
+
+Figure 7 | Graphical representations and westen blots of 1[I], 2[I] collagen fragments, full
+tropocollagen and procollagen. A. Overview of collagen fragments with and without their
+respective C-propeptide. B. C-propeptide is important for the nucleation and triple-helix formation.
+C, D: Western blots of collagen fragments with and w/o their respective C-propeptide. Production is
+a7ected by C-propeptide. E. Oveview of Procollagen and full collagen. F, D Western blots of the same
+samples against his-tagged Procollagen and collagen. 10µl or 40µl sample volume was used. PC:
+Positive control - BsbColv2 SP5
+
+                                                  56
+Achieving production and secretion of other protein-based biopolymers: Elastin &
+Resilin
+
+    To assess the ability of Bacillus subtilis 168 to produce other biopolymers, we decided
+to explore the production of other codon-optimized elastomeric proteins such as elastin
+and resilin. Similarly to collagen, these proteins are characterized by repeated, glycine-
+and proline-rich domains that confer elastic and self-assembly properties. Resilin, for
+example, is purported to be one of the most resilient elastic materials known52.
+Additionally, elastin often co-localizes with collagen in the extracellular matrix and 20-
+24% of its prolines are hydroxylated53. These shared structural and biochemical features
+make elastin a promising candidate for transferring insights we are gaining from the
+development of our collagen production platform and open the possibility of co-utilizing
+our biopolymers in future applications.
+
+     For this study, we employed the pHT100 plasmid that contains the IPTG-inducible
+pgrac100 promoter. pHT100 is a mid-copy plasmid and it has been described as a strong
+driver of protein production54. In a similar manner as described before, we assembled the
+biopolymers' sequence by USER cloning codon-optimized segments together (Figure 8A).
+SP5 was used again as secretion tag. However, the His tag was placed in the N-terminal
+directly after the secretion tag followed by a TEV cleavage site. After protein production
+experiments in Cal18-2, we tested the detection of elastin or resilin in either intracellular
+or secreted fractions. Western blots revealed the efficient secretion of both resilin and
+elastin in the production media, with limited amounts maintained in the cell lysates
+(Figure 8). Notably, the secretion of elastin, proved to be inconsistent between batches,
+with some experiments revealing the absence of elastin secretion (Supplementary
+Figure 3). On the contrary, resilin secretion proved to be more robust leading to
+successful purification in a larger batch. Interestingly, during dialysis on TBS at 4°C, the
+resilin solution turned opaque (Supplementary Figure 4B). This phenomenon is
+characteristic of native resilin as the protein's conformation is pH- and temperature-
+dependent and exhibits an upper critical solution temperature (UCST) around 6°C
+(Supplementary Figure 4A)55. Temperatures below the UCST, promote conformational
+changes that lead to phase separation and visible opaqueness. This suggests that our
+recombinant variant might mimic the native resilin's structure. Further experiments are
+required to characterize the recombinant resilin and explore its potential applications.
+
+                                                       57
+Nevertheless, to the best of our knowledge, this is the first time that resilin has been
+produced and secreted by a Bacillus subtilis strain.
+
+A  B
+
+  Figure 8 | Cloning and western blotting of recombinant resilin and elastin. A. DNA fragments
+  obtained from DNA synthesis were amplified with Uracil-containing primers and assemblied in the
+  pHT100 plasmid with USER cloning. B. Western blotting of recombinant resilin and elastin reveals
+  successful secretion of both.
+
+    3. Hydroxylation of recombinant collagen by non-animal prolyl-4 hydroxylases
+
+    Bacillus anthracis P4H exhibits low levels of expression and hydroxylation activity
+
+    The post-translational modification of proline to hydroxyproline by prolyl-4
+hydroxylase is crucial for the stability of collagen. To achieve collagen hydroxylation in
+Bacillus subtilis, we employed B. anthracis P4H (BaP4H), known to act on collagen-like
+sequences, and evaluated the enzymes activity on recombinant collagens in vivo. We
+constructed two different systems for the co-expression of collagen and BaP4H. The first
+one builds on the previously developed strains that constitutively express the 10kDa and
+20kDa collagen genes coupled with SP5 signal peptide. These strains were transformed
+by natural competence with a ProUSER plasmid, that bears homology arms for the rsbP
+locus and the BaP4H codon-optimized gene, controlled by the Tet-inducible promoter. To
+monitor BaP4H production, we added a N-terminal Strep-tag II. The enzyme has a
+dimerization domain close to the N-terminal and an active site in the C-terminal.
+Acknowledging that the Strep-tag might be affected by this conformation, we decided to
+develop an additional construct and including a GS linker (spacer) between the Strep-tag
+and the rest of the P4H sequence (Figure 9A). The second system represents an operon
+system of BaP4H and the respective collagen (Figure 9B). For this, we used the pHT01
+
+                                                       58
+plasmid that includes the IPTG-inducible pgrac01 promoter. Western blot analysis
+verified the production of collagen from both systems. It indicated that the production of
+collagen from the operon system is more consistent when induced by 0.5mM IPTG
+(Supplementary Figure 5). Additionally, the detection of Strep-tagged BaP4H was not
+possible, however, Ponceau S staining provided indications of BaP4H presence inside the
+cells (presence of distinct bands - Supplementary Figure 6).
+
+                                                                  9B. System II
+
+          9A. System I
+
+ Figure 9 | Co-expression systems of BaP4H and collagen fragments. 9A. This system is based on
+ chromosomic expression of collagen as before, and integration of Tet-incublible BaP4H in the rsbP
+ locus. BaP4H has a Strep tag II in N-terminal, with or without a GS link inbetween. 9B system uses
+ the IPTG-inducible pHT100, to express BaP4H and collagen fragments from an operon.
+
+    To investigate if BaP4H was produced and active, we performed proteomic analysis
+on the cell pellets and on selected purified collagens (secreted fractions). For comparison,
+we included E. coli strains that express both BaP4H and the recombinant collagens (not
+included in this thesis). Unexpectedly, the BaP4H was detected only in samples of the
+operon system. Compared to E. coli, which achieved BaP4H expression levels exceeding
+6.2 × 1011 intensity units, B. subtilis exhibited significantly lower expression, reaching
+only around 3 × 106 units--representing a difference of over five orders of magnitude
+(Figure 10A). Of the purified secreted collagens, detectable hydroxylated peptides were
+present in only 3 samples and include only 1 hydroxylated site per peptide (Figure 10b).
+These samples include: the Operon-BaP4H-Collagen110, the glmS::Collagen110
+rsbP::NoLinkerBaP4H and the glmS::Collagen225 rsbP::LinkerBaP4H. Although the
+coverage of collagens was 100% and 73% for the 10kDa and 20KDa collagens
+
+                                                       59
+respectively, the absence or limited detection of hydroxylated peptides indicates that
+hydroxylated fraction may be obscured by the non-hydroxylated counterparts indicating
+that the occupancy rate of hydroxylated prolines is generally low. Thus, we conclude that
+neither system as it stands, can facilitate efficient production of hydroxylated collagen.
+We hypothesized that the low hydroxylation levels are a function of the low abundance
+of BaP4H and the limited availability of cofactors. Most prolyl-4 hydroxylases need
+oxygen, a-ketoglutarate, iron and ascorbate to fully function. For this reason, we decided
+to increase the mRNA levels of BaP4H, supplement the media with ascorbate and explore
+the use of an additional non-animal P4H.
+
+      Development of P4H enzyme- and collagen-producing strains
+
+A  B
+
+                                                                                           Levels of site-specific hydroxylation of proline. Data from MS analysis
+
+Figure 10 | First Proteomics results for detection of BaP4H and hydroxylation on purifed collagens.
+Comparison of detected BaP4H between Bacillus subtilis pHT01 operon and E.coli T7 system. The levels of
+BaP4H in Bacillus were detected only in the Operon P4H - BsbColv2 and are magnitutes lower that what
+E.coli can reach. B. Hydroxyproline was detected in recombinant collagen, albeit peptides bearing only 1
+event of hydroxylation, indicate low activity of P4H.
+
+    Optimization of P4Hs expression and hydroxylation conditions
+
+         To optimize P4H and collagen expression, we focused on the operon system,
+producing only Bacola225 (20 kDa collagen). Initially, we employed the pHT100 plasmid
+to increase the mRNA levels through the pgrac100 IPTG-inducible promoter. Moreover,
+we increased the number of P4H tested, by including Mimivirus P4H (MimiP4H) in our
+analysis. This viral P4H has been proven to effectively work on collagen expressed in
+prokaryotes, such as E. coli.
+
+         To monitor the enzymes production, we substituted the Strep-tag II in the N-
+terminal, with the Nano-Glo® HiBiT-tag, a constituent of a sensitive luciferase system for
+protein detection. Expression of P4Hs - without collagen - in B. subtilis KO7S strains, and
+subsequent Hibit-blotting experiments, revealed successful production and detection of
+
+                                                       60
+both enzymes (Figure 11A). However, the levels of Mimivirus P4H were significantly
+lower than that of the BaP4H, suggesting the need for increased translation.
+
+         The ribosomal binding site (RBS) is a significant factor controlling the production
+levels of proteins. Hence, we decided to explore and optimize the strength of our RBSs
+through the employment of RBS and Operon Calculator bioinformatic tools56. New
+designs increased considerably the estimated P4H translation rate from 289au to
+241386au and the collagen translation rate from 102358 to 197692 (Supplementary
+Figure 7). To provide experimental validation, we aimed to construct plasmids bearing
+either new or previous RBSs for both P4H and the 20kDa recombinant collagen, with or
+without secretion tags. A significant increase in P4H or collagen titres would validate the
+predicted results. The new RBSs were namely RBS3* for P4H and RBS4* for collagen,
+instead of RBS1 and RBS2 as previously. The asterisks nominate their synthetic nature.
+
+         Constructs expressing the RBS1 and RBS2 for BaP4H and MimiP4H were
+successfully assembled. However, multiple cloning rounds failed to produce BaP4H-
+NewRBS constructs without disruptive mutations on the BaP4H gene. It is known that
+pgrac100 can be leaky in E. coli54, and elevated BaP4H levels with collagen could be
+disruptive. Nevertheless, we managed to create operons for MimiP4H, that enable either
+intracellular or extracellular production of the 20kD collagen, and we set to explore the
+effect of RBS3* and RBS4* versus RBS1 and RBS2.
+
+A NC BaP4H MimiP4H B
+
+21 22 23 24 25 26 27 28 29 30  0.1 0.2
+
+Figure 11 | Hibit-blotting for P4H detection and graphical representation of the new pHT100 plasmid
+combinations, with two P4Hs and synthetic RBSs. A. Hibit-blotting was able to verify the production of
+BaP4H and MimiP4H. The latter had significant less expression. For this reason, new RBS were
+computationally designed and aimed to be constructed in new plasmids that are visible in B.
+
+         As P4Hs require ascorbate as a cofactor, we also tested if external
+supplementation of ascorbate (Vitamin C) can improve production. Although crucial for
+P4H activity, ascorbate has been documented to inhibit Bacillus subtilis growth and
+
+                                                       61
+biofilm formation57. For this reason, we performed a Vitamin C dose-dependent growth
+assay. We found out that concentrations below 5mM do not affect the growth in
+exponential phase but decrease the final OD in a dose-dependent manner
+(Supplementary Figure 8). Acknowledging this, a concentration of 2mM Vitamin C was
+selected for subsequent experiments to balance between ascorbate availability and its
+inhibitory effect. We hypothesized that if supplementation of ascorbate is critical, we
+might observe visual effects on the electrophoretic mobility of - hydroxylated - collagen
+proteins.
+
+         As RBS3* and RBS4* were not cloned with BaP4H, we performed comparisons
+only between constructs of MimiP4H. Hibit blotting showed that RBS3* was significantly
+more efficient than RBS1, enhancing MimiP4H production (Figure 12A). Subsequent
+western blotting on the same membrane, did not produce visible changes in collagen
+production or secretion. Notably, although the production of intracellular collagen was
+almost non-existent, the intracellular fractions of the strains that secrete collagen
+maintained high levels intracellularly, possible due to a protective effect of the signal
+peptide (Figure 12B). A particular shift was observed between the secreted and
+intracellular fractions, that was attributed to signal peptide cleavage of the secreted
+collagen or collagen hydroxylation of the intracellular fraction. Simultaneously, no
+significant changes were observed due to treatment with ascorbate.
+
+         We also tested a genome-reduced Bacillus strain, PG10, which was reported to be
+beneficial for secreting difficult-to-express proteins58. Cross-comparison between the
+genome-reduced strain PG10 and KO7S, showed limited differences, except a minor
+increase in protein secretion with the RBS4* (SDA118 strain) and an additional band
+around 55kDa on the intracellular fraction of the RBS4* (SDA118). These are promising
+results for the utilization of the genome-reduced strains, however the strains showed
+inconsistent growth when cultivated in larger flasks, which is supported by well-
+documented differences in physiology compared to the wild strains59,60.
+
+As the next step, we verified with Hibit- and western-blotting, the production of BaP4H
+and secreted collagen respectively from strain SDA108 (RBS1 and RBS2 -
+Supplementary Figure 9) and constructed a novel strain (SDA130) that produces
+MimiP4H, and collagen intracellularly driven by the new RBSs (3* AND 4*). This strain
+was not included in the experiment in Figure 12. Interestingly, intracellular collagen
+production this strain (SDA130) provided a band in an unexpectedly higher molecular
+
+                                                       62
+weight, suggesting the possibility of hydroxylation and the formation of intracellular
+triple-helix. Additionally, small-scale IMAC purification of intracellular and extracellular
+collagen co-expressed with MimiP4H showed additional bands in a higher MW for the
+intracellular fractions, suggesting again the presence of hydroxylation and the potential
+association of collagens. This phenomenon was more prominent when samples were
+incubated at 4°C overnight (Supplementary figure 10).
+
+A  B
+
+C  D
+
+Figure 12 | Hibit and western blotting for comparison of operon producing MimiP4H and collagen with
+our in-house RBSs and the new synthetic RBSs, RBS3* and RBS4*. Simultaneously, Vitamin C was
+supplemented to some instances without e7ect. RBS3* that controls the experession of the P4H has
+significantly increased P4H production. RBS4* showed minor increase in collagen production and secretion.
+Intracellular production was limited. Comparison between genome-reduced and KO7S, showed minor
+di7erences, such as increased collagen secretion in PG10. However, PG10 lacks growth in large flasks. This
+was performed in 24-wells.
+
+                                                     63
+Name     Enzyme        RBSs          Production            Strain              Status
+SDA108    BaP4H    RBS1 & RSB2         Secretion      B. subtilis KO7S             OK
+SDA109    BaP4H    RBS1 & RSB2        Intracellular   B. subtilis KO7S
+SDA110   MimiP4H   RBS1 & RSB2         Secretion      B. subtilis KO7S      No production
+SDA111   MimiP4H   RBS1 & RSB2        Intracellular   B. subtilis KO7S             OK
+SDA112   MimiP4H  RBS3* & RBS4*        Secretion      B. subtilis KO7S
+SDA130   MimiP4H  RBS3* & RBS4*       Intracellular   B. subtilis KO7S      OK (Limited)
+SDA116   MimiP4H   RBS1 & RSB2         Secretion     Minibacillus PG10             OK
+SDA117   MimiP4H   RBS1 & RSB2        Intracellular  Minibacillus PG10             OK
+SDA118   MimiP4H  RBS3* & RBS4*        Secretion     Minibacillus PG10             OK
+
+                                                                            OK (Limited)
+                                                                                   OK
+
+Table 2 | Strain information regarding the P4H, RBS, parent strain and production status. RBS3* and
+RBS4* are novel synthetic RBSs, while RBS1 and RBS2 are the ones used before. Only one strain producing
+BaP4H was able to be constructed due to consistant instability and mutations during plasmid construction.
+
+4. Characterization of recombinant collagen with and without hydroxylation
+4.1 Expression and purification of non-hydroxylated and hydroxylated collagen
+
+ Strain     P4H          RBS         Collagen            Collection
+ ID           -         RBS1         Bacola225
+SDA091             RBS1 & RBS2       Bacola225           Intracellular &
+          BaP4H   RBS3* & RBS4*      Bacola225       extracellular
+SDA108   MimiP4H  RBS3* & RBS4*      Bacola225
+         MimiP4H                                         Intracellular &
+SDA112                                               extracellular
+
+SDA130                                                   Intracellular &
+                                                     extracellular
+
+                                                         Only
+                                                     intracellular
+
+         Table 3 | Table of strains used for characterization of collagen.
+
+         To assess the hydroxylation levels and structural stability of recombinant
+collagen, the production of non-hydroxylated collagen (SDA091), BaP4H-collagen
+(SDA108) and MimiP4H (secreted [SDA112] and intracellular [SDA130]) was further
+scaled up in 2L flasks containing 0.5L of terrific broth, supplemented with ascorbate and
+chloramphenicol.
+
+         To estimate the expected production of collagen from secretion or intracellular
+production in the case of SDA130, we performed a production batch and measured the
+OD600 and collagen production at specific time points. All strains manifested similar
+
+                                 64
+growth patterns and reached approximately an OD600 of 10 (Figure 13A). The estimated
+collagen production, measured by ELISA, at time points of 2, 5 and 24 hours after
+induction showed significant differences between the - putatively - hydroxylated and
+non-hydroxylated constructs (Figure 13B). Secreted fraction of non-hydroxylated
+collagen (SDA91) reached 6mg/L while the ones that express P4Hs reached 1.8mg/L.
+Notably, the production of intracellular collagen (SDA130) was around 7.88µg/L or
+0.829ng/OD at 24 hours, verifying previous results of low intracellular titres. These
+results reveal significant barriers in efficient collagen production and demonstrate the
+need for further strain optimization and controlled fermentation in bioreactors to
+achieve meaningful titers. To collect the necessary collagen for future characterization
+experiments, multiple rounds of production and IMAC purifications were performed,
+isolating collagen both from culture supernatant as well as from the cell lysate (see
+Methods and Supplementary Figure 11).
+
+A  B
+
+ Figure 13 | Growth curves and collagen concentration measured with ELISA against his-tag.
+ Cultivation was performed in Terrific broth, with ascorbate and antibiotic. All strains grew fast in Terrific
+ broth reaching an OD above 10, without significant di7erences. Secreted collagen titres were di7erent
+ for the strains that contain P4Hs compared to the control of only producing collagen. Intracellular
+ production of collagen on strain SDA130, was significantly low.
+
+    4.2 LC-MS/MS revealed significant MimiP4H activity and low hydroxylation in secreted
+         collagen
+
+    A key challenge in microbial collagen production is achieving efficient proline
+hydroxylation. Provided that hydroxylation occurs intracellularly before secretion, we
+
+                                                       65
+hypothesized that collagen localized inside the cells could exhibit higher hydroxylation
+levels compared to secreted collagen molecules. This assumption is based on the idea that
+secretion, especially through the Sec pathway, may limit the exposure time of collagen to
+prolyl-4-hydroxylases (P4Hs), resulting in incomplete modification before extracellular
+release. Additionally, hydroxylation may hinder secretion capacity. To explore these
+hypotheses and verify the P4H activity of the enzymes, we decided to detect and compare
+hydroxylation levels in intracellular versus secreted collagen fractions by LC-MS/MS,
+expecting greater hydroxylation occupancy in intracellular pools due to prolonged
+enzyme interaction.
+
+    Mass spectrometry results demonstrated hydroxylation by both prolyl-4
+hydroxylases and verified our hypothesis, by revealing significant elevated hydroxylation
+in intracellular fractions, particularly when MimiP4H was co-expressed (Figure 14).
+Notably, in SDA112 strain, more than 30% of the total intracellular peptides contained at
+least one (>1) hydroxylated proline, significantly more than the 2.8% exhibited by BaP4H
+(SDA108 - Figure 14C). Furthermore, SDA112 produced extensive proline
+hydroxylation events, with specific peptides exhibiting up to 10 hydroxyprolines
+simultaneously in the same peptide. This was the maximum possible number of
+hydroxyprolines based on the maximum available prolines of the digested peptides. This,
+in combination with the position of hydroxyprolines in the collagen sequence, suggests
+that MimiP4H is hydroxylating prolines irrespectively of their X or Y position on the Gly-
+X-Y motif (Figure 14B). Although high hydroxylation activity is desirable, uncontrolled
+and excessive hydroxylation can invoke negative effects in triple-helix stability. On the
+contrary, the maximum number of simultaneous hydroxyprolines detected on the BaP4H
+strain (SDA108) was five, while 96% of the intracellular or secreted hydroxylated
+peptides contained only 1 hydroxyproline, suggesting significantly low activity.
+
+    Interestingly, even though the secreted proteins showed reduced hydroxylation
+levels from 30% to 6.5%, SDA112-MimiP4H maintained similar distribution of the
+hydroxylated peptides, irrespectively of the fraction (Figures 14E,F). Unexpectedly, the
+intracellular production of collagen (SDA130) despite the presence of the highly efficient
+MimiP4H, produced hydroxylation levels closer to BaP4H (SDA108) than that of SDA112,
+reaching 4.4% of detected hydroxylated peptides (Figure 14C). SDA130 produced a
+lower coverage level (70%) of the sequence compared to the rest of the samples ( 86%
+coverage). This could mean that SDA130 had lower detection events, and the
+
+                                                       66
+hydroxylation levels were underestimated. Nevertheless, these results, in combination
+with the low production titres, constitute SDA130 an inefficient producer of collagen.
+
+    In conclusion, proteomics results revealed that extracellular fractions possess
+significantly less hydroxylation than the intracellular fractions. MimiP4H shows
+promising activity, but potentially exhibits uncontrolled hydroxylation, diverging from
+the native hydroxylation profile of collagen (Figure 14B). BaP4H exhibits significantly
+low activity despite high production levels (Figure 11A). SDA130 exhibited reduced
+MimiP4H activity compared to SDA112, failing to show advantages over the other strains.
+
+   A
+
+  Hydroxylation of proline by BaP4H (SDA108 In)
+
+   B
+
+  Hydroxylation of proline by MimiP4H (SDA112 In)
+
+C     D
+
+   E     F
+
+Figure 14 | Proteomics results of SDA91, SDA108, SDA112 and SDA130. A, B shows the position of the
+detected hydroxyproline for BaP4H and MimiP4H respectively (green circle). The red arrow shows hydroxylation
+specific to MimiP4H compared to BaP4H. C, shows the percentage of peptides containing at least 1
+hydroxyproline, intracellularly or extracellularly. D, E, F show the percentage of peptides containing 1x, 2x, 3x, 5,
+6-10x hydroxyprolines simultaneously when detected.
+
+                                                        67
+    4.3 Successful triple-helix conformation and thermal stability for secreted rCollagen
+    To investigate the formation of triple-helical structures and the thermal stability of
+recombinant collagens, we performed circular dichroism (CD) spectrometry at 4°C.
+Triple-helical collagen presents characteristic CD spectra, with a negative peak near and
+below 200nm and a positive peak near 221nm. By testing different dilutions of bovine
+collagen type I, a universal concentration of 0.2mg/ml was selected as the most
+consistent for subsequent experiments (Figure 15A). Non-hydroxylated collagen CD
+(SDA91) produced a negative peak below 200nm but was lacking a distinct positive peak
+near 221nm. This phenotype corresponds to the formation of a random coil or partially
+assembled triple-helix. Experiments with higher concentrations of non-hydroxylated
+collagen, produced CD spectra with a positive peak at 221.5 nm, revealing the formation
+of a triple-helix (Supplementary Figure 12). Furthermore, purified secreted samples
+from either BaP4H or MimiP4H formed triple-helical structures, with no distinct
+differences between them or from the bovine standard (Figure 15A-D). Notably, the CD
+spectra of the intracellular fractions suggested the formation of -helix instead of triple-
+helix (Figure 16A-C). Intracellular fractions of the recombinant collagen still maintain
+the sequence of the secretion tag 5, which forms an alpha helix (Supplementary Figure
+13). Therefore, a possible explanation could be that the secretion tag affects the detection
+of the triple-helical CD spectra or sterically hinders the assembly of the triple-helix.
+Another hypothesis includes the presence of co-purified -helical proteins. Lampfish and
+starfish collagen type I were also investigated and showed only a negative peak at 200nm,
+suggesting the denaturation of collagen and random coil formation (Supplementary
+Figure 12).
+    To estimate the thermal stability of collagen samples, we conducted temperature-
+dependent scans at 221.5nm and measured the changes in the ellipticity. The calculated
+denaturation temperature (Td) of bovine collagen was at 39.9°C, which aligns to what is
+documented in literature. Surprisingly, the Td of all the secreted recombinant collagens,
+was estimated to be around 29.9°C with minor deviations.
+     In conclusion, these findings, combined with the mass spectrometry results, indicate
+that the hydroxylation of the secreted collagens is absent or limited for the BaP4H
+(SDA108) and MimiP4H (SDA112) strains, respectively. As a result, the thermal stability
+of the collagens remains similar to that of the non-hydroxylated collagen. Nevertheless,
+
+                                                       68
+the formation of triple-helical structures is possible and maintains a thermal stability of
+almost 30°C. Although this temperature is lower than native bovine collagen (40°C), it is
+comparable to or higher than that of the marine collagens (25-30°C). This suggests that
+the recombinant collagens may be suitable for biotechnological applications, particularly
+those where milder thermal stability is sufficient or even advantageous
+
+A                                  B
+
+C                                  D
+
+   E                                  39.9ºC
+
+                           29.9ºC
+
+Figure 15 | Circular dichroism measurements prove the formation of triple-helix and the thermal stability
+of recombinant collagens. A. Circular dichroism and ellipticity of bovine skin collagen. B-D Circular dichroism
+results for secreted fractions of SDA91, SDA108 and SDA112. E. Denaturation curve for all samples and bovine
+collagen. It reveals a melting point of 39.9 for the bovine collagen and 29.9 for recombinant collagen.
+
+                                                        69
+   A
+
+B     C
+
+Figure 16 | Circular dichroism measurements of intracellular samples show the formation of -helix. All
+the samples show limited signal which corresponds to the formation of -helix. This could be either due to the
+formation of -helix by the secretion tag or the presence of contaminants
+
+ Conclusion
+ In this study, we successfully demonstrated the first production and secretion of
+ hydroxylated (bovine) collagen in Bacillus subtilis. By systematically screening 32
+ secretion peptides, we identified the best secretion peptides that enhance extracellular
+ collagen secretion, particularly peptides SP5, SP19, SP26, and SP3. By progressively
+ increasing the length of produced collagen, we highlighted the size-dependent challenges
+ in collagen secretion and indicated that sequences containing the C-terminal propeptide
+ may hinder production.
+
+ To introduce hydroxyproline in recombinant collagen, we co-expressed Bacillus anthracis
+ P4H and Mimivirus P4H. Mass spectrometry revealed limited activity of Bacillus anthracis
+ P4H, but relatively elevated activity in the intracellular fraction for Mimivirus P4H, with
+
+                                                        70
+>30% of collagen-derived peptides there showing relatively high levels of proline
+hydroxylation. Additionally, MimiP4H showed unconditional hydroxylation of prolines
+regardless of their position in the collagen sequence. Circular dichroism analysis revealed
+the formation of triple-helix for all secreted recombinant collagen despite their
+hydroxylation status, and their general stability up to 30°C. Interestingly, we showed that
+intracellular collagens did not form triple helices. Beyond collagen, we extended our
+secretion platform to other biopolymers, successfully producing the elastomers, resilin
+and elastin.
+Overall, this work establishes a promising production system for hydroxylated collagen
+and opens the way for future food applications. Further research should focus on
+enhancing hydroxylation efficiency of P4Hs, scaling production and increasing collagen
+secretion titres.
+
+                                                       71
+    Methods & Materials
+
+    1. Bacterial strains, Media, and Growth conditions.
+    For plasmid preparation, USER cloning and selection, E. coli Dh5a or TOP10 stains
+(Thermo Fisher Scientific) were routinely grown in lysogeny broth (LB) media liquid cultures
+under shaking at 225-250 rpm or on LB agar plates at 37°C according to standard protocols.
+For protein production experiments, the extracellular protease-deficient B. subtilis KO7S
+strains were grown in either Terrific broth or in Cal18-2 media61 (40 g/L yeast extract, 1.3 g/
+MgSO4·7H2O, 50 g/L, maltodextrin (DE 13-17) Sigma-Aldrich, Saint Louis, MO, USA)), 20 g/L
+NaH2PO4·2H2O, 6.7 mL/L Na2MoO4 stock solution (2.0 g/L), 6.7 mL/L trace metal solution
+(consisting of 4.48 g/L MnSO4·H2O, 3.33 g/L FeCl3·6H2O, 0.625 g/L CuSO4·5H2O, and 7.12 g/L
+ZnSO4·7H2O), and 100 L/L Pluronic L-61 (Sigma-Aldrich, Saint Louis, MO, USA), then
+adjusted to pH = 6). When appropriate, the media were supplemented with antibiotics
+(100µg/mL ampicillin (Amp) or 50µg/mL kanamycin (Kan) for E. coli and 5µg/ml
+chloramphenicol, 5µg/ml kanamycin and 10µg/ml erythromycin for B. subtilis KO7S).
+
+    2. DNA manipulation, Plasmid and Strain Construction
+    All primers employed in this study were ordered from Integrated DNA Technologies
+(IDT) and are listed in Supplementary Table. The synthetic genes and fragments were
+purchased from either Integrated DNA Technologies or Twist Bioscience and always codon-
+optimized by the IDT codon-optimization tool. All plasmids and protein sequences
+infromation is found in the Supplementary tables.
+    For the construction of the B. subtilis collagen-secretion strains, the ProUSER2.0
+integrative vectors were employed. The secretion peptides were native to Bacillus subtilis and
+were PCR amplified from the genome of the wild-type strain Bacillus subtilis 168. The codon-
+optimized gene of bovine collagen type I alpha I was synthesized according to the preferred
+codon usage of B. subtilis (IDT DNA) and cloned to integrative vectors with their respective
+secretion peptide partners. Specifically, 1µg of the ProUSER plasmid, pProUSER13C1B, that
+bears homology arms for the B. subtilis glmS genomic locus, was digested by mixing with 1µl
+of AsiSI (New England BioLabs, USA), 5µl CutSmart buffer and DNAse-free water to a final
+volume of 50µl. The reaction was performed at 37°C for 16 hours followed by inactivation at
+80°C for 20 minutes. In the same reaction, 1µl of the Nt.BbvCI was added, and the mix was
+
+                                                       72
+incubated for 1 hour at 37°C followed by inactivation at 80°C for 20 minutes. The appropriate
+band that corresponds to the digested plasmid was purified by gel extraction (Macherey-
+Nagel) after gel electrophoresis of 1 hour at 100V. Then, 10- 20ng of the nicked plasmid were
+mixed with the appropriate PCR-amplified secretion tags and collagen protein (Phusion U)
+and subsequently USER cloning protocol was followed as described before.
+
+    For the episomal expression of the collagenous and P4Hs genes, plasmids pHT01 and
+pHT100 were selected. Codon-optimized genes for B. anthracis P4H and Mimivirus P4H,
+collagens and other polymeric genes, were synthesized and USER cloned after both vectors
+and genes were amplified with PCR (Phusion U). For most P4H constructs, a Hibit-tag was
+positioned the N-terminal for simultaneous detection of collagen and P4H expression. For the
+Hibit-tag addition, complementary oligos were synthesized. Larger and highly repetitive
+sequences were constructed with the USER assembly of gene fragments. The USER-ligated
+plasmids were verified by sequencing and transformed to Bacillus subtilis KO7S glmS::ComKS
+cells.
+
+    3. Transformation of Bacterial Cells
+    The transformation of E. coli DH5a or TOP10 Chemically competent strains
+(ThermoFischer Scietific) used for plasmid cloning was completedperformed according to
+standard protocols. Similarly, the transformation of parent strain Bacillus subtilis KO7S
+glmS::comKS andor genome-reduced was performed PG10 with the appropriate plasmid of
+USER-cloned PCR fragments after mannitol induction and overexpression of the ComKS
+genes of supercompetency was performed as described elsewhere62 (and Chapter 4). The
+recovery period was adjusted to 2 hours.
+
+    4. Protein production in. B. subtilis
+
+    Preliminary small-scale expression experiments and comparison of signal peptides
+    Single colonies were picked and inoculated, depending on their number, in either 15ml
+preculture tubes containing 5mL LB, or in 24 deep-well plates containing 3mL LB,
+supplemented with the appropriate antibiotics. The cultures were grown O/N at 37°C and
+225 rpm. The next day, the cultures were back-diluted to an OD of 0.1 in a new 24-deep well
+with 3-4 mL of either fresh TB or Cal18-2 media. Strains containing plasmids were
+supplemented with the appropriate antibiotics. Depending on the experimental purposes, the
+cultures were grown at different times and temperatures, while maintain a steady 225rpm
+shaking. For initial expression tests, as well as for the comparison of the secretion peptides,
+
+                                                       73
+a temperature of 20°C for 72 hours was selected whereas for the co-expression of collagens
+and P4Hs, 30°C for 24 hours was preferred.
+
+    Larger-scale protein production experiments
+    Protein purifications were performed in large flasks of 2L containing 0.5L of terrific broth,
+supplemented with 1mM of ascorbic acid, 0.01% anti-foam (Thermofischer) and 5-10 µg/mL
+of the appropriate antibiotic. The media was inoculated at OD600 0.1, and the cultures were
+grown at 37°C and 225rpm for 2hours for constitutive expression or until OD600 reached 0.6-
+0.9 for induction with 1mM of IPTG. Then, the temperature was reduced to 30°C and the
+cultivation was stopped 24hours after inoculation. The supernatant was separated from cell
+debris by centrifugation at 7000g for 30 minutes at 4°C. Subsequently, the cell pellet was
+resuspended in PBS, transferred to 50ml falcon tubes, and precipitated again with
+centrifugation for the next steps of protein purification. Simultaneously, the supernatant was
+passed through a 0.22µm filter and then concentrated with an Amicon Stirred Cell and a
+10kDA cut-off nitrocellulose membrane for each sample.
+
+    5. Protein purification
+    The cells were lysed by using 5ml of B-PER complete lysis buffer (ThermoFischer
+Scientific - Tris based) per 1g of cells, supplemented with protease inhibitor tablets. The
+lysate was separated from lysed cells by centrifuging at 14.000g, 4°C for 20 minutes and
+subsequently filtered through 0.22µm filters. The purification of his-tagged proteins from the
+lysate and production media was performed by affinity chromatography using HisTrapTM 5ml
+HP columns in ÄKTA Pure 25M (Cytiva). Each fraction (intracellular or secreted) had its own
+dedicated column to avoid contaminations with cytosol contaminants. Before purification,
+samples were supplemented with imidazole to reach a final concentration of 20mM. The
+buffer (A) for equilibration and washing of the affinity columns was composed of 40mM Tris-
+HCl, 300mM NaCl, 20mM imidazole, pH 7.6, and Buffer (B) for elution was similar but with
+500mM of imidazole instead of 20mM. After the elution, fractions were analyzed by SDS-
+PAGE and western blotting and the ones containing the his-tagged proteins were pooled and
+dialyzed to 20mM Tris-HCl, 150mM NaCl, pH 7.4 with the Slide-A-LyzerTM G3 Dialysis
+Cassettes, 10K MWCO (ThermoFischer Scientific) at 4°C. Afterwards, the purified proteins
+were aliquoted and stored at -80°C.
+
+    6. SDS-PAGE, Western blotting and signal intensity comparison
+
+                                                       74
+    SDS-PAGE
+
+    Lysate and production media samples were mixed with the appropriate amounts of 4x
+Laemmli buffer (Bio-rad Laboratories), supplemented with 10x of reducing agent
+(ThermoFischer Scientific) and boiled at 95°C for 10 minutes. Subsequently, proteins were
+separated on a gradient (4-20%) mini-PROTEAN-TGX precast polyacrylamide gels (Bio-Rad
+Laboratories) and a PageRulerTM Plus Prestained Protein Ladder (ThermoFischer Scientific)
+was used as a molecular weight reference. Coomassie staining was performed with the use of
+InstantBlue Protein staining (ThermoFischer Scientific).
+
+    Western blotting
+
+    Proteins were transferred from electrophoresis gels to iBlotTM 2 regular or mini transfer
+nitrocellulose stacks by using the iBlotTM 2 gel transfer device. Depending on the molecular
+weight of the proteins of interest, the duration of blotting was different, ranging from 3min
+for low MW to 10min for higher MW proteins (21-25 volt). To visualize the total protein per
+lane, the membranes were incubated for 10-15 minutes with Ponceau S straining solution.
+After discarding the solution and washing with MQ water, the distinct red bands were
+visualized in a AI600 Imager (GE Healthcare) and saved for further analysis. Subsequently,
+the membranes were washed with 1x Tris-saline buffer solution- 0.1% Tween 20 (TBS-T)
+until no red bands were visible and incubated for 1hour with 5% (w/v) skim milk in TBS-T
+(Blocking), followed by the inoculation of the membranes with a 1:1000 dilution of the anti-
+His tag mouse primary antibody (05-949, Merck) in a fresh blocking solution for 16-18 hours
+at 4°C. After the overnight incubation and washing with TBS-T three times, the membranes
+were incubated with the anti-mouse IgG HRP secondary antibody (1:15000 dilution -
+GENA9310 Cytiva) for 1 hour and then washed again thrice with TBS-T. The
+chemiluminescent detection was performed with the AmershamTM ECLTM Prime kit (Cytiva)
+and the CCD AI600 Imager (GE Healthcate). All the incubations were on a rocking shaker.
+
+    Hibit blotting
+    Protein transfer from electrophoresis gels to the iBlotTM 2 membrane was performed
+using standard Western blotting procedures. After the transfer, the membranes were
+incubated in TBS-T buffer for 10 minutes on a rocker. A 200-fold dilution of the LargeBit
+protein in 1× Nano-Glo buffer was prepared and applied to the membranes. The membranes
+were then incubated for 1 hour at room temperature with gentle shaking. Following this, a
+500-fold dilution of the Luciferase assay substrate was added directly to the LargeBit/buffer
+solution. The membranes were incubated in this mixture for 5 minutes at room
+
+                                                       75
+temperature.Finally, the membranes were imaged using the AI600 Imager with CCD
+detection.
+
+    Chemiluminescence signal intensity comparison
+    For the accurate relative comparison between bands, the analysis of the visualized
+membranes was performed in ImageLab software (Bio-rad Laboratories). For each
+membrate, the total protein content of each lane was calculated from the provided Poncaeu
+S staining images and a normalization factor was applied to the intensity levels obtained from
+the Western blots. Then, the mean intensity of all the bands in the same membrane was
+established and the ratio of sample normalized intensity to mean normalized intensity per
+membrane was calculated, enabling comparison. This was repeated for every biological
+replicate and the average ratio with standard error was used for the visuilation of the figures
+in Biorender.
+
+    7. ELISA
+    ELISA against the his-tagged proteins was performed after 50x dilution of culture
+    supernatant with the assay's dilution buffer. The kit and protocol that it used was the "His
+    Tag ELISA Detection Kit" from Genescript.
+
+    8. Proteomics
+
+    Proteomic sample preparation
+    The samples were processed using an SP3-workflow on a BioMek i7 liquid handling
+workstations (Beckman Coulter). 10µg of each sample were normalized to a volume of 150
+µl. For samples with lower amount than 10µg 150 µL were taken without dilution. All samples
+were reduced in 10mM dithiothreitol at 56°C for 30min and alkylated in 20mM
+chloroacetamide at room temperature for 30min. 25 µL Hydrophobic and hydrophilic Sera-
+MagTM SpeedBeads (50µg/µL, Carboxylate-Modified, Cytiva) were added to the samples.
+Proteins in the samples were precipitated on beads using acetonitrile (ACN, final
+concentration 70%), washed twice with 70% ethanol, once with 100% ACN and dried at room
+temperature. The beads were resuspended in digestion buffer (10mM CaCl2, 10% ACN in 50
+mM HEPES) and proteins were digested with trypsin/LysC (0.5 µg, mass spec grade,
+Promega) for two hours at 37°C, followed by a second digestions step with trypsin (0.2 µg,
+mass spec grade, Promega) overnight at 37°C. The supernatants were transferred to new
+tubes, the beads were washed with 50 mM HEPES and the supernatants were combined.
+
+                                                       76
+Peptide concentrations were determined using PierceTM Quantitative Fluorometric Peptide
+Assay (Thermo Scientific). The samples were purified using PierceTM Peptide Desalting Spin
+Columns (Thermo Scientific), according to the manufacturer´s instructions, and evaporated
+to dryness in a SpeedVac concentrator.
+
+    LC-MS analysis
+    Peptides were dissolved in 3% ACN, 0.1% trifluoroacetic acid and 0.015% dodecyl--D-
+maltoside and injected on an Easy-nLC-1200 chromatography system coupled to an Orbitrap
+Fusion Lumos Tribrid Mass Spectrometer (both Thermo Scientific). The liquid
+chromatography system was equipped with an Acclaim Pepmap 100 C18 trap column
+(Thermo Scientific) and an in-house packed Reprosil-Pur C18 analytical column (75 m × 350
+mm, particle size 3 m, Dr Maisch). The liquid chromatography flow was set to 300 nL/min,
+peptides were eluted with a gradient of 5% to 45% solvent B in solvent A over 48 min, then
+to 100% B over 2 min, and then kept at 100% B for 15 min. Solvent A was 0.2% formic acid
+in water, solvent B was 80% ACN and 0.2% formic acid in water.
+    The precursor ion mass spectra (MS1) were acquired at a resolution of 120 000 and an
+m/z range of 375-1500. Using a cycle time of 2 seconds the most abundant precursors with
+charges 2-7 were isolated with an m/z window of 1 and fragmented by higher-energy
+collisional dissociation (HCD) set to 30%. Fragment spectra (MS2) were recorded in the
+orbitrap at a resolution of 30 000 and dynamic exclusion was set to 10 sec.
+
+    Data Analysis
+    Data analysis was performed using Proteome Discoverer (ver 3.0, Thermo Fisher
+Scientific) The data was matched against bacillus subtilis swissprot database (4191 entries,
+April 2025) containing the submitted sequences of bovine collagen 20 kDa. Sequest HT was
+used as search engine with a precursor tolerance of 10 ppm and a fragment ion tolerance of
+0.02 Da. Tryptic peptides were accepted with 2 missed cleavages. Methionine and proline
+oxidation were set as variable modifications and cysteine carbamidomethylation was set as
+fixed modification. IMP-ptmRS node was used for site localization of post translational
+modifications. Minora Feature Detector node was used for MS1 quantification.
+
+    9. Circular dichroism analysis
+    Native bovine collagen type I (C9791, Sigma-Aldrich), lumpfish and starfish (Mehdi
+Abdollahi's group, Chalmers university of Technology) were dissolved in 0.2M acetic acid and
+
+                                                       77
+diluted at a concentration of 1mg/ml, 0.2mg/mL and 0.1mg/ml and maintained overnight at
+4°C for triple-helix formation. The absorption of the different concentrations was scanned
+from 190nm to 280nm with Chirascan CD spectrometer (Applied Photophysics) at 4°C, with
+0.2M acetic acid as the baseline. The recombinant collagen samples and bovine collagen were
+diluted at 0.2mg/ml in TBS and stored at 4°C overnight. The absorption at 190-280nm was
+scanned by Chirascan at 4°C, with TBS as a baseline. The measurements were performed with
+a thermostated quartz cell of 1mm length, at a wavelength increment of 1nm and the results
+were derived from the mean of three consecutive scans. For the recombinant collagen, an
+additional purification batch was measured for reproducibility purposes. The native and
+recombinant collagens were subjected in thermal denaturation analysis by increasing the
+temperature from 4°C to 60°C at a rate of 1°C per min. Throughout the heating process, the
+circular dichroism (CD) signal intensity (mdeg) was measured at 221.5nm every minute in
+triplicates. The temperature where 50% of the triple-helix is denatured (Td) was estimated
+with the application of the Boltzmann sigmoidal equation and the extrapolation of V50.
+
+Author Contributions
+
+    A.A., I.M, L.Y. conceived this study. A.A. designed the experiments with the guidance of
+I.M., C.J., S.I.J, M.A. and L.Y. Generation of data and analysis was performed by A.A. The
+manuscript was written by A.A. and reviewed by L.Y with contributions from other authors.
+
+Acknowledgements
+
+    This work was funded by Novo Nordirsk Foundatio. We thank Johannes Fuchs, from
+Gothenburg University Facilities for the proteomics data generation and initial analysis.
+
+                                                       78
+        References
+
+1. Ricard-Blum, S. The Collagen Family. Cold Spring Harb Perspect Biol 3, a004978-a004978
+        (2011).
+
+2. Brodsky, B. & Ramshaw, J. A. M. The collagen triple-helix structure. Matrix Biology 15, 545-554
+        (1997).
+
+3. Myllyharju, J. Collagens, modifying enzymes and their mutations in humans, flies and worms.
+        Trends in Genetics 20, 33-43 (2004).
+
+4. Sakakibara, S. et al. Synthesis of (Pro-Hyp-Gly)n of defined molecular weights Evidence for the
+        stabilization of collagen triple helix by hydroxypyroline. Biochimica et Biophysica Acta (BBA) -
+        Protein Structure 303, 198-202 (1973).
+
+5. Berg, R. A. & Prockop, D. J. The thermal transition of a non-hydroxylated form of collagen.
+        Evidence for a role for hydroxyproline in stabilizing the triple-helix of collagen. Biochem Biophys
+        Res Commun 52, 115-120 (1973).
+
+6. Shoulders, M. D. & Raines, R. T. Collagen structure and stability. Annu Rev Biochem 78, 929-58
+        (2009).
+
+7. Ramshaw, J. A. M., Shah, N. K. & Brodsky, B. Gly-X-Y Tripeptide Frequencies in Collagen: A
+        Context for Host-Guest Triple-Helical Peptides. J Struct Biol 122, 86-91 (1998).
+
+8. Heino, J. The collagen family members as cell adhesion proteins. BioEssays vol. 29 1001-1010
+        Preprint at https://doi.org/10.1002/bies.20636 (2007).
+
+9. Sipilä, K. H. et al. Proline hydroxylation in collagen supports integrin binding by two distinct
+        mechanisms. Journal of Biological Chemistry 293, 7645-7658 (2018).
+
+10. Kielty, C. M. & Grant, M. E. The Collagen Family: Structure, Assembly, and Organization in the
+        Extracellular Matrix. in Connective Tissue and Its Heritable Disorders 159-221 (Wiley, 2002).
+        doi:10.1002/0471221929.ch2.
+
+11. Farndale, R. W. Collagen-binding proteins: insights from the Collagen Toolkits. Essays Biochem
+        63, 337-348 (2019).
+
+12. Gómez-Guillén, M. C., Giménez, B., López-Caballero, M. E. & Montero, M. P. Functional and
+        bioactive properties of collagen and gelatin from alternative sources: A review. Food Hydrocoll
+        25, 1813-1827 (2011).
+
+13. Sorushanova, A. et al. The Collagen Suprafamily: From Biosynthesis to Advanced Biomaterial
+        Development. Advanced Materials 31, (2019).
+
+14. Chen, Z., Fan, D. & Shang, L. Exploring the potential of the recombinant human collagens for
+        biomedical and clinical applications: a short review. Biomedical Materials 16, 012001 (2021).
+
+15. Ahmad, M. I. et al. Collagen and gelatin: Structure, properties, and applications in food
+        industry. Int J Biol Macromol 254, 128037 (2024).
+
+16. Lv, L.-C. et al. Fish gelatin: The novel potential applications. J Funct Foods 63, 103581 (2019).
+17. Tang, C. et al. Collagen and its derivatives: From structure and properties to their applications
+
+        in food industry. Food Hydrocolloids vol. 131 Preprint at
+        https://doi.org/10.1016/j.foodhyd.2022.107748 (2022).
+18. Yue, C., Ding, C., Xu, M., Hu, M. & Zhang, R. Self-Assembly Behavior of Collagen and Its
+        Composite Materials: Preparation, Characterizations, and Biomedical Engineering and Allied
+        Applications. Gels vol. 10 Preprint at https://doi.org/10.3390/gels10100642 (2024).
+19. Chen, C.-X. et al. An overview of progress in the application of recombinant collagen in
+        cosmetics. Journal of Dermatologic Science and Cosmetic Technology 1, 100059 (2024).
+20. Grant View Research. Collagen Market Size, Share & Trends Analysis Report.
+        https://www.grandviewresearch.com/industry-analysis/collagen-market (2024).
+21. Salim, N. V., Madhan, B., Glattauer, V. & Ramshaw, J. A. M. Comprehensive review on collagen
+        extraction from food by-products and waste as a value-added material. International Journal of
+
+                                                               79
+        Biological Macromolecules vol. 278 Preprint at https://doi.org/10.1016/j.ijbiomac.2024.134374
+        (2024).
+22. León-López, A. et al. Hydrolyzed Collagen--Sources and Applications. Molecules 24, 4031
+        (2019).
+23. Poore, J. & Nemecek, T. Reducing food's environmental impacts through producers and
+        consumers. Science (1979) 360, 987-992 (2018).
+24. Crippa, M. et al. Food systems are responsible for a third of global anthropogenic GHG
+        emissions. Nat Food 2, 198-209 (2021).
+25. Zurek, M., Hebinck, A. & Selomane, O. Climate change and the urgency to transform food
+        systems. Science (1979) 376, 1416-1421 (2022).
+26. Lynn, A. K., Yannas, I. V. & Bonfield, W. Antigenicity and immunogenicity of collagen. J Biomed
+        Mater Res B Appl Biomater 71B, 343-354 (2004).
+27. Schmidt, M. M. et al. Collagen Extraction Process. International Food Research Journal vol. 23
+        (2016).
+28. Abdollahi, M., Rezaei, M., Jafarpour, A. & Undeland, I. Sequential extraction of gel-forming
+        proteins, collagen and collagen hydrolysate from gutted silver carp (Hypophthalmichthys
+        molitrix), a biorefinery approach. Food Chem 242, 568-578 (2018).
+29. Galanakis, C. M. The Future of Food. Foods 13, 506 (2024).
+30. Wood, P. & Tavan, M. A review of the alternative protein industry. Curr Opin Food Sci 47, 100869
+        (2022).
+31. Knychala, M. M., Boing, L. A., Ienczak, J. L., Trichez, D. & Stambuk, B. U. Precision Fermentation
+        as an Alternative to Animal Protein, a Review. Fermentation vol. 10 Preprint at
+        https://doi.org/10.3390/fermentation10060315 (2024).
+32. Nielsen, M. B., Meyer, A. S. & Arnau, J. The Next Food Revolution Is Here: Recombinant
+        Microbial Production of Milk and Egg Proteins by Precision Fermentation. Annu Rev Food Sci
+        Technol 15, 173-187 (2024).
+33. Fertala, A. Three Decades of Research on Recombinant Collagens: Reinventing the Wheel or
+        Developing New Biomedical Products? Bioengineering 7, 155 (2020).
+34. Zhao, Z., Deng, J. & Fan, D. Green biomanufacturing in recombinant collagen biosynthesis:
+        trends and selection in various expression systems. Biomater Sci 11, 5439-5461 (2023).
+35. Brodsky, B. & Ramshaw, J. A. M. Bioengineered Collagens. in 601-629 (2017). doi:10.1007/978-
+        3-319-49674-0_18.
+36. Gorres, K. L. & Raines, R. T. Prolyl 4-hydroxylase. Crit Rev Biochem Mol Biol 45, 106-124 (2010).
+37. Myllyharju, J. Collagens, modifying enzymes and their mutations in humans, flies and worms.
+        Trends in Genetics 20, 33-43 (2004).
+38. Zhu, P. et al. Optimizing prolyl hydroxylation for functional recombinant collagen in Escherichia
+        coli. Int J Biol Macromol 282, 137400 (2024).
+39. Rutschmann, C., Baumann, S., Cabalzar, J., Luther, K. B. & Hennet, T. Recombinant expression
+        of hydroxylated human collagen in Escherichia coli. Appl Microbiol Biotechnol 98, 4445-4455
+        (2014).
+40. Schnicker, N. J. & Dey, M. Bacillus anthracis Prolyl 4-Hydroxylase Modifies Collagen-like
+        Substrates in Asymmetric Patterns. Journal of Biological Chemistry 291, 13360-13374 (2016).
+41. Liu, S., Li, Y., Wang, M., Ma, Y. & Wang, J. Efficient coexpression of recombinant human fusion
+        collagen with prolyl 4-hydroxylase from Bacillus anthracis in Escherichia coli. Biotechnol Appl
+        Biochem 70, 761-772 (2023).
+42. Su, Y., Liu, C., Fang, H. & Zhang, D. Bacillus subtilis: a universal cell factory for industry,
+        agriculture, biomaterials and medicine. Microb Cell Fact 19, 173 (2020).
+43. Liu, L. et al. Development of GRAS strains for nutraceutical production using systems and
+        synthetic biology approaches: advances and prospects. Crit Rev Biotechnol 37, 139-150
+        (2017).
+
+                                                               80
+44. Brockmeier, U. et al. Systematic Screening of All Signal Peptides from Bacillus subtilis: A
+        Powerful Strategy in Optimizing Heterologous Protein Secretion in Gram-positive Bacteria. J Mol
+        Biol 362, 393-402 (2006).
+
+45. Nuñez, S. M., Guzmán, F., Valencia, P., Almonacid, S. & Cárdenas, C. Collagen as a source of
+        bioactive peptides: A bioinformatics approach. Electronic Journal of Biotechnology 48, 101-108
+        (2020).
+
+46. Yoo, S. Y., Kobayashi, M., Lee, P. P. & Lee, S.-W. Early Osteogenic Differentiation of Mouse
+        Preosteoblasts Induced by Collagen-Derived DGEA-Peptide on Nanofibrous Phage Tissue
+        Matrices. Biomacromolecules 12, 987-996 (2011).
+
+47. McCann, T. J., Mason, W. T., Meikle, M. C. & McDonald, F. A collagen peptide motif activates
+        tyrosine kinase-dependent calcium signalling pathways in human osteoblast-like cells. Matrix
+        Biology 16, 273-283 (1997).
+
+48. Chaudhary, A. S., Modak, C., Gayakvad, B., Biswas, I. & Jain, A. Design and Characterization of
+        pH-Responsive DGEA-Derived Peptide Scaffolds: A Comprehensive Molecular Dynamics
+        Simulation Study. ACS Appl Bio Mater 8, 2459-2468 (2025).
+
+49. Jensen, K., Oestergaard, P. R., Wilting, R. & Lassen, S. F. Identification and characterization of a
+        bacterial glutamic peptidase. BMC Biochem 11, 47 (2010).
+
+50. HAYASHI, T. & NAGAI, Y. The Anomalous Behavior of Collagen Peptides on Sodium Dodecyl
+        Sulfate-Polyacrylamide Gel Electrophoresis Is Due to the Low Content of Hydrophobic Amino
+        Acid Residues1. The Journal of Biochemistry 87, 803-808 (1980).
+
+51. Hayashi, T. & Nagai, Y. The Anomalous Behavior of Collagen Peptides on Sodium Dodecyl
+        Sulfate-Polyacrylamide Gel Electrophoresis Is Due to the Low Content of Hydrophobic Amino
+        Acid Residues1. J. Biochem vol. 87 (1980).
+
+52. Dutta, N. K. et al. A Genetically Engineered Protein Responsive to Multiple Stimuli. Angewandte
+        Chemie 123, 4520-4523 (2011).
+
+53. Schmelzer, C. E. H. et al. Prolyl hydroxylation in elastin is not random. Biochimica et Biophysica
+        Acta (BBA) - General Subjects 1860, 2169-2177 (2016).
+
+54. Phan, T. T. P., Tran, L. T., Schumann, W. & Nguyen, H. D. Development of Pgrac100-based
+        expression vectors allowing high protein production levels in Bacillus subtilis and relatively low
+        basal expression in Escherichia coli. Microb Cell Fact 14, 72 (2015).
+
+55. Balu, R. et al. Structural ensembles reveal intrinsic disorder for the multi-stimuli responsive
+        bio-mimetic protein Rec1-resilin. Sci Rep 5, 10896 (2015).
+
+56. Halper, S. M., Cetnar, D. P. & Salis, H. M. An Automated Pipeline for Engineering Many-Enzyme
+        Pathways: Computational Sequence Design, Pathway Expression-Flux Mapping, and Scalable
+        Pathway Optimization. in 39-61 (2018). doi:10.1007/978-1-4939-7295-1_4.
+
+57. Pandit, S. et al. Low Concentrations of Vitamin C Reduce the Synthesis of Extracellular
+        Polymers and Destabilize Bacterial Biofilms. Front Microbiol 8, (2017).
+
+58. van Tilburg, A. Y. et al. Mini Bacillus PG10 as a Convenient and Effective Production Host for
+        Lantibiotics. ACS Synth Biol 9, 1833-1842 (2020).
+
+59. Reuß, D. R. et al. Large-scale reduction of the Bacillus subtilis genome: consequences for the
+        transcriptional network, resource allocation, and metabolism. Genome Res 27, 289-299
+        (2017).
+
+60. Lilge, L. & Kuipers, O. P. A two-step regulatory circuit involving Spo0A-AbrB activates
+        mersacidin biosynthesis in Bacillus subtilis. Int J Antimicrob Agents 63, 107155 (2024).
+
+61. Bach Falkenberg, K., Hernandez Rollan, C., Rennig, M., Birk Bertelsen, A. & Norholm, M. Protein
+        expression in Bacillus subtilis v1. Preprint at https://doi.org/10.17504/protocols.io.bdmui46w
+        (2020).
+
+62. Rahmer, R., Morabbi Heravi, K. & Altenbuchner, J. Construction of a Super-Competent Bacillus
+        subtilis 168 Using the PmtlA-comKS Inducible Cassette. Front Microbiol 6, (2015).
+
+                                                               81
+Supplementary
+
+   Amino Acid Frequencies                 Amino acid frequencies
+of Tropocollagen type I alpha I              of Collagen110
+
+Amino acid          Count            Amino acid      Count
+
+Ala  A         122  11.6%            Ala  A      14  13.0%
+
+Arg  R         52   4.9%             Arg  R      4   3.7%
+
+Asn  N         11   1.0%             Asn  N      0   0.0%
+
+Asp  D         34   3.2%             Asp  D      2   1.9%
+
+Cys  C         0    0.0%             Cys  C      0   0.0%
+
+Gln  Q         30   2.9%             Gln  Q      4   3.7%
+
+Glu  E         49   4.7%             Glu  E      8   7.4%
+
+Gly  G         346  32.9%            Gly  G      34  31.5%
+
+His  H         3    0.3%             His  H      6   5.6%
+
+Ile  I         9    0.9%             Ile  I      0   0.0%
+
+Leu  L         22   2.1%             Leu  L      2   1.9%
+
+Lys  K         38   3.6%             Lys  K      4   3.7%
+
+Met  M         7    0.7%             Met  M      0   0.0%
+
+Phe  F         13   1.2%             Phe  F      3   2.8%
+
+Pro  P         241  22.9%            Pro  P      22  20.4%
+
+Ser  S         37   3.5%             Ser  S      2   1.9%
+
+Thr  T         17   1.6%             Thr  T      0   0.0%
+
+Trp  W         0    0.0%             Trp  W      0   0.0%
+
+Tyr  Y         4    0.4%             Tyr  Y      0   0.0%
+
+Val  V         17   1.6%             Val  V      3   2.8%
+
+Supplementary Table 1 | Amino acid frequencies of Native bovine collagen type I alpha I
+(left) and recombinant bovine collagen alpha I 10kDa (right)
+
+                                 82
+     Bacillus KO7S (C & S)
+
+kDa  CCS CCS CCS CCS
+
+250
+130
+
+100
+70
+55
+35
+25
+
+15
+
+10
+
+Supplementary Figure 1 | Contruction and producion of progressively extented collagens. High
+exposure image of Western blot with progressively increasing collagen size. The shows the presence
+of 450aa collagen inside Bacillus subtilis cells, albeit in very low amounts compated to 110aa and
+250aa. C: cell pellet, C': cell pellet replicate, S: Supernatant
+
+                                           kDa
+
+                                           250
+                                           130
+                                           100
+                                            70
+                                            55
+                                            35
+                                            25
+
+                                            15
+
+Supplementary Figure 2 | Western blotting of a2[I] with C-propeptide, cMFP, Collagen an
+Procollagen. This western blot includes intracellular and extracellular samples of cultures
+producing the aforementioned proteins. It reveals that a2[I] with C-propeptide was in fact produced
+but in limited amounts and never secreted. Collagen also maintains the majority of its production
+intracellularly. cMFP was a synthetic construct of mussel food protein that never produced protein.
+
+     83
+                               SP5 SP19 Procollagen Procollagen
+         Elastin Resilin [I]c  [I]c CoSlPla5gen CSoPlla1g9enProco1lla[Ig] en Proco2lla[Ig] en
+                               [I]c Collagen Collagen 1[I]
+         Elastin Resilin [I]c                               2[I]
+                               In Ex In Ex In Ex In Ex In Ex
+    kDa  In Ex In Ex In Ex
+         In Ex In Ex In Ex     In Ex In Ex In Ex In Ex In Ex
+   ~250
+   ~130  21 22 23 24 25 26 27 28 29 30                                                         0.1 0.2
+   ~100  21 22 23 24 25 26 27 28 29 30                                                         0.1 0.2
+
+    ~70
+
+    ~55
+
+                                        ~35
+
+                                        ~25
+
+                                        ~15
+                                        ~10
+
+Supplementary Figure 3 | Western blotting of diaerent strains. This western blot includes
+intracellular and extracellular samples of cultures producing Elastin, Resilin, a1[I] with C-propeptide,
+cDNA bovine collagen (SP5, SP19) and codon-optimized procollagens. The red arrow indicated
+bands that potentially correspond to Procollagen bands. However, due to technical problems this
+western blot and subsequent westen blots produced significant backgrounds. Interestingly this
+experiment was performed in TB and exhibited di7erences to Cal-18 media, with some proteins
+secreting less quantities.
+
+A                              B
+
+Supplementary Figure 4 | Depictions of resilin transition and opaqueness at low temperatures.
+Resilin's conformation is pH- and temperature-depedent. It exhibits an upper critical solution
+temperature (UCTST) around 6°C. Temperatures below UCST, promote conformational changes that
+lead to phase seperation and visible opaqueness as documented in the literature - Picture A. Picture
+B depicts recombinat resilin, produced, secreted and isolated with IMAC purification. During the O/N
+dialysis against TBS at 4°C, the protein turned opaque while other proteins, such as non-hydroxylated
+collagen from BS091 strain, remained clear. This suggests that our recombinant variant might mimic
+the native resilin's structure, enabling possible applications.
+
+                                                    84
+                                               PC         NC 9 12 15 18 8 17
+
+               Positives: 9, 12, 18, 8, 17     C S L CS C S C SC S C S S S
+
+9: Operon P4H - BsbColv2 Colony D 1mM IPTG     21 22 23 24 25 26 27 28 29 30  0.1 0.2
+12: Operon P4H - BaCola Colony D 1mM IPTG
+15: Operon P4H - BsbColv2 Colony E 1mM IPTG
+18: Operon P4H - BaCola Colony E 1mM IPTG
+8: Operon P4H - BsbColv2 Colony D 0.5 mM IPTG
+17: Operon P4H - BaCola Colony E 0.5 mM IPTG
+
+Supplementary Figure 5 | Western blotting of diaerernt pHT01 operon constructs expressing
+BaP4H and collagen fragments against His-tag (detection of collagen). Operons expressing
+BaP4H and collagen 10kDa or 20kDa with secretion tag, where induced with 0.5mM or 1mM of IPTG.
+The results showed that induction with 0.5mM IPTG are more consistent. NC: Negative control -
+Supernatant of non-engineered strain. PC: Posive controls: BsbColv2 from previously. C: Cell pellet,
+S: Supernatant, L: Ladder.
+
+No P4H   BaP4H expressing                         PCs     No P4H   P4H expressing
+strains          strains                       Strep-tag  strains        strains
+
+21 22 23 24 25 26 27 28 29 30                  0.1 0.2
+
+                                                                                       MW of BaP4H:
+                                                                                            25KDa
+
+Supplementary Figure 6 | Western blotting of diaerernt constructs expressing BaP4H and
+collagen fragments (operon and genome) against Strep-tag II (detection of BaP4H). Surprisingly
+anti Strep-tag antibody was not able to detect BaP4H (right). However, there are band in Ponceau
+stained membranes ar around 25kDa, that may indicate the production of BaP4H. Therefore, it is
+possible that detection of Strep-tag is stereochemically or otherwise, hindered.
+
+Supplementary Figure 7 | Prediction scores of the previous and novel RBSs for operon expression of
+P4Hs and collagen. New designs increased considerably the estimated P4H translation rate from 289au
+to 241386au and the collagen translation rate from 102358 to 197692 .
+
+                                                 85
+Supplementary Figure 8 | Dose-dependent growth curve of Bacillus subtilis KO7S in ascorbate.
+Bacillus subtilis KO7S was grown in increased concentrations of ascorbate. Concentrations abobe 5mM
+a7ect growth from the exponential phase, while conentrations between 1mM to 5mM a7ect the final OD
+reached.
+
+SDA091 SDA095 SDA108 SDA111 SDA130               SDA091 SDA095 SDA108
+
+CS CS  CS  CS                  CS                CS CS  CS
+
+21 22 23 24 25 26 27 28 29 30           0.1 0.2
+
+Supplementary Figure 9 | Verification of SDA095, SDA108, SDA111 and SDA130. On the left is a Hibit
+blot that verified the expression of P4Hs. SDA095 and SDA108 produce intracellularly (C) BacP4H. SDA130
+is expressing with RBS3* higher titres of MimiP4H than SDA111 with RBS1. On the right, there is a western
+blot that verified the production of collagen for the control (SDA091-pHT100 Bacola225) and SDA108, both
+intracellularly (C - Cell pellet) and extracellularly (S - Supernatant). In this western blot, SDA130, did not
+produce collagen.
+
+           86
+     Other strains   SDA130             Purified proteins (MimiP4H)
+producing Bacola225                        Secreted Intracellular
+
+21 22 23 24 25 26 27 28 29 30  0.1 0.2         21 22 23 24 25 26 27 28 29 30
+
+                                                                                                               0.1 0.2
+
+Supplementary Figure 10| Indications of hydroxylation or triple-helix formation. In the first gel, western
+blotting of intracellular and extracellular proteins, indicated that collagen from SDA130, exhibited lower
+mobility compared to the same collagen from the other strains. In the second gel, intracellular collagen
+that was purified after the experiment of Figure 12, showed more prominent bands, in higher molecular
+weight than the secreted ones. This, along with the hypothesis that hydroxylation would be hyper inside the
+cell due higher exposure to P4H, indicate potential hydroxylation and/or triple-helix formation. Purification
+samples were left for some minutes at 4 degrees, which help the self-assembly of the triple-helix.
+
+Supplementary Figure 11| Graphical overview of the steps that were performed for
+                                 recombiant collagen purification
+
+                                          87
+                - helix                          B
+
+A                                                            4ºC 0.2mg/ml Lampfish collagen
+
+                        - sheet
+
+                                   Triple-helix
+
+C                                                D
+                                                             4ºC 0.2mg/ml Starfish collagen
+          SDA091 (Higher concentration)
+
+      Supplementary Figure 12 | Circular dichroism results. A. Graphical representation of
+  secondary structures signatures on Circular dichroism. B, D, Lampfish and starfish CD did not
+ produce a positive peak at 221nm, but only low peak at <200nm. This indicates denaturation or
+  degradation of collagen. C. In high concentration, non-hydroxylated recombinant collagen can
+
+                                           form a triple-helical structure.
+
+           SP5, -helix
+              domain
+
+Supplementary Figure 13 | Alpha-fold representation of SP5-Bacola225. The secretion signal
+   SP5 has a -helix domain that might a7ect circular dichroism results and/or triple-helix
+                                                    formation.
+
+                             Table of plasmids
+
+                                             88
+Entity Name                             Alias                                     Usage
+
+ pBS001                       proUSER13A1E                Backbone for USER cloning of inserts aimed to be
+ pBS002                       proUSER13B4D                           transformed into bacillus
+ pBS003                       proUSER13C1B
+ pBS004                       proUSER13D2A                Backbone for USER cloning of inserts aimed to be
+ pBS005                       proUSER13E3F                           transformed into bacillus
+ pBS006                       proUSER13F4C
+ pBS007                       proUSER13G2F                Backbone for USER cloning of inserts aimed to be
+ pBS008        pL001, SP1 - pProUSER13C1B-AmyESP-                    transformed into bacillus
+ pBS009                       BsbColv2
+ pBS010         pL002, SP2 - pProUSER13C1B-AprESP-        Backbone for USER cloning of inserts aimed to be
+ pBS011                       BsbColv2                               transformed into bacillus
+ pBS012        SP3 - pProUSER13C1B-BprSP-BsbColv2
+ pBS013      SP4 - Not - pProUSER13C1B-EprSP-BsbCov2      Backbone for USER cloning of inserts aimed to be
+ pBS014        SP5 - pProUSER13C1B-MprSP-BsbColv2                    transformed into bacillus
+ pBS015        SP6 - pProUSER13C1B-PelSP- BsbColv2
+ pBS016       SP7 - pProUSER13C1B-PenPSP-BsbColv2         Backbone for USER cloning of inserts aimed to be
+ pBS017       SP8 - pProUSER13C1B-PhoASP-BsbColv2                    transformed into bacillus
+ pBS018       SP9 - pProUSER13C1B-PhoBSP-BsbColv2
+ pBS019        SP10 - pProUSER13C1B-VprSP-BsbColv2        Backbone for USER cloning of inserts aimed to be
+ pBS020       SP11 - pProUSER13C1B-XynASP-BsbColv2                   transformed into bacillus
+ pBS021      SP12 - pProUSER13C1B-YbdNSP-BsbColv2
+ pBS022       SP13 - pProUSER13C1B-YlqBSP-BsbColv2         Transformation of E.coli for USER assembly and
+ pBS023      SP14 - pProUSER13C1B-YncMSP-BsbColv2     tranfromation of B. subtilis for secretion of a 110aa
+ pBS024      SP15 - pProUSER13C1B-YoaWSP-BsbColv2
+ pBS025      SP16 - pProUSER13C1B-YocHSP-BsbColv2                collagenous protein (BsbColv2)
+ pBS026       SP17 - pProUSER13C1B-YqxLSP-BsbColv2         Transformation of E.coli for USER assembly and
+ pBS027       SP18 - pProUSER13C1B-YvgOSP-BsbColv2    tranfromation of B. subtilis for secretion of a 110aa
+             SP19 - pProUSER13C1B-YwaDSP-BsbColv2
+             SP20 - pProUSER13C1B-YweASP-BsbColv2                collagenous protein (BsbColv2)
+                                                           Transformation of E.coli for USER assembly and
+                                           89         tranfromation of B. subtilis for secretion of a 110aa
+
+                                                                 collagenous protein (BsbColv2)
+                                                           Transformation of E.coli for USER assembly and
+                                                      tranfromation of B. subtilis for secretion of a 110aa
+
+                                                                 collagenous protein (BsbColv2)
+                                                           Transformation of E.coli for USER assembly and
+                                                      tranfromation of B. subtilis for secretion of a 110aa
+
+                                                                 collagenous protein (BsbColv2)
+                                                           Transformation of E.coli for USER assembly and
+                                                      tranfromation of B. subtilis for secretion of a 110aa
+
+                                                                 collagenous protein (BsbColv2)
+                                                           Transformation of E.coli for USER assembly and
+                                                      tranfromation of B. subtilis for secretion of a 110aa
+
+                                                                 collagenous protein (BsbColv2)
+                                                           Transformation of E.coli for USER assembly and
+                                                      tranfromation of B. subtilis for secretion of a 110aa
+
+                                                                 collagenous protein (BsbColv2)
+                                                           Transformation of E.coli for USER assembly and
+                                                      tranfromation of B. subtilis for secretion of a 110aa
+
+                                                                 collagenous protein (BsbColv2)
+                                                           Transformation of E.coli for USER assembly and
+                                                      tranfromation of B. subtilis for secretion of a 110aa
+
+                                                                 collagenous protein (BsbColv2)
+                                                           Transformation of E.coli for USER assembly and
+                                                      tranfromation of B. subtilis for secretion of a 110aa
+
+                                                                 collagenous protein (BsbColv2)
+                                                           Transformation of E.coli for USER assembly and
+                                                      tranfromation of B. subtilis for secretion of a 110aa
+
+                                                                 collagenous protein (BsbColv2)
+                                                           Transformation of E.coli for USER assembly and
+                                                      tranfromation of B. subtilis for secretion of a 110aa
+
+                                                                 collagenous protein (BsbColv2)
+                                                           Transformation of E.coli for USER assembly and
+                                                      tranfromation of B. subtilis for secretion of a 110aa
+
+                                                                 collagenous protein (BsbColv2)
+                                                           Transformation of E.coli for USER assembly and
+                                                      tranfromation of B. subtilis for secretion of a 110aa
+
+                                                                 collagenous protein (BsbColv2)
+                                                           Transformation of E.coli for USER assembly and
+                                                      tranfromation of B. subtilis for secretion of a 110aa
+
+                                                                 collagenous protein (BsbColv2)
+                                                           Transformation of E.coli for USER assembly and
+                                                      tranfromation of B. subtilis for secretion of a 110aa
+
+                                                                 collagenous protein (BsbColv2)
+                                                           Transformation of E.coli for USER assembly and
+                                                      tranfromation of B. subtilis for secretion of a 110aa
+
+                                                                 collagenous protein (BsbColv2)
+                                                           Transformation of E.coli for USER assembly and
+                                                      tranfromation of B. subtilis for secretion of a 110aa
+
+                                                                 collagenous protein (BsbColv2)
+                                                           Transformation of E.coli for USER assembly and
+                                                      tranfromation of B. subtilis for secretion of a 110aa
+
+                                                                 collagenous protein (BsbColv2)
+pBS028   SP21 - pProUSER13C1B-YwtFSP-BsbColv2              Transformation of E.coli for USER assembly and
+pBS029    SP22 - pProUSER13C1B-YxaLSP-BsbColv2        tranfromation of B. subtilis for secretion of a 110aa
+pBS030   SP23 - pProUSER13C1B-NprBSP-BsbColv2
+pBS031   SP24 - pProUSER13C1B-SacBSP-BsbColv2                    collagenous protein (BsbColv2)
+pBS032   SP25 - pProUSER13C1B-SacCSP-BsbColv2              Transformation of E.coli for USER assembly and
+pBS033   SP26 - pProUSER13C1B-AbnASP-BsbColv2         tranfromation of B. subtilis for secretion of a 110aa
+pBS034    SP27 - pProUSER13C1B-BglSSP-BsbColv2
+pBS035    SP28 - pProUSER13C1B-YolASP-BsbColv2                   collagenous protein (BsbColv2)
+pBS036    SP29 - pProUSER13C1B-CsnSP-BsbColv2              Transformation of E.coli for USER assembly and
+pBS037    SP30 - pProUSER13C1B-BsnSP-BsbColv2         tranfromation of B. subtilis for secretion of a 110aa
+pBS038   SP31 - pProUSER13C1B-CwlOSP-BsbColv2
+pBS039    SP32 - pProUSER13C1B-EglSSP-BsbColv2                   collagenous protein (BsbColv2)
+pBS040                                                     Transformation of E.coli for USER assembly and
+pBS041         NoSP-BsbColv2-proUSER13C1B             tranfromation of B. subtilis for secretion of a 110aa
+pBS042    SP3 - pProUSER13C1B-BprSP-BaCola225
+pBS043    SP5 - pProUSER13C1B-MprSP-BaCola225                    collagenous protein (BsbColv2)
+pBS044  SP19 - pProUSER13C1B-YwaDSP-BaCola225              Transformation of E.coli for USER assembly and
+pBS045  SP26 - pProUSER13C1B-AbnASP-BaCola225         tranfromation of B. subtilis for secretion of a 110aa
+pBS046    SP3 - pProUSER13C1B-BprSP-Procollagen
+pBS047   SP5 - pProUSER13C1B-MprSP-Procollagen                   collagenous protein (BsbColv2)
+pBS048  SP19 - pProUSER13C1B-YwaDSP-Procollagen            Transformation of E.coli for USER assembly and
+pBS049  SP26 - pProUSER13C1B-AbnASP-Procollagen       tranfromation of B. subtilis for secretion of a 110aa
+pBS050     SP3 - pProUSER13C1B-BprSP-Collagen
+pBS051     SP5 - pProUSER13C1B-MprSP-Collagen                    collagenous protein (BsbColv2)
+pBS052   SP19 - pProUSER13C1B-YwaDSP-Collagen              Transformation of E.coli for USER assembly and
+pBS061    SP26 - pProUSER13C1B-AbnASP-Collagen        tranfromation of B. subtilis for secretion of a 110aa
+pBS062   SP3 - pProUSER13C1B-BprSP-AlphaI With C
+pBS063   SP5 - pProUSER13C1B-MprSP-AlphaI with C                 collagenous protein (BsbColv2)
+        SP19 - pProUSER13C1B-YwaDSP-Alpha1 with            Transformation of E.coli for USER assembly and
+                                                      tranfromation of B. subtilis for secretion of a 110aa
+                               C
+                                                                 collagenous protein (BsbColv2)
+                                                           Transformation of E.coli for USER assembly and
+                                                      tranfromation of B. subtilis for secretion of a 110aa
+
+                                                                 collagenous protein (BsbColv2)
+                                                           Transformation of E.coli for USER assembly and
+                                                      tranfromation of B. subtilis for secretion of a 110aa
+
+                                                                 collagenous protein (BsbColv2)
+                                                           Transformation of E.coli for USER assembly and
+                                                      tranfromation of B. subtilis for secretion of a 110aa
+
+                                                                 collagenous protein (BsbColv2)
+                                                           Transformation of E.coli for USER assembly and
+                                                      tranfromation of B. subtilis for secretion of a 110aa
+
+                                                                 collagenous protein (BsbColv2)
+                                                           Transformation of E.coli for USER assembly and
+                                                  tranfromation of B. subtilis for intracelluar production of a
+
+                                                             110aa collagenous protein (BsbColv2)
+                                                           Transformation of E.coli for USER assembly and
+                                                      tranfromation of B. subtilis for secretion of a 225aa
+
+                                                                 collagenous protein (Bacola225)
+                                                           Transformation of E.coli for USER assembly and
+                                                      tranfromation of B. subtilis for secretion of a 225aa
+
+                                                                 collagenous protein (Bacola225)
+                                                           Transformation of E.coli for USER assembly and
+                                                      tranfromation of B. subtilis for secretion of a 225aa
+
+                                                                 collagenous protein (Bacola225)
+                                                           Transformation of E.coli for USER assembly and
+                                                      tranfromation of B. subtilis for secretion of a 225aa
+
+                                                                 collagenous protein (Bacola225)
+                                                           Transformation of E.coli for USER assembly and
+                                                   tranfromation of B. subtilis for secretion of Procollagen
+                                                           Transformation of E.coli for USER assembly and
+                                                   tranfromation of B. subtilis for secretion of Procollagen
+                                                           Transformation of E.coli for USER assembly and
+                                                   tranfromation of B. subtilis for secretion of Procollagen
+                                                           Transformation of E.coli for USER assembly and
+                                                   tranfromation of B. subtilis for secretion of Procollagen
+                                                           Transformation of E.coli for USER assembly and
+                                                     tranfromation of B. subtilis for secretion of Collagen
+                                                           Transformation of E.coli for USER assembly and
+                                                     tranfromation of B. subtilis for secretion of Collagen
+                                                           Transformation of E.coli for USER assembly and
+                                                     tranfromation of B. subtilis for secretion of Collagen
+                                                           Transformation of E.coli for USER assembly and
+                                                     tranfromation of B. subtilis for secretion of Collagen
+                                                           Transformation of E.coli for USER assembly and
+                                                   tranfromation of B. subtilis for secretion of AlphaI with C
+
+                                                                             telopeptide
+                                                           Transformation of E.coli for USER assembly and
+                                                   tranfromation of B. subtilis for secretion of AlphaI with C
+
+                                                                             telopeptide
+                                                           Transformation of E.coli for USER assembly and
+                                                   tranfromation of B. subtilis for secretion of AlphaI with C
+
+                                                                             telopeptide
+
+        90
+pBS064  SP26 - pProUSER13C1B-AbnASP-AlphaI with C           Transformation of E.coli for USER assembly and
+pBS065                                             tranfromation of B. subtilis for secretion of AlphaI with C
+pBS066   SP3 - pProUSER13C1B-BprSP-Alpha2 With C
+pBS067                                                                        telopeptide
+pBS068   SP5 - pProUSER13C1B-MprSP-Alpha2 with C            Transformation of E.coli for USER assembly and
+pBS069                                             tranfromation of B. subtilis for secretion of Alpha2 with C
+pBS070  SP19 - pProUSER13C1B-YwaDSP-Alpha2 with
+pBS071                         C                                              telopeptide
+pBS072                                                      Transformation of E.coli for USER assembly and
+pBS073  SP26 - pProUSER13C1B-AbnASP-Alpha2 with    tranfromation of B. subtilis for secretion of Alpha2 with C
+pBS074                         C
+pBS075                                                                        telopeptide
+pBS076  SP3 - pProUSER13C1B-BprSP-Alpha1 without            Transformation of E.coli for USER assembly and
+pBS077                                             tranfromation of B. subtilis for secretion of Alpha2 with C
+pBS078  SP5 - pProUSER13C1B-MprSP-AlphaI without
+pBS079                                                                        telopeptide
+pBS080     SP19 - pProUSER13C1B-YwaDSP-Alpha1               Transformation of E.coli for USER assembly and
+pBS080                      without                tranfromation of B. subtilis for secretion of Alpha2 with C
+pBS081
+pBS082      SP26 - pProUSER13C1B-AbnASP-AlphaI                                telopeptide
+pBS082                      without                         Transformation of E.coli for USER assembly and
+pBS083                                                 tranfromation of B. subtilis for secretion of Alpha1
+pBS084  SP3 - pProUSER13C1B-BprSP-Alpha2 without
+pBS085                                                                 withOUT C telopeptide
+pBS086  SP5 - pProUSER13C1B-MprSP-Alpha2 without            Transformation of E.coli for USER assembly and
+                                                       tranfromation of B. subtilis for secretion of Alpha1
+pBS087     SP19 - pProUSER13C1B-YwaDSP-Alpha2
+pBS088                      without                                    withOUT C telopeptide
+pBS089                                                      Transformation of E.coli for USER assembly and
+           SP26 - pProUSER13C1B-AbnASP-Alpha2          tranfromation of B. subtilis for secretion of Alpha1
+                            without
+                                                                       withOUT C telopeptide
+                     pHT01_Pgrac100_empty                   Transformation of E.coli for USER assembly and
+          SP5 - pProUSER13C1B-MprSP-BaCola450          tranfromation of B. subtilis for secretion of Alpha1
+
+                 PHT01_Operon_P4H_BsbColv2                             withOUT C telopeptide
+                pHT01_Operon_P4H_Bacola225                  Transformation of E.coli for USER assembly and
+                pHT01_Operon_P4H_Bacola225             tranfromation of B. subtilis for secretion of Alpha2
+           pHT100_Operon_BacP4H_SP5_BsbColv2
+          pHT100_Operon_BacP4H_SP5_Bacola225                           withOUT C telopeptide
+        pHT01_Pgrac100_Hibit_BacP4H_SP5_Bacola              Transformation of E.coli for USER assembly and
+                                                       tranfromation of B. subtilis for secretion of Alpha2
+                  pTET_StrepBacP4H_NoLinker
+               pProUSER13C1B-SP5-Bacola900                             withOUT C telopeptide
+            pProUSER13C1B-SP5-WholeCollagenI                Transformation of E.coli for USER assembly and
+                                                       tranfromation of B. subtilis for secretion of Alpha2
+         pProUSER13C1B-SP5-WholeAlpha2 His tag
+                             vol. 2                                    withOUT C telopeptide
+                                                            Transformation of E.coli for USER assembly and
+              pProUSER13C1B-SP5-WholeAlpha2            tranfromation of B. subtilis for secretion of Alpha2
+
+                       pHT100-SP5-Elastin                              withOUT C telopeptide
+                                                         Episomical expression plasmid with a new promoter
+                       pHT100-SP5-Resilin
+                                                                               pgrac100
+                                                            Transformation of E.coli for USER assembly and
+                                                   tranfromation of B. subtilis for secretion of Bacola450aa
+                                                         Episomical expression plasmid containing Strep-tag
+
+                                                                     BacP4H and SP5-BsbColv2
+                                                         Episomical expression plasmid containing Strep-tag
+
+                                                                    BacP4H and SP5-Bacola225
+                                                          Episomical expression plasmid containing Hibit-tag
+
+                                                                    BacP4H and SP5-Bacola225
+                                                         Episomical expression plasmid containing promoter
+                                                        pgrac100, Strep-tag BacP4H and SP5-BsbColv2
+                                                         Episomical expression plasmid containing promoter
+                                                        pgrac100, Strep-tag BacP4H and SP5-Bacola225
+                                                         Episomical expression plasmid containing promoter
+                                                        pgrac100, Hibit-tag BacP4H and SP5-Bacola225
+
+                                                               Integration plasmid with pTet promoter (tet
+                                                                               inducible).
+
+                                                            Transformation of E.coli for USER assembly and
+                                                   tranfromation of B. subtilis for secretion of Bacola900aa
+
+                                                            Transformation of E.coli for USER assembly and
+                                                       tranfromation of B. subtilis for secretion of codon-
+
+                                                                      optimised (pro)collagen I
+                                                            Transformation of E.coli for USER assembly and
+                                                       tranfromation of B. subtilis for secretion of codon-
+                                                   optimised (pro)collagen alpha 2 with a different his tag Nt
+
+                                                                                   Seq
+                                                            Transformation of E.coli for USER assembly and
+                                                       tranfromation of B. subtilis for secretion of codon-
+
+                                                                  optimised (pro)collagen alpha 2
+                                                             Episomical expression and secretion of human
+                                                     elastin through the pgrac100 promoter and Mpr(SP5)
+
+                                                                          secretion peptide
+                                                                 Episomical expression and secretion of
+                                                    D.melanogaster Resilin through the pgrac100 promoter
+                                                                  and Mpr(SP5) secretion peptide
+
+        91
+         pBS091                pHT100-SP5-BsbColv2                  Episomical expression and secretion of bovine
+                                                            BsbColv2 (110aa) through the pgrac100 promoter and
+         pBS092               pHT100-SP5-Bacola225
+                                                                            Mpr(SP5) secretion peptide
+         pBS093               pHT100-SP5-Bacola450                  Episomical expression and secretion of bovine
+                                                             Bacola225 (aa) through the pgrac100 promoter and
+         pBS094                pHT100-Hibit-BacP4H
+         pBS095               pHT100-Hibit-MimiP4H                          Mpr(SP5) secretion peptide
+         pBS104       pHT100_Hibit_BacP4H_IntBacola225              Episomical expression and secretion of bovine
+         pBS105     pHT100_Hibit_MimiP4H_SP5_Bacola225       Bacola450 (aa) through the pgrac100 promoter and
+         pBS106      pHT100_Hibit_MimiP4H_IntBacola225
+         pBS107  pHT100_NewRBS_Hibit_MimiP4H_SP5_Bacola                     Mpr(SP5) secretion peptide
+                                                                     Episomical expression of BacP4H through the
+         pBS108                        225                         pgrac100 promoter and Hibit detection tag
+                 pHT100_NewRBS_Hibit_BacP4H_SP5_Bacola2             Episomical expression of MimiP4H through the
+         pBS109                                                    pgrac100 promoter and Hibit detection tag
+                                        25                        Expression of the operon containing Hibit-BacP4H
+         pBS110  pHT100_NewRBS_Hibit_BacP4H_Int_Bacola22
+                                                                            and intracellular Bacola225
+         pBS115                         5                        Expression of the operon containing Hibit-MimiP4H
+                 pHT100_NewRBS_Hibit_MimiP4H_Int_Bacola2
+         pBS117                                                              and secreting Bacola225
+                                        25                       Expression of the operon containing Hibit-MimiP4H
+         pBS118                  pHT-SP5-HisBacola
+         pBS119                                                             and intracellular Bacola225
+                               pHT-In-His-Bacola225              Expression of the operon containing Hibit-MimiP4H
+                                                          and secreting Bacola225. Synthetic RBS1 and RBS2 were
+                     pHT100_HibitBacP4H_TEV SP5 Bacola
+                     pHT100_HibitMimiP4H_TEV SP5 Bacola                     designed in RBS Calculator
+                                                                  Expression of the operon containing Hibit-BacP4H
+                                                          and secreting Bacola225. Synthetic RBS1 and RBS2 were
+
+                                                                            designed in RBS Calculator
+                                                                  Expression of the operon containing Hibit-BacP4H
+                                                          and Bacola225. Synthetic RBS1 and RBS2 were designed
+
+                                                                                  in RBS Calculator
+                                                                 Expression of the operon containing Hibit-MimiP4H
+                                                          and Bacola225. Synthetic RBS1 and RBS2 were designed
+
+                                                                                  in RBS Calculator
+                                                                   Expression and sectetion of Bacola225 with a N
+                                                          terminal His tag and TEV cleavage site under the pgrac100
+
+                                                                                       promoter
+                                                                       Expression and intracellular production of
+                                                          Bacola225 with a N terminal His tag and TEV cleavage site
+
+                                                                           under the pgrac100 promoter
+                                                                  Expression of operon containing Hibit-BacP4H and
+
+                                                                              SP5-His-TEV-Bacola225
+                                                                    Expression of operon containing Hibit-m4H and
+
+                                                                              SP5-His-TEV-Bacola225
+
+                 Table of strains used in this study
+
+ Entity              Alias            Organism            Parent strain  Plasmids
+ Name
+SDA000     Bacillus subtilis KO7S  Bacillus subtilis         SDA000       pBS040
+SDA001   NoSignalPeptide BsbColv2  Bacillus subtilis         SDA000       pBS008
+SDA002                             Bacillus subtilis         SDA000       pBS009
+SDA003          SP1-BsbCovl2       Bacillus subtilis         SDA000       pBS010
+SDA004          SP2-BsbCovl2       Bacillus subtilis         SDA000       pBS011
+SDA005          SP3-BsbCovl2       Bacillus subtilis         SDA000       pBS012
+SDA006          SP4-BsbCovl2       Bacillus subtilis         SDA000       pBS013
+SDA007          SP5-BsbCovl2       Bacillus subtilis         SDA000       pBS014
+SDA008          SP6-BsbCovl2       Bacillus subtilis         SDA000       pBS015
+SDA009          SP7-BsbCovl2       Bacillus subtilis         SDA000       pBS016
+SDA010          SP8-BsbCovl2       Bacillus subtilis         SDA000       pBS017
+SDA011          SP9-BsbCovl2       Bacillus subtilis         SDA000       pBS018
+SDA012         SP10-BsbCovl2       Bacillus subtilis         SDA000       pBS019
+SDA013         SP11-BsbCovl2       Bacillus subtilis         SDA000       pBS020
+SDA014         SP12-BsbCovl2       Bacillus subtilis
+               SP13-BsbCovl2
+
+                                   92
+SDA015     SP14-BsbCovl2     Bacillus subtilis  SDA000  pBS021
+SDA016     SP15-BsbCovl2     Bacillus subtilis  SDA000  pBS022
+SDA017     SP16-BsbCovl2     Bacillus subtilis  SDA000  pBS023
+SDA018     SP17-BsbCovl2     Bacillus subtilis  SDA000  pBS024
+SDA019     SP18-BsbCovl2     Bacillus subtilis  SDA000  pBS025
+SDA020     SP19-BsbCovl2     Bacillus subtilis  SDA000  pBS026
+SDA021     SP20-BsbCovl2     Bacillus subtilis  SDA000  pBS027
+SDA022     SP21-BsbCovl2     Bacillus subtilis  SDA000  pBS028
+SDA023     SP22-BsbCovl2     Bacillus subtilis  SDA000  pBS029
+SDA024     SP23-BsbCovl2     Bacillus subtilis  SDA000  pBS030
+SDA025     SP24-BsbCovl2     Bacillus subtilis  SDA000  pBS031
+SDA026     SP25-BsbCovl2     Bacillus subtilis  SDA000  pBS032
+SDA027     SP26-BsbCovl2     Bacillus subtilis  SDA000  pBS033
+SDA028     SP27-BsbCovl2     Bacillus subtilis  SDA000  pBS034
+SDA029     SP28-BsbCovl2     Bacillus subtilis  SDA000  pBS035
+SDA030     SP29-BsbCovl2     Bacillus subtilis  SDA000  pBS036
+SDA031     SP30-BsbCovl2     Bacillus subtilis  SDA000  pBS037
+SDA032     SP31-BsbCovl2     Bacillus subtilis  SDA000  pBS038
+SDA033     SP32-BsbCovl2     Bacillus subtilis  SDA000  pBS039
+SDA034     SP3 BaCola225     Bacillus subtilis  SDA000  pBS041
+SDA035     SP5 BaCola225     Bacillus subtilis  SDA000  pBS042
+SDA036     SP19 BaCola225    Bacillus subtilis  SDA000  pBS043
+SDA037     SP26 BaCola225    Bacillus subtilis  SDA000  pBS044
+SDA042     SP3 With AlphaI   Bacillus subtilis  SDA000  pBS061
+SDA043     SP5 With AlphaI   Bacillus subtilis  SDA000  pBS062
+SDA044    SP19 With AlphaI   Bacillus subtilis  SDA000  pBS063
+SDA045    SP26 With AlphaI   Bacillus subtilis  SDA000  pBS064
+SDA046     SP3 With Alpha2   Bacillus subtilis  SDA000  pBS065
+SDA047     SP5 With Alpha2   Bacillus subtilis  SDA000  pBS066
+SDA048    SP19 With Alpha2   Bacillus subtilis  SDA000  pBS067
+SDA049    SP26 With Alpha2   Bacillus subtilis  SDA000  pBS068
+SDA050   SP3 WithOUT AlphaI  Bacillus subtilis  SDA000  pBS069
+SDA051   SP5 WithOUT AlphaI  Bacillus subtilis  SDA000  pBS070
+SDA052  SP19 WithOUT AlphaI  Bacillus subtilis  SDA000  pBS071
+SDA053  SP26 WithOUT AlphaI  Bacillus subtilis  SDA000  pBS072
+SDA054  SP3 WithOUT Alpha2   Bacillus subtilis  SDA000  pBS073
+SDA055  SP5 WithOUT Alpha2   Bacillus subtilis  SDA000  pBS074
+SDA056  SP19 WithOUT Alpha2  Bacillus subtilis  SDA000  pBS075
+SDA057  SP26 WithOUT Alpha2  Bacillus subtilis  SDA000  pBS076
+SDA058     SP3 Procollagen   Bacillus subtilis  SDA000  pBS045
+SDA059     SP5 Procollagen   Bacillus subtilis  SDA000  pBS046
+SDA060    SP19 Procollagen   Bacillus subtilis  SDA000  pBS047
+SDA061    SP26 Procollagen   Bacillus subtilis  SDA000  pBS048
+
+                                  93
+SDA062            SP3 Collagen               Bacillus subtilis  SDA000  pBS049
+SDA063            SP5 Collagen               Bacillus subtilis  SDA000  pBS050
+SDA064           SP19 Collagen               Bacillus subtilis  SDA000  pBS051
+SDA065           SP26 Collagen               Bacillus subtilis  SDA000  pBS052
+SDA070  Operon_pgrac_P4H_BsbColv2            Bacillus subtilis          pBS079
+SDA071  Operon_pgrac_P4H_Bacola225           Bacillus subtilis  SDA000  pBS080
+SDA072         KO7S LinkP4H only             Bacillus subtilis  SDA000  pBS083
+SDA073      KO7S NoLink_P4H only             Bacillus subtilis  SDA006  pBS083
+                                                                SDA035
+SDA074       SP5-BsbColv-LinkP4H             Bacillus subtilis  SDA006  pBS083
+                                                                SDA035
+SDA075  SP5-Bacola225-LinkP4H                Bacillus subtilis          pBS083
+                                                                SDA000
+SDA076  SP5-BsbColv-NoLinkP4H                Bacillus subtilis  SDA000  pBS083
+
+SDA077           SP5-Bacola225-NoLinkP4H     Bacillus subtilis  SDA000  pBS083
+                                                                SDA000
+SDA078          PG10-Operon P4H BsbColv2     Bacillus subtilis          pBS079
+SDA079          PG10-Operon P4H Bacola225    Bacillus subtilis          pBS080
+SDA080         PG10(2)-Operon P4H BsbColv2   Bacillus subtilis          pBS079
+SDA081        PG10(2) -Operon P4H Bacola225  Bacillus subtilis          pBS080
+SDA082                                       Bacillus subtilis          pBS012
+SDA083               PG10-SP5-BsbColv2       Bacillus subtilis          pBS078
+SDA084                  SP5-Bacola450        Bacillus subtilis          pBS084
+SDA085                  SP5-Bacola900        Bacillus subtilis          pBS078
+SDA086                                       Bacillus subtilis          pBS084
+SDA087              PG10-SP5-Bacola450       Bacillus subtilis          pBS088
+SDA088              PG10-SP5-Bacola900       Bacillus subtilis          pBS089
+SDA090                                       Bacillus subtilis          pBS091
+SDA091                  pHT-SP5-Elastin      Bacillus subtilis          pBS092
+SDA092                  pHT-SP5-Resilin      Bacillus subtilis          pBS093
+SDA093                pHT-SP5-BsbColv2       Bacillus subtilis          pBS085
+SDA094               pHT-SP5-Bacola225       Bacillus subtilis          pBS087
+SDA095               pHT-SP5-Bacola450       Bacillus subtilis          pBS094
+SDA096              SP5-WholeCollagenA1      Bacillus subtilis          pBS095
+SDA108              SP5-WholeCollagenA2      Bacillus subtilis          pBS082
+SDA109                pHT-Hibit-BacP4H       Bacillus subtilis          pBS104
+SDA110                pHT-Hibit-MimiP4H      Bacillus subtilis          pBS105
+SDA111          pHT100_BacP4H_SP5_Bacola     Bacillus subtilis          pBS106
+SDA112         pHT100_BacP4H_IntBacola225    Bacillus subtilis          pBS107
+SDA113         pHT100_MimiP4H_SP5_Bacola     Bacillus subtilis          pBS108
+SDA114        pHT100_MimiP4H_IntBacola225    Bacillus subtilis          pBS082
+SDA115  pHT100_NewRBS_MimiP4H_SP5Bacola225   Bacillus subtilis          pBS104
+SDA116  pHT100_NewRBS_BacP4H_SP5Bacola225    Bacillus subtilis          pBS105
+            PG10_pHT100_BacP4H_SP5_Bacola
+                PG10_BacP4H_IntBacola225
+                PG10_MimiP4H_SP5_Bacola
+
+                                             94
+SDA117         PG10_MimiP4H_IntBacola225      Bacillus subtilis                              pBS106
+SDA118  PG10_NewRBS_MimiP4H_SP5Bacola225      Bacillus subtilis                              pBS107
+SDA119   PG10_NewRBS_BacP4H_SP5Bacola225      Bacillus subtilis                              pBS108
+SDA125                                        Bacillus subtilis                              pSD553
+SDA130             KO7S SP5-Hibit-Bacola      Bacillus subtilis                              pBS110
+SDA133    pHT100_NRBS_MimiP4H_InBacola225     Bacillus subtilis                              pBS115
+SDA134                                        Bacillus subtilis                              pBS117
+SDA135           KO7S_pHT-SP5-HisBacola       Bacillus subtilis                              pBS116
+SDA136          KO7S_pHT-In-His-Bacola225     Bacillus subtilis                              pBS118
+SDA137  KO7S_pHT-Hibit-BacP4H-SP5-Bacola225   Bacillus subtilis                              pBS119
+SDA138   KO7S_pHT-Hibit-BacP4H-In-Bacola225   Bacillus subtilis                              pBS133
+        KO7S_pHT-Hibit-MimiP4H-SP5-Bacola225
+         KO7S_pHT-Hibit-MimiP4H-In-Bacola225
+
+                   ID_Name      Table of strains used in this study
+
+           PRB1_BsbColv2_Fw                                         PRIMER SEQUENCE 5' - 3'
+                                                            AGTGCUGGGTTTCCGGGACCAAAAGG
+            PRB2_BsbColv2_Rv                            GGTGCGAUTTAATGGTGATGATGATGGTGCG
+                                                GGCGAUAGGAGGAATATACATGTTTGCAAAACGATTCAAA
+         PRB7_Amye-tag1-U-fw
+          PRB8_Amye-tag1-U-rv                                     AGCACUCGCAGCCGCCGGT
+          PRB9_Apre-tag2_U-fw                  GGCGAUAGGAGGAATATACATGAGAAGCAAAAAATTGTGG
+         PRB10_Apre-tag2_U-rv
+          PRB11_Bpr-tag3_U-fw                                AGCACUCGCAGACATGTTGCTGAAC
+          PRB12_Bpr-tag3_U-rv                  GGCGAUAGGAGGAATATACATGAGGAAAAAAACGAAAAAC
+          PRB13_Epr-tag4_U-fw
+          PRB14_Epr-tag4_U-rv                                AGCACUGGCTGCTCCCGGAAACAG
+          PRB15_Mpr-tag5_U-fw                   GGCGAUAGGAGGAATATACATGAAAAACATGTCTTGCAAA
+          PRB16_Mpr-tag5_U-rv
+          PRB17_Pel-tag6_U-fw                                 AGCACUAGCGAGAGGGCCTATGGT
+          PRB18_Pel-tag6_U-rv                   GGCGAUAGGAGGAATATACATGAAATTAGTTCCAAGATTC
+         PRB19_Penp-tag7_U-fw
+         PRB20_Penp-tag7_U-rv                                 AGCACUTGCCGGTACGCCAAAAGA
+         PRB21_Phoa-tag8_U-fw                   GGCGAUAGGAGGAATATACATGAAAAAAGTGATGTTAGCT
+         PRB22_Phoa-tag8_U-rv
+         PRB23_Phob-tag9_U-fw                                AGCACUCGCGCCAGCTGGAGTCAA
+         PRB24_Phob-tag9_U-rv                  GGCGAUAGGAGGAATATACATGAAGTTGAAAACTAAAGCG
+         PRB25_Vpr-tag10_U-fw
+         PRB26_Vpr-tag10_U-rv                                 AGCACUGGCATGTGTTGAGTTGAAA
+        PRB27_Xyna-tag11_U-fw                    GGCGAUAGGAGGAATATACATGAAAAAAATGAGTTTGTTT
+        PRB28_Xyna-tag11_U-rv
+        PRB29_Ybdn-tag12_U-fw                                AGCACUGGCAAAGATTCCAGCTGTA
+        PRB30_Ybdn-tag12_U-rv                   GGCGAUAGGAGGAATATACATGAAAAAATTCCCGAAGAAA
+        PRB31_Ylqb-tag13_U-fw
+         PRB32_Ylqb-tag13_U-rv                                AGCACUGGCTTCAGGCACACTGCC
+        PRB33_Yncm-tag14_U-fw                  GGCGAUAGGAGGAATATACATGAAAAAGGGGATCATTCGC
+
+                                                              AGCACUAGCTGCCTGAACGCCCGT
+                                                 GGCGAUAGGAGGAATATACATGTTTAAGTTTAAAAAGAAT
+
+                                                              AGCACUGGCGGTTGCCGAAAACAA
+                                                GGCGAUAGGAGGAATATACATGGTGAAAAAATGGCTTATT
+
+                                                            AGCACUTGCCGAATACGTAAAGGTAGA
+                                                GGCGAUAGGAGGAATATACATGAAAAAAATCGGTTTATTG
+
+                                                              AGCACUTGCTTGCTGTGCCGGGAA
+                                               GGCGAUAGGAGGAATATACATGGCGAAACCACTATCAAAA
+
+                                             95
+             ID_Name                             PRIMER SEQUENCE 5' - 3'
+
+   PRB34_Yncm-tag14_U-rv                   AGCACUTGCCGCGGGTAAACCTGG
+  PRB35_Yoaw-tag15_U-fw       GGCGAUAGGAGGAATATACATGAAAAAGATGTTGATGTTA
+   PRB36_Yoaw-tag15_U-rv
+   PRB37_Yoch-tag16_U-fw                 AGCACUAGCTTCCCCTACATGGATAGT
+   PRB38_Yoch-tag16_U-rv     GGCGAUAGGAGGAATATACATGAAGAAGACGATTATGTCC
+   PRB39_Yqxi-tag17_U-fw
+    PRB40_Yqxi-tag17_U-rv                   AGCACUAGCTCCGAATGCAGTTGT
+   PRB41_Yvgo-tag18_U-fw      GGCGAUAGGAGGAATATACATGTTTAAGAAATTACTTTTA
+   PRB42_Yvgo-tag18_U-rv
+  PRB43_Ywad-tag19_U-fw                   AGCACUGGCATGTCCATCCAACGGA
+   PRB44_Ywad-tag19_U-rv     GGCGAUAGGAGGAATATACATGAAACGTATTCGTATCCCA
+  PRB45_Ywea-tag20_U-fw
+   PRB46_Ywea-tag20_U-rv                  AGCACUAGCAAAGGACAAAGGGGCA
+   PRB47_Ywtf-tag21_U-fw    GGCGAUAGGAGGAATATACATGAAAAAGCTTTTGACTGTCAT
+   PRB48_Ywtf-tag21_U-rv
+  PRB49_Yxalk-tag22_U-fw                  AGCACUCGCGGCAGGGGTGACACT
+   PRB50_Yxalk-tag22_U-rv    GGCGAUAGGAGGAATATACATGCTAAAAAGAACTTCATTC
+   PRB51_Nprb-tag23_U-fw
+   PRB52_Nprb-tag23_U-rv                  AGCACUAGCTTGGCCCGAAGGAAGT
+   PRB53_Sacb-tag24_U-fw    GGCGAUAGGAGGAATATACATGGAAGAACGATCACAGCGC
+   PRB54_Sacb-tag24_U-rv
+   PRB55_Sacc-tag25_U-fw                  AGCACUGGCGCCGACAGAGCCTGC
+    PRB56_Sacc-tag25_U-r   GGCGAUAGGAGGAATATACATGGTCAAGTCATTTCGTATGAAA
+   PRB57_Abna-tag26_U-fw
+   PRB58_Abna-tag26_U-rv                   AGCACUAGCAGCTGTCGGCTGAAG
+   PRB59_Bgls-tag27_U-fw    GGCGAUAGGAGGAATATACATGCGCAACTTGACCAAGACA
+    PRB60_Bgls-tag27_U-rv
+   PRB61_Yola-tag28_U-fw                  AGCACUGGCATGTGTTACAAAAACCA
+   PRB62_Yola-tag28_U-rv     GGCGAUAGGAGGAATATACATGAACATCAAAAAGTTTGCA
+   PRB63_Csn-tag29_U-fw
+    PRB64_Csn-tag29_U-rv                  AGCACUCGCTTGAGTTGCGCCTCCT
+    PRB65_Bsn-tag30_U-fw     GGCGAUAGGAGGAATATACATGAAAAAGAGACTGATTCAA
+    PRB66_Bsn-tag30_U-rv
+   PRB67_Cwlo-tag31-U-fw                    AGCACUTGCCGAAAATGCCATAGT
+   PRB68_Cwlo-tag31-U-rv     GGCGAUAGGAGGAATATACATGAAAAAGAAAAAAACATGG
+   PRB69_Egls-tag32-U-fw
+    PRB70_Egls-tag32-U-rv                  AGCACUTGCGGGAGCAGCAGAAGT
+ PRB71_NoSP_BsbCov2_Fw       GGCGAUAGGAGGAATATACATGCCTTATCTGAAACGAGTG
+ PRB72_NoSP_BsbCov3_Fw
+ PRB73_553_pSEVA_seq_rv                   AGCACUGGCAGTAGCAGTGACTGCA
+  PRB74_2730_p3p-seq-fw2     GGCGAUAGGAGGAATATACATGAAGAAGAGAATTACATAT
+PRB75_2074_glms_Check_F
+                                          AGCACUTGCTTTTGATGAATCAGTGAA
+               w             GGCGAUAGGAGGAATATACATGAAAATCAGTATGCAAAAA
+PRB76_2075_glms_Check_Rv
+                                         AGCACUCGCCGTTTCGCTCATCATCAG
+     PRB77_BaCola_B_Fw       GGCGAUAGGAGGAATATACATGACAAAAAAAGCATGGTTT
+
+                                          AGCACUTGCTGAAGCTGCTGGCGCA
+                             GGCGAUAGGAGGAATATACATGAGAAAGAGTTTAATTACA
+
+                                        AGCACUTGCAGTTTTACTTGTAAATGGGA
+                             GGCGAUAGGAGGAATATACATGAAACGGTCAATCTCTATT
+
+                                           AGCACUTGCCGGCGAAGCTATCAT
+                           GGCGAUAGGAGGAATATACATGGGGTTTCCGGGACCAAAAG
+                           GGCGAUAGGAGGAATATACATGCCTGGAGAAAGAGGCGCTG
+
+                                                CCGAGCGTTCTGAACAAATC
+                                                TCTTGAAAGGAGGGATGCCT
+                                                TGAGCAGCCTGTTGTTATGC
+                                                TGGAAACGGGAAGAGATTGT
+                                          AGTGCUGGAAGACCTGGTCCACCTG
+
+                               96
+             ID_Name                                              PRIMER SEQUENCE 5' - 3'
+
+     PRB78_BaCola_B_Rv                              GGTGCGAUTTAATGGTGATGATGATGGTGTTTGTC
+                                                                  CTGGTTCACCAGCGGCTC
+     PRB79_CoBacola_Rv
+                                                              GCAAGAGGAGAACGTGGTTTTCC
+    PRB80_Seq_Bacola_Fw                                    AGTGCUGGACCGCCTGGTCTTGCAG
+                                                     GGTGCGAUTTAATGATGGTGGTGGTGGTGTAAG
+       PRB81_AlphaI_Fw                                  GGTGGTGGTATCTACCTCCGTCGTGTGCC
+                                            GGTGCGAUTTAATGATGGTGGTGGTGGTGGTATCTACCTCCG
+    PRB82_WithAlphaI_Rv
+                                                                 GTTCTCCCGGTGATCCCGGT
+PRB83_Scaf_W/O_AlphaI_Rv                                     AGTGCUGGCGCGAGAGGCCCAC
+                                                     GGTGCGAUTTAATGATGGTGGTGGTGGTGTTTG
+ PRB84_Tag_W/O_AlphaI_Rv                                GGTGGTGGGCCCGATAAAAGTCCCCGTC
+                                                 GGTGCGAUTTAATGATGGTGGTGGTGGTGGGCCCGA
+      PRB85_CoAlphaI_Rv
+                                                                 GAGCCCCTTGGTCACCGTG
+       PRB86_Alpha2_Fw                                     AGTGCUGGCCAAGAGGAGGGCCAG
+                                                          GGTGGTGCAGGAAGCAGGCAGGGCC
+    PRB87_WithAlpha2_Rv                       GGTGCGAUTTAATGATGGTGGTGGTGGTGCAGGAAGCAG
+                                                      AGTGCUGGCCAGTTGTCTTACGGCTATGATG
+PRB88_Scaf_W/O_Alpha2_Rv                                    GGTGGTGAGCCCGGTAGTAGCGGC
+
+PRB89_Tag_W/O_Alpha2_Rv                         GGTGCGAUTTAATGATGGTGGTGGTGGTGAGCCCGGT
+                                                                TCAGCACCAGGAGCTCCCTC
+     PRB90_CoAlpha2_Rv                                          ACCAGGTTGGCCATCAGCAC
+                                                               GGGTCCCTGAGCTCCAGCTTC
+   PRB99_Wi_BovCola_Fw                                          GGAAGCCAGGAGCACCAGC
+PRB100_Scaf_Wi_BovCola_R
+                                                        GGTGCGAUTTACAGGAAGCAGGCAGGGC
+               v
+PRB101_Tag_Wi_BovCola_Rv                                GGTGCGAUTTAAGCCCGGTAGTAGCGGC
+
+  PRB102_w/o_BovCola_Fw                                           AGTGCUGGCCAAGAGGAG
+PRB103_w/o_Scaf_BovCola_
+                                                                AGTGCUGGCCAGTTGTCTTAC
+              Rv
+PRB104_w/o_Tag_BovCola_R              GGTGCGAUTTAATGATGGTGGTGGTGGTGCAGGAAGCAGGCAGGGCC
+
+               v                       GGTGCGAUTTAATGATGGTGGTGGTGGTGAGCCCGGTAGTAGCGGC
+ PRB105_Seq1_BovCola_Rv            GGTGCGAUTTAATGATGGTGGTGGTGGTGGTATCTACCTCCGTCGTGTGCC
+                                    GGTGCGAUTTAATGATGGTGGTGGTGGTGGGCCCGATAAAAGTCCCCGTC
+ PRB106_Seq2_BovCola_Rv
+                                              CCTGGTCTTGCACACCATCATCATCACCATTAAATCGCAC
+ PRB107_Seq3_BovCola_Rv                       TGAGGGGCCAGCTTCTCCTTTGTCTCCTGGTGCCCCAGC
+
+ PRB108_Seq4_BovCola_Rv                                 GGAGACAAAGGAGAAGCTGGCCCCTCAG
+PRB109_NativeWith_BovCol                           GTGATGATGATGGTGTGCAAGACCAGGCGGTCCC
+
+             a_Rv                                         CACCATCATCATCACCATTAAATCGCAC
+PRB110_NativeWO_BovCola
+                                               CTGATTCTCCAGGTGGTCCTGCAAGACCAGGCGGTCCC
+              _Rv
+ PRB111_Tag_Wi_BovCola_F                           CTGGTCTTGCAGGACCACCTGGAGAATCAGGTAG
+
+               w                                GTGCGATTTAATGGTGATGATGATGGTGTAAGAAACAGG
+PRB112_Tag_W_BovCola_F    GAAAAGGGAGGTTCCGGTGGAGGGTCCGGCGGTACCAACAATAATCAAATCGGCGAAAAC
+
+               w                                      GGTGCGAUTTATTTATACGTTCCGCGACGGAC
+ PRB113_HisTag_With_A1cD
+
+           NA_Rv
+PRB114_HisTag_WO_A1cDN
+
+             A_Rv
+ PRB115_HisTag_WO_A1_Rv
+
+ PRB116_HisTag_WO_A2_Rv
+
+  PRB117_Gibson_B225_Fw
+
+  PRB118_Gibson_B225_Rv
+
+  PRB119_Gibson_Twist_Fw
+
+  PRB120_Gibson_Twist_Rv
+ PRB121_Gibson_Back900_F
+
+               w
+PRB122_Gibson_Back900_R
+
+               w
+PRB123_Gibson_BaCola900_
+
+              Fw
+PRB124_Gibson_Bacola900_
+
+              Rv
+  PRB125_BacillusP4H_Fw
+
+   PRB126_BacillusP4H_Rv
+
+                          97
+             ID_Name                                              PRIMER SEQUENCE 5' - 3'
+PRB127_StrepTag_BacillusP
+                           GGCGAUAGGAGGAATATACATGTGGAGTCATCCTCAATTTGAAAAGGGGGGTTCCGGTGG
+           4H_Fw                   GGCGAUAGGAGGAATATACATGTGGAGTCATCCTCAATTTGAAAAGACCAAC
+   PRB128_NoLinkP4H_Fw                                          CGGAGTTAGAAATTGCCTTGG
+  PRB129_rsbp_Check_Fw                                           CATGGTTCAGGTCGGAAATG
+   PRB130_rspb_Check_Rv                                   GTATAATTAAAATAAGCTTGATCGTAGCG
+    PRB131_Ptet_Seq_Fw                                 AAGGATCCUATGTGGAGTCATCCTCAATTTG
+PRB132_P4H_bicistronic_Fw                              ACTCTAGCUATTATTTATACGTTCCGCGACG
+PRB133_P4H_Bicistronic_Rv                   AGCTAGAGUAGGAGGAATATACATGAAATTAGTTCCAAGATTC
+PRB134_SP5_BsbColv_Bicist                               ACGTCGUTAATGGTGATGATGATGGTGCG
+                                                                    ACGACGUCCCCGGGG
+         ronic_Fw                                   AGGATCCTUCCTCCTTTAATTGGGAATTGTTATCC
+ PRB135_Bis_BsbColv2_Rv                                       ACCCCGUAGAAAAGATCAAAGG
+PRB136_U_PHT01_Backbone                                             ACGGGGUCTGACGCTC
+                                                          ACGTCGUTTAATGGTGATGATGATGGTG
+             _Fw                                         AGTGCUGGCCAAGAAGAGGGTCAGGAG
+   PRB137_pHT01_P4H_Rv                                           ACCTGGUAATCCGCGAGGG
+  PRB138_Split_PHT01_Fw                                        ACCAGGUGAGCGGGGCCGCC
+   PRB139_Split_PHT01_Rv                                    AGGTCTUCCATCTTGGCCCGCCGG
+   PRB140_Bis_Bacola_Rv                                          AAGACCUGGTCCACCTGGG
+    PRB141_SPN_Prop_Fw                                 AGTGCUCAATCTCTTCAGGAAGCAACTGCG
+    PRB142_SPN_Prop_Rv                                AGCTCCUGCAACTCCAGGAAGACCAGCTGC
+                                                                 AGGAGCUCCAGGATTGCCG
+     PRB143_Collstart_Fw                                          ACGACTUCCAATCGGGCC
+     PRB144_Collstart_Rv                                 AAGTCGUGGCCCGTCTGGACCACCAGG
+     PRB145_ColBone_Fw                                             AGGGCCUGCTATGCCCA
+     PRB146_Alpha2a_Fw                                     AGGCCCUCCGGGCGCGAGAGGCCC
+     PRB147_Alpha2a_Rv                                  ATGATGAUGGTGTTTGAAACAGACCGGGC
+     PRB148_Alpha2b_Fw                                ATCATCAUCACCATTAAATCGCACCTCAGCGT
+     PRB149_Alpha2b_Rv                                        AGCCGCUGCCGCAGCCGCGGC
+     PRB150_Alpha2c_Fw                                             AGCGGCUGCAGCAAAAG
+     PRB151_Alpha2c_Rv                                            AGGGGCUACCCCAACGC
+     PRB152_Alpha2l_Fw                                     AGCCCCUGGAATCGGTCCGGGAGG
+ PRB153_Alpha2_FixHis_Rv                                 GGTGCGAUTTAATGGTGATGATGATGGTG
+ PRB154_Alpha2_FixHis_Rv                              ACGTCGUTTACTTTCTCTTTCTCCCACAGGCTT
+                                                     GGTGCGAUTTACTTTCTCTTTCTCCCACAGGCT
+       PRB155_ELN1_Rv                                           AAGGCCGUCCCCCATTGCCA
+       PRB156_ELN2_Fw                                       ACGGCCTUCTTCCTCATATGGCGCT
+       PRB157_ELN2_Rv                                        AATCGGAUGGCTTCTGGTTCTGGC
+       PRB158_ELN3_Fw                                     ATCCGATUCATATGGGGCTCCAGGGTC
+PRB159_Histag_ProUSER_Rv                              ACGTCGUTTAATAACGATAGCCGCTCCCATC
+  PRB160_Elastin3_pHT_Rv                             GGTGCGAUTTAATAACGATAGCCGCTCCCATC
+ PRB161_Elastin3_ProU_Rv               ATGGGATCAAGCGTGTCAGGATGGAGACTCTTCAAAAAGATAAGCTCT
+     PRB162_ResilinN_Rv               ATCTTTTTGAAGAGTCTCCATCCTGACACGCTTGATCCCATAGGATCCTT
+     PRB163_ResilinK-Fw                           AAGCTCUGGAATGACCAACAATAATCAAATCGGCG
+     PRB164_ResilinK_Rv
+     PRB165_ResilinL_Fw                   98
+  PRB166_ResilinL_pHT_Rv
+ PRB167_ResilinL_ProU_Rv
+     PRB198_Hibit_P4H_1
+     PRB199_Hibit_P4H_2
+ PRB200_User_BacP4H_Fw
+             ID_Name                                                  PRIMER SEQUENCE 5' - 3'
+
+ PRB201_USER_BacP4H_Rv                                    ACGTCGUTTATTTATACGTTCCGCGACGGAC
+                                                       AAGCTCUGGAATGAAGACCGTGACGATAATAACG
+     PRB202_MimiP4H_Fw
+                                                             ACGTCGUTTAAGAGAACTTGCGCTCACG
+     PRB203_MimiP4H_Rv                           AAGCTCUGGAATGAAATTAGTTCCAAGATTCAGAAAACAATG
+
+    PRB204_Hibit_SP5_Fw                                  AAGCTCUGGAATGGAAACGGCGAACAAATCG
+                            AGAGCTUATCTTTTTGAAGAGTCTCCATCCTGACACGCTTGATCCCATAGGATCCTTCCTCCTTT
+  PRB205_Hibit_InAmyE_Fw
+PRB206_pHT_Hibit_Substitut                                          AATTGGGAATTGTTATCC
+                            GAAAATACAGATTTTCACCACTGCTATGGTGATGATGATGATGGCTGCTACCCATTAGAAGTCTC
+               e
+                                                                                 CTT
+      PRB209_His_TEV_1      TCTAATGGGTAGCAGCCATCATCATCATCACCATAGCAGTGGTGAAAATCTGTATTTTCAGGGTA
+
+      PRB210_His_TEV_2                                                            GT
+                                                           AAGGATCCUATGTGGAGTCATCCTCAATTTG
+     PRB215_pHT_BacP4H                                      AAGGATCCUATGGGAAGACCTGGTCCAC
+                                                            AAGGATCCUGGGTTTCCGGGACCAAAAG
+   PRB216_Bacola_pHT_Fw
+                                                                  ACACCAUCATCATCACCATTAAA
+  PRB217_IntraBsbColv_Fw                                          ATGGTGUGGCTGCGTCGGGTAC
+                                                 AAGGATCCUATGAAATTAGTTCCAAGATTCAGAAAACAATGG
+    PRB218_Bacola750_Fw                      TCGATTAGCTAAAGGAGGTATTCTAATGGGATCAAGCGTGTCAGG
+
+    PRB219_Bacola750_Rv               CATACCGAAGCCTCCTTTAGGGGATCTCTTATTTATACGTTCCGCGACGGACC
+
+     PRB226_pHT_SP5_Fw            GAGATCCCCTAAAGGAGGCTTCGGTATGAAATTAGTTCCAAGATTCAGAAAACAATG
+
+  PRB240_Gibson_Hibit_Fw                                      TTAATGGTGATGATGATGGTGTTTGTCTC
+PRB241_Gibson_RBS2_SP5_
+                                             GGAGACAAACACCATCATCATCACCATTAAACGACGTCCCCGGG
+              Rv
+PRB242_Gibson_RBS2_SP5_            GATCCCATTAGAATACCTCCTTTAGCTAATCGAAATTGGGAATTGTTATCCGCTCAC
+                                             GAGATCCCCTAAAGGAGGCTTCGGTATGGGAAGACCTGGTCCAC
+              Fw
+PRB243_Spare_Gibson_Hista                CATACCGAAGCCTCCTTTAGGGGATCTCTTAAGAGAACTTGCGCTCACG
+                                                AGCTAGAGUAGGAGGAATATACATGGGAAGACCTGGTCCAC
+             g_Rv                                         ACTCTAGCUATTAAGAGAACTTGCGCTCACG
+PRB244_Spare_Gibson_His_t
+                                              GAGATCCCCTAAAGGAGGCTTCGGTATGGGAAGACCTGGTCCA
+            ag_Fw
+PRB245_pHT_Hibit_Gibson_                             GGCCAACTTTCATATGGATACGACGAAAAAAGTACAG
+
+              Rv                                      ACGTCGTTTAGGCGCGGTAGTATCTACCTCCGTCG
+PRB246_GIbson_Bacola_Fw
+PRB247_Gibson_MimiP4H_R            GTACTTTTTTCGTCGTATCCATATGAAAGTTGGCCCTGGAAATATAAATTTTCATGGTG
+                                                             AGAGCTUATCTTTTTGAAGAGTCTCCATC
+               v                                                   AGATCCCCUAAAGGAGGCTTC
+    PRB248_Int_Bacola_Fw
+PRB249_Operon_MimiP4H_R                            AGGGGATCUCTTATTTATACGTTCCGCGACGGACCCAC
+
+               v
+PRB256_Gibson_NewRBS2_B
+
+            acola
+PRB267_Gibson_CollagenIa_
+
+              Fw
+PRB268_Gibson_CollagenaI_
+
+              Rv
+  PRB269_Gibson_SP5_TEV
+
+  PRB275_NewRBS_pHT_Rv
+
+    PRB276_NewRBS2_Fw
+PRB277_BacP4H_User_New
+
+           RBS_Rv
+
+                            99
+
