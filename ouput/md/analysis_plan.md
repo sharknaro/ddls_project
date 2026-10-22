@@ -1,7 +1,7 @@
 # Data inspection findings and proposed analysis plan
 
 ## Scope
-This document records a descriptive inspection of `data/Information_for_Baris.xlsx` against `AGENTS.md`, `spec.md`, and the data-owner interview. No feature–secretion associations were tested, no biological features were calculated, and no models were fitted.
+This document initially recorded a descriptive inspection of `data/Information_for_Baris.xlsx` against `AGENTS.md`, `spec.md`, and the data-owner interview. Following the user's request, analysis-plan steps 2–8 have now been carried out as exploratory/descriptive analyses on `data/Information_for_Baris_corrected.xlsx`; details and outputs are documented in `ouput/analysis_steps_2_8_report.md` and `ouput/analysis/`. No model was fitted, and no cross-blot calibration was performed.
 
 ## OBSERVED IN DATA
 
@@ -118,7 +118,7 @@ These points cannot be established reliably from the workbook or interview alone
 
 # Numbered analysis plan
 
-The plan below is proposed; it is not analysis already performed. Resolve key coding and assay ambiguities before interpreting the outcomes.
+Steps 2–8 below were performed descriptively/exploratorily; see `ouput/analysis_steps_2_8_report.md` for results and caveats. Steps 9–10 remain proposed. The corrected workbook was used, zero retained as numeric zero, and block-specific summaries were kept separate. Remaining assay/category ambiguities limit interpretation.
 
 ## 1. Resolve data dictionary, identifiers, and measurement provenance
 
@@ -189,6 +189,10 @@ The plan below is proposed; it is not analysis already performed. Resolve key co
 2. **Why:** Delivers an answer that the owner can use without confusing association, prediction, and mechanism.
 3. **Output:** Report with methods, data dictionary, plots/tables, limitations, and cautiously ranked candidates only if justified.
 4. **Validation/control:** Trace every conclusion to workbook rows and analysis outputs; owner review of unresolved assay/label interpretations; explicitly distinguish confirmed facts from assumptions.
+
+## Completion status: steps 9–10
+
+Steps 9–10 were completed after the descriptive analyses in steps 2–8. No model or candidate extrapolation was fit because the available data do not provide a stable feature association or independent validation design. The integrated data-analysis part 1 report is `final_analysis_part1.md`; detailed results for steps 2–8 are in `../analysis_steps_2_8_report.md`, with reproducible outputs in `../analysis/`. Conclusions and follow-up data needs are summarized in the final report. The cautions below still apply.
 
 # Two most likely misleading parts
 

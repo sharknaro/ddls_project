@@ -1,0 +1,17 @@
+protein_construct,category,n
+Alpha1 w/o C propeptide,High,1
+Alpha1 w/o C propeptide,Low,2
+Alpha1 w/o C propeptide,Medium,1
+Alpha1 with C propeptide,High,1
+Alpha1 with C propeptide,Low,2
+Alpha1 with C propeptide,No,1
+Alpha2 w/o C propeptide,High,1
+Alpha2 w/o C propeptide,Low,2
+Alpha2 w/o C propeptide,Medium,1
+Alpha2 with C propeptide,No,4
+Bacola225,High,3
+Bacola225,Medium,1
+"Procollagen (It is like Procollagen wIth N,C propeptides)",No,4
+Tropocollagen,High,1
+Tropocollagen,Low,2
+Tropocollagen,Medium,1
