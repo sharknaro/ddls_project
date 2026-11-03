@@ -1,0 +1,2 @@
+prespecified_feature,observed_combined_rho,rho_blot1,rho_blot2,rho_blot3,one_sided_p_single_hypothesis,one_sided_p_family_of_3_windows,n_permutations,direction_predicted_by_literature
+dg_rbs_plus48,0.5145291832658343,0.261904761904762,0.6318681318681317,0.4909090909090909,0.004199790010499475,0.011799410029498525,20000,positive (less negative dG favours secretion)

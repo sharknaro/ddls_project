@@ -42,7 +42,7 @@ Given missing cleavage boundaries, only simple, transparent features over each *
 - `(K + R − D − E) / length` (simple charge proxy, not pI);
 - exploratory GC fraction in the first 9 nt (initiation context/sequence boundaries are unverified).
 
-No pI, RNA folding, cleavage prediction, hydrophobicity scale score, or structural model is presented. The numeric feature definitions and values are in `sequence_qc_and_features.csv`.
+No pI, RNA folding, cleavage prediction, hydrophobicity scale score, or structural model was presented in the original steps 2–8 analysis. Subsequent user-requested analysis has built a broad documented feature set (`ouput/md/feature_definitions.md`, `ouput/analysis/step3/`), tested associations separately across original blots (`ouput/analysis/step4/`), and run a small peptide-level exploratory model (`ouput/analysis/exploratory_peptide_models_README.md`). The association screen found no feature surviving multiplicity correction; model performance was weak/unstable. These are exploratory results, not validated prediction.
 
 ## 7. Within-original-blot feature associations
 
@@ -55,7 +55,7 @@ Spearman correlations of block-specific mean fold-change with each feature (all 
 | Charge proxy per residue | −0.024 (0.955) | −0.462 (0.112) | −0.284 (0.397) |
 | First-9-nt GC fraction (exploratory) | 0.150 (0.723) | −0.029 (0.924) | 0.301 (0.368) |
 
-Values are exploratory, p-values unadjusted across features/blots, and samples are small. Effects are not consistent across blots; the moderately positive length trend in Blot 3 is not clear evidence of an association and does not appear in Blots 1 or 2. No feature gives compelling consistent association evidence here. This is **inconclusive/no clear association in these simple checks**, not evidence that no biological relationship exists. Because normalized scales and measurement precision are uncertain, further inferential claims would be premature. Table and faceted scatter plots: `within_blot_feature_associations.csv` and `within_blot_feature_associations.png`.
+These original four-feature checks were exploratory, unadjusted, and small. A later expanded analysis defined 34 robust, nonconstant region/physicochemical/nucleotide features and assessed them separately by blot with a maximum-statistic permutation screen. No feature survived multiplicity correction (best family-wise p≈0.81). See `ouput/md/feature_definitions.md` and `ouput/analysis/step4/`. This is inconclusive, not evidence that no biological relationship exists.
 
 ## 8. Other-protein categories as separate descriptive context
 
@@ -63,7 +63,7 @@ The corrected third sheet supplies 4 peptide rows (SP3, SP5, SP19, SP26) × 7 pr
 
 ## Summary and limitations
 
-Steps 2–8 have been carried out descriptively. The workbook supports within-blot summary/ranking, a limited seven-peptide separate validation comparison, sequence consistency checks, and a few simple exploratory correlations. The owner has now described replicate type as biological (exact unit/independence unclear) and the two-stage normalization process, but raw assay data and records needed to verify these remain unavailable. `No` is owner-defined as product not produced; category thresholds and provenance are still unknown. Further sequence-feature work should wait for owner-approved feature definitions and assay/sequence-boundary clarification. No causal mechanism or reliable prediction is supported by these analyses.
+Steps 2–8 have been carried out descriptively. The workbook supports within-blot summary/ranking, a limited seven-peptide separate validation comparison, sequence consistency checks, and simple exploratory correlations. A small peptide-level exploratory model has since been fit; its performance was weak/unstable and does not establish reliable prediction. See `ouput/analysis/exploratory_peptide_models_README.md`. The owner has described replicates as biological (exact unit/independence unclear) and a two-stage normalization process, but raw assay data and records needed to verify these remain unavailable. `No` is owner-defined as product not produced; category thresholds and provenance remain unknown. Any model must use peptide-level splitting/resampling, avoid cross-blot pooling absent justification, and clearly qualify uncertain performance. No causal mechanism is supported.
 
 ## Meeting 2 data-owner clarifications and remaining follow-up
 
@@ -76,4 +76,4 @@ These are owner statements captured in an auto-transcribed meeting, not independ
 - **Categories:** `S19` was confirmed as `SP19`; `Np` as `No`; and `No` means product not produced, not missing or untested. `No` remains a category, not a numeric zero. `Ηigh` → `High` is in the corrected workbook but was not clearly confirmed in this meeting.
 - **Sequence/gel context:** owner says nucleotide sequences share the codon optimization used in the first sheet and may be able to provide RBS/start/stop/terminator context. A possible secondary band was recalled, but no peptide was identified.
 
-Next useful inputs are the available band-intensity and normalization records, replicate identifiers/unit details, the SP9 zero provenance, any identified secondary-band cases, and source confirmation of category thresholds/provenance. No new quantitative analyses were run from this transcript.
+Next useful inputs are the available band-intensity and normalization records, replicate identifiers/unit details, the SP9 zero provenance, any identified secondary-band cases, and source confirmation of category thresholds/provenance. Subsequent feature and model analyses are documented in `ouput/analysis/`; they do not resolve these assay limitations.

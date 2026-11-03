@@ -1,0 +1,2 @@
+n_shared_peptides,rank_spearman_original_vs_validation,p_value,n_lower_in_validation,median_shift
+7,0.6785714285714287,0.09375025395983135,6,-0.5438458805833333
