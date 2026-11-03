@@ -4,10 +4,11 @@
 
 ## Data-resolution decisions applied
 
-- The corrected workbook changes third-sheet category row identifier `S19` to `SP19`, `Ηigh` to `High`, and `Np` to `No`. Those corrections are present in the corrected data. This records the corrected labels as given; it does not independently validate the biological meaning or provenance of the categorical ratings.
-- The numeric result value **0** is retained as the number `0` (not converted to missing). It occurs at `Results!B9`, SP9, Blot 2, replicate 1. This is the observed value; the workbook does not verify that zero means no detection.
-- For this inventory, peptide ordering in each “ranked” results block is interpreted as **right-to-left descending by average fold change across that block’s listed replicates**, per the stated working assumption. In ordinary left-to-right workbook order, this appears ascending by mean. Replicate values are kept unchanged; rank is a column-order convention, not an independently verified ranking calculation. For mean ties or any departures from the assumption, inspect the raw values.
-- Replicate observations are represented as replicate-labelled rows under each peptide column. The inventory serializes their source cells into replicate 1–4 fields; it does not assert whether replicates are biological or technical.
+- The corrected workbook changes third-sheet category row identifier `S19` to `SP19`, `Ηigh` to `High`, and `Np` to `No`. In meeting 2, the owner confirmed `S19` refers to `SP19` and `Np` was intended as `No`; the owner stated `No` means the product was not produced, not missing or untested. These corrected labels remain categorical; this does not establish category thresholds or provenance.
+- The numeric result value **0** is retained as the number `0` (not converted to missing). It occurs at `Results!B9`, SP9, Blot 2, replicate 1. In meeting 2, the owner said this likely represents no secretion but was unsure of its origin; this interpretation is not independently verified.
+- The owner clarified in meeting 2 that peptide ordering in each results block is **left-to-right ascending by mean of replicate values**, mainly for presentation aesthetics. Replicate values are kept unchanged. For mean ties or any departures from the assumption, inspect the raw values.
+- Replicate observations are represented as replicate-labelled rows under each peptide column. In meeting 2, the owner described them as biological (“in a way, both”); exact experimental unit and independence remain unclear.
+- The owner described normalization as total-lane-protein normalization followed by division of each lane-normalized band intensity by the gel-wide mean of lane-normalized band intensities. Raw values and processing files were not provided in the meeting, so this remains an owner-reported method rather than an independently audited calculation.
 
 ## Structure and reconciliation
 

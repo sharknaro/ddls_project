@@ -190,9 +190,19 @@ Steps 2–8 below were performed descriptively/exploratorily; see `ouput/analysi
 3. **Output:** Report with methods, data dictionary, plots/tables, limitations, and cautiously ranked candidates only if justified.
 4. **Validation/control:** Trace every conclusion to workbook rows and analysis outputs; owner review of unresolved assay/label interpretations; explicitly distinguish confirmed facts from assumptions.
 
+## Meeting 2 owner clarifications (auto-transcribed; not independently audited)
+
+- “Ranked” columns are ordered left-to-right by ascending mean of replicates, mainly for presentation aesthetics.
+- Replicates are described as biological (“in a way, both”); exact experimental unit and independence are still unknown.
+- SP9/Blot 2/replicate 1's zero is interpreted by the owner as likely no secretion, but its origin remains uncertain; retain the numeric zero and qualify interpretation.
+- Normalization was described as (1) normalize band intensity by total lane protein, then (2) divide each lane-normalized band by the gel-wide mean of those normalized band intensities. Raw data/processing records are still needed to audit this account.
+- The owner confirmed `S19` means `SP19`, `Np` means `No`, and `No` means product not produced rather than missing/untested. `No` remains categorical, not numeric zero. The corrected `Ηigh` → `High` correction is present in the corrected workbook but was not clearly confirmed in the transcript.
+- The owner says signal-peptide nucleotide sequences use the same codon optimization as in the first sheet and may be able to provide RBS/start/stop/terminator context; these records have not been received.
+- The owner recalled a possible secondary band but did not identify which peptide; treat this as a follow-up issue, not as an analyzed outcome.
+
 ## Completion status: steps 9–10
 
-Steps 9–10 were completed after the descriptive analyses in steps 2–8. No model or candidate extrapolation was fit because the available data do not provide a stable feature association or independent validation design. The integrated data-analysis part 1 report is `final_analysis_part1.md`; detailed results for steps 2–8 are in `../analysis_steps_2_8_report.md`, with reproducible outputs in `../analysis/`. Conclusions and follow-up data needs are summarized in the final report. The cautions below still apply.
+Steps 9–10 were completed after the descriptive analyses in steps 2–8. No model or candidate extrapolation was fit because the available data do not provide a stable feature association or independent validation design. Meeting 2 clarifications have been carried into the report and data-owner questions; conclusions remain descriptive and qualified pending raw data. The integrated data-analysis part 1 report is `final_analysis_part1.md`; detailed results for steps 2–8 are in `analysis_steps_2_8_report.md`, with reproducible outputs in `../analysis/`. The cautions below still apply.
 
 # Two most likely misleading parts
 

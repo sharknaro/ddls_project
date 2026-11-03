@@ -10,10 +10,10 @@ This is a “no clear association / inconclusive” result for the limited explo
 
 ## Data decisions carried forward
 
-- The corrected workbook's category values `SP19`, `High`, and `No` were accepted as strings as provided. This does not independently confirm category meaning or origin.
-- SP9/Blot 2/replicate 1 value `0` remains numeric zero; whether it denotes no detection is unknown.
-- Results are summarized by arithmetic mean **within each block**, with medians and spread included. Main blot values are not pooled; validation is separate.
-- Peptide column order was treated under the requested assumption as right-to-left descending mean fold-change; calculated summaries are traceable in CSVs rather than silently inferred from position.
+- In meeting 2, the owner confirmed that third-sheet `S19` refers to `SP19`, `Np` was intended as `No`, and `No` means the product was not produced (not missing or untested). These remain categorical labels, not numeric zero. The corrected workbook uses `SP19` and `No`; meeting 2 does not independently clarify the `Ηigh` to `High` transcription correction.
+- The owner described SP9/Blot 2/replicate 1's zero as likely indicating no secretion, while also saying its origin is uncertain. The recorded zero is retained; it is not independently verified as a measured zero or detection-limit code.
+- The owner clarified that peptides were arranged left-to-right by ascending **mean of replicate values**, mainly for presentation aesthetics. Results are summarized by arithmetic mean within each block, with medians and spread included. Main blot values are not pooled; validation is separate.
+- The owner described the replicates as biological (and “in a way, both”); the exact experimental unit and independence remain unspecified.
 
 ## Steps 2–8: findings
 
@@ -60,19 +60,19 @@ Therefore no model, held-out performance estimate, or proposed synthetic signal-
 
 ### Unresolved limitations
 
-- The workbook does not define fold-change calculation, raw intensity values, background correction, units, exact normalization, assay conditions, controls, or replicate type/independence. The owner describes gel-mean normalization, but this is not independently verified here.
-- The meaning of the observed zero is not established.
-- Sequence boundaries, cleavage sites, translation-initiation windows, codon optimization status, and protein fusion boundaries require source records/owner confirmation.
-- `High`/`Medium`/`Low`/`No` thresholds, provenance, and interpretation are unknown even in the corrected copy.
+- The workbook does not contain raw band intensities, background correction, units, assay conditions, controls, or replicate identifiers. In meeting 2, the owner described two-stage normalization: band intensity normalized by total lane protein, then each lane-normalized band divided by the mean lane-normalized intensity across the gel. This account has not been independently audited against source values or processing files.
+- The owner interprets the SP9 zero as likely no secretion but is uncertain about its origin; it remains an observed numeric zero in the analysis.
+- Sequence boundaries, cleavage sites, translation-initiation windows, and protein fusion boundaries require source records/owner confirmation. The owner said the signal-peptide nucleotide sequences have the same codon optimization as in the first sheet and could potentially supply RBS/start/stop/terminator context; those records have not yet been provided.
+- The owner clarified `No` as product not produced. Thresholds and provenance for `High`/`Medium`/`Low` remain unknown.
 - Small n, separate blots, noisy replicate ranks, and unadjusted exploratory tests limit statistical certainty.
 - Correlation cannot demonstrate causation or mechanism; predicted structural or sequence properties are not direct secretion evidence.
 
 ### Recommended follow-up before any predictive analysis
 
-1. Obtain original densitometry values and processing/normalization records, lane maps, controls, assay conditions, and a definition of replicate structure.
-2. Confirm whether the zero is true zero, below-detection, or another encoding, and clarify outcome meaning/units with the owner.
-3. Verify exact sequence boundaries, fusion constructs, codon optimization, and the start/stop/initiation regions.
-4. Confirm provenance and definitions for third-sheet categories and whether `No` is an outcome or a missing/not-tested indicator.
+1. Ask the owner for available band-intensity/densitometry files and processing/normalization records (including total-lane protein values), lane maps, controls, assay conditions, and replicate identifiers so the stated two-stage normalization can be audited.
+2. Clarify the origin of SP9's zero and identify any secondary-band cases; the owner recalled a possible secondary band but did not identify the peptide in this meeting.
+3. If nucleotide initiation features are pursued, obtain the stated RBS/start/stop/terminator context and verify exact sequence boundaries and construct maps.
+4. Record the owner's `No` definition as not produced; seek category thresholds/provenance for `High`/`Medium`/`Low` if those labels will be analyzed.
 5. If prediction is still desired, prospectively test a pre-specified set of candidates/features under a comparable assay design, with independent replicate structure and a held-out or new-experiment evaluation planned in advance.
 
 ## Reproducibility and output index
