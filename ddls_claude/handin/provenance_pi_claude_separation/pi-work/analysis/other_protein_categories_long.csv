@@ -1,0 +1,29 @@
+peptide_id,category_sheet_row,protein_construct,category
+SP3,3,Bacola225,High
+SP3,3,Alpha1 with C propeptide,No
+SP3,3,Alpha2 with C propeptide,No
+SP3,3,Alpha1 w/o C propeptide,Medium
+SP3,3,Alpha2 w/o C propeptide,High
+SP3,3,Tropocollagen,Low
+SP3,3,"Procollagen (It is like Procollagen wIth N,C propeptides)",No
+SP5,4,Bacola225,High
+SP5,4,Alpha1 with C propeptide,Low
+SP5,4,Alpha2 with C propeptide,No
+SP5,4,Alpha1 w/o C propeptide,Low
+SP5,4,Alpha2 w/o C propeptide,Medium
+SP5,4,Tropocollagen,High
+SP5,4,"Procollagen (It is like Procollagen wIth N,C propeptides)",No
+SP19,5,Bacola225,Medium
+SP19,5,Alpha1 with C propeptide,Low
+SP19,5,Alpha2 with C propeptide,No
+SP19,5,Alpha1 w/o C propeptide,Low
+SP19,5,Alpha2 w/o C propeptide,Low
+SP19,5,Tropocollagen,Medium
+SP19,5,"Procollagen (It is like Procollagen wIth N,C propeptides)",No
+SP26,6,Bacola225,High
+SP26,6,Alpha1 with C propeptide,High
+SP26,6,Alpha2 with C propeptide,No
+SP26,6,Alpha1 w/o C propeptide,High
+SP26,6,Alpha2 w/o C propeptide,Low
+SP26,6,Tropocollagen,Low
+SP26,6,"Procollagen (It is like Procollagen wIth N,C propeptides)",No

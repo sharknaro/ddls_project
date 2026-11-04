@@ -1,0 +1,2 @@
+n_permutations,n_features_screened,observed_max_abs_combined_rho,best_feature,null_median_max_abs_rho,null_p90,null_p95,null_p99,family_wise_p_value
+5000,34,0.3687069580596573,h_core9_mean_kd,0.44063260680662975,0.5604233542605649,0.5978058409755138,0.6768519442301136,0.8078384323135372

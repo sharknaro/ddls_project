@@ -1,0 +1,7 @@
+block,n,model,features,MAE,RMSE,Spearman_rho,LOO_R2,note
+Blot 1,8,mean-baseline,none,0.4258972902380953,0.5035105534706865,-1.0,-0.30612244897959195,LOO at peptide level; exploratory only; not an external validation estimate
+Blot 1,8,ridge-alpha-10,aa_length;N5_KR_count;core_hydrophobic_AVILMFWY_fraction;core_mean_Kyte_Doolittle;whole_KRDE_net_charge_per_residue;mfe_first30nt_kcal_mol,0.5855814929538607,0.6430866223118986,-0.6666666666666669,-1.1306184784081061,LOO at peptide level; exploratory only; not an external validation estimate
+Blot 2,13,mean-baseline,none,0.7612180536410256,0.9951325405083755,-1.0,-0.17361111111111094,LOO at peptide level; exploratory only; not an external validation estimate
+Blot 2,13,ridge-alpha-10,aa_length;N5_KR_count;core_hydrophobic_AVILMFWY_fraction;core_mean_Kyte_Doolittle;whole_KRDE_net_charge_per_residue;mfe_first30nt_kcal_mol,0.7220403269066293,0.9790392091817596,0.049450549450549455,-0.13595866094160725,LOO at peptide level; exploratory only; not an external validation estimate
+Blot 3,11,mean-baseline,none,0.49611578812727264,0.5636515062716203,-1.0,-0.20999999999999974,LOO at peptide level; exploratory only; not an external validation estimate
+Blot 3,11,ridge-alpha-10,aa_length;N5_KR_count;core_hydrophobic_AVILMFWY_fraction;core_mean_Kyte_Doolittle;whole_KRDE_net_charge_per_residue;mfe_first30nt_kcal_mol,0.4722199038630468,0.6044465471570487,-0.11818181818181818,-0.39148916368836084,LOO at peptide level; exploratory only; not an external validation estimate

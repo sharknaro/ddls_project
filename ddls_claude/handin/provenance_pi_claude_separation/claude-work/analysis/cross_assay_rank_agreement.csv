@@ -1,0 +1,2 @@
+n_shared,spearman_rho,p_value,interpretation
+5,-0.19999999999999998,0.7470600781046621,"descriptive only; n too small for inference; different reporter, host, promoter and assay; the 5 peptides span 3 blots with no common scale"

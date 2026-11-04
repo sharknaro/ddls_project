@@ -1,0 +1,11 @@
+cv_scheme,model,mean_within_blot_spearman,mae,observed_spearman,null_mean,null_p95,permutation_p_value,note
+leave-one-peptide-out,Baseline (predict training mean),-1.0,0.25702825400406043,,,,,
+leave-one-peptide-out,Ridge (alpha=10),-0.13025863025863027,0.30719428407747584,-0.13025863025863027,,,,observed <= 0.10; does not beat chance without a null
+leave-one-peptide-out,Ridge (alpha=100),-0.12591852591852598,0.26090407805748894,-0.12591852591852598,,,,observed <= 0.10; does not beat chance without a null
+leave-one-peptide-out,Random forest (100 trees),-0.1865134865134865,0.2665387987663378,-0.1865134865134865,,,,observed <= 0.10; does not beat chance without a null
+leave-one-peptide-out,k-NN (k=5),-0.11860361860361862,0.28044689685314683,-0.11860361860361862,,,,observed <= 0.10; does not beat chance without a null
+leave-one-blot-out,Baseline (predict training mean),0.0,0.24919926564663408,,,,,
+leave-one-blot-out,Ridge (alpha=10),-0.07845487845487846,0.309250898835288,-0.07845487845487846,,,,observed <= 0.10; does not beat chance without a null
+leave-one-blot-out,Ridge (alpha=100),-0.04383394383394382,0.2638657438415653,-0.04383394383394382,,,,observed <= 0.10; does not beat chance without a null
+leave-one-blot-out,Random forest (100 trees),-0.14551004551004554,0.2724364721649878,-0.14551004551004554,,,,observed <= 0.10; does not beat chance without a null
+leave-one-blot-out,k-NN (k=5),-0.07046729871165362,0.26399694055944056,-0.07046729871165362,,,,observed <= 0.10; does not beat chance without a null

@@ -1,0 +1,3340 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Signal Peptide Findings</title>
+<style>
+:root{
+  color-scheme: light;
+  --surface-1:#fcfcfb; --plane:#f9f9f7;
+  --text-primary:#0b0b0b; --text-secondary:#52514e; --muted:#898781;
+  --grid:#e1e0d9; --axis:#c3c2b7; --border:rgba(11,11,11,0.10);
+  --s1:#2a78d6; --s2:#eb6834; --s3:#1baf7a; --s4:#eda100;
+  --good:#0ca30c; --warning:#fab219; --critical:#d03b3b;
+  --maxw:1180px;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    color-scheme: dark;
+    --surface-1:#1a1a19; --plane:#0d0d0d;
+    --text-primary:#f0efec; --text-secondary:#c3c2b7; --muted:#898781;
+    --grid:#2c2c2a; --axis:#383835; --border:rgba(255,255,255,0.10);
+    --s1:#3987e5; --s2:#d95926; --s3:#199e70; --s4:#c98500;
+    --good:#0ca30c; --warning:#fab219; --critical:#d03b3b;
+  }
+}
+:root[data-theme="dark"]{
+  color-scheme: dark;
+  --surface-1:#1a1a19; --plane:#0d0d0d;
+  --text-primary:#f0efec; --text-secondary:#c3c2b7; --muted:#898781;
+  --grid:#2c2c2a; --axis:#383835; --border:rgba(255,255,255,0.10);
+  --s1:#3987e5; --s2:#d95926; --s3:#199e70; --s4:#c98500;
+}
+*{box-sizing:border-box}
+body{
+  margin:0; background:var(--plane); color:var(--text-primary);
+  font-family:system-ui,-apple-system,"Segoe UI",sans-serif;
+  font-size:15px; line-height:1.55;
+}
+.wrap{max-width:var(--maxw); margin:0 auto; padding:0 16px 80px}
+header{border-bottom:1px solid var(--border); background:var(--surface-1); margin-bottom:28px}
+header .wrap{padding-top:28px; padding-bottom:22px}
+h1{font-size:clamp(22px,3.4vw,30px); margin:0 0 6px; letter-spacing:-0.02em}
+.sub{color:var(--text-secondary); margin:0; font-size:15px}
+nav{display:flex; flex-wrap:wrap; gap:4px; margin-top:18px}
+nav button{
+  font:inherit; font-size:13.5px; padding:7px 13px; border-radius:7px; cursor:pointer;
+  border:1px solid transparent; background:transparent; color:var(--text-secondary);
+}
+nav button:hover{background:var(--plane)}
+nav button[aria-selected="true"]{background:var(--text-primary); color:var(--surface-1)}
+.theme-btn{position:absolute; top:22px; right:16px; border:1px solid var(--border);
+  background:var(--surface-1); color:var(--text-secondary); border-radius:7px;
+  padding:6px 11px; font:inherit; font-size:13px; cursor:pointer}
+header .wrap{position:relative}
+@media(max-width:560px){ h1{padding-right:76px} }
+section{display:none} section.on{display:block}
+.card{background:var(--surface-1); border:1px solid var(--border); border-radius:12px;
+  padding:22px 24px; margin-bottom:20px}
+h2{font-size:19px; margin:0 0 4px; letter-spacing:-0.01em}
+h3{font-size:15.5px; margin:26px 0 8px}
+.lede{color:var(--text-secondary); margin:0 0 18px; max-width:76ch}
+p{max-width:78ch}
+.note{font-size:13.5px; color:var(--text-secondary); margin-top:12px; max-width:80ch}
+.verdict{display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-bottom:20px}
+@media(max-width:780px){.verdict{grid-template-columns:1fr}}
+.vcard{background:var(--surface-1); border:1px solid var(--border);
+  border-left:3px solid var(--vc); border-radius:12px; padding:20px 22px}
+.vcard .k{font-size:12px; text-transform:uppercase; letter-spacing:.07em; color:var(--muted)}
+.vcard .a{font-size:26px; font-weight:650; margin:6px 0 8px; letter-spacing:-0.02em}
+.vcard p{font-size:14px; color:var(--text-secondary); margin:0}
+.tiles{display:grid; grid-template-columns:repeat(auto-fit,minmax(168px,1fr)); gap:14px; margin:4px 0 20px}
+.tile{background:var(--surface-1); border:1px solid var(--border); border-radius:10px; padding:15px 17px}
+.tile .v{font-size:25px; font-weight:650; letter-spacing:-0.02em; line-height:1.15}
+.tile .l{font-size:12.5px; color:var(--text-secondary); margin-top:3px}
+figure{margin:0 0 6px}
+figcaption{font-size:13px; color:var(--text-secondary); margin-top:8px; max-width:80ch}
+svg{display:block; max-width:100%; height:auto; overflow:visible}
+.ax{font-size:11px; fill:var(--muted)}
+.axlab{font-size:12px; fill:var(--text-secondary)}
+.ftitle{font-size:13px; fill:var(--text-primary); font-weight:600}
+.legend{display:flex; flex-wrap:wrap; gap:16px; margin:10px 0 2px; font-size:13px;
+  color:var(--text-secondary); align-items:center}
+.legend i{width:11px; height:11px; border-radius:3px; display:inline-block; margin-right:6px;
+  vertical-align:-1px}
+table{border-collapse:collapse; width:100%; font-size:13.5px; margin-top:6px}
+th,td{text-align:left; padding:7px 10px; border-bottom:1px solid var(--grid)}
+th{color:var(--text-secondary); font-weight:600; font-size:12.5px}
+td.num,th.num{text-align:right; font-variant-numeric:tabular-nums}
+details{margin-top:14px} summary{cursor:pointer; font-size:13.5px; color:var(--text-secondary)}
+.tt{position:fixed; pointer-events:none; opacity:0; transition:opacity .09s;
+  background:var(--text-primary); color:var(--surface-1); font-size:12.5px;
+  padding:7px 10px; border-radius:7px; z-index:50; max-width:260px; line-height:1.45}
+.tt b{color:var(--surface-1)}
+.flag{display:inline-block; font-size:11.5px; padding:2px 7px; border-radius:20px;
+  border:1px solid var(--border); color:var(--text-secondary); margin-left:7px}
+ul{max-width:78ch; padding-left:20px} li{margin-bottom:7px}
+code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace; font-size:13px;
+  background:var(--plane); padding:1px 5px; border-radius:4px}
+.seqrow{font-family:ui-monospace,SFMono-Regular,Menlo,monospace; font-size:12.5px;
+  white-space:nowrap; overflow-x:auto}
+.hl{background:var(--s4); color:#0b0b0b; padding:0 2px; border-radius:3px}
+</style>
+</head>
+<body>
+<header><div class="wrap">
+  <button class="theme-btn" id="themeBtn">Dark</button>
+  <h1>Signal peptides &amp; collagen secretion</h1>
+  <p class="sub">What 32 peptides across three Western blots can and cannot tell us.</p>
+  <nav id="nav"></nav>
+</div></header>
+
+<div class="wrap">
+  <section id="s-verdict" class="on"></section>
+  <section id="s-data"></section>
+  <section id="s-screen"></section>
+  <section id="s-lead"></section>
+  <section id="s-model"></section>
+  <section id="s-seq"></section>
+  <section id="s-limits"></section>
+</div>
+<div class="tt" id="tt"></div>
+
+<script>
+const DATA = {
+ "meta": {
+  "n_peptides": 32,
+  "blots": [
+   {
+    "blot": "Blot 1",
+    "n": 8
+   },
+   {
+    "blot": "Blot 2",
+    "n": 13
+   },
+   {
+    "blot": "Blot 3",
+    "n": 11
+   }
+  ],
+  "generated": "from ouput/analysis and ddls_claude/analysis"
+ },
+ "qc": {
+  "translations_match": false,
+  "starts_with_met": false,
+  "aa_len_min": 21,
+  "aa_len_max": 42
+ },
+ "summary": [
+  {
+   "block": "Blot 1",
+   "peptide_id": "SP4",
+   "gene": "Epr",
+   "mean": 1.609811,
+   "median": 1.002657,
+   "sd": 1.352128,
+   "cv": 0.83993,
+   "min": 0.667686,
+   "max": 3.15909,
+   "rank_mean": 1.0,
+   "rank_median": 5.0,
+   "rank_shift": 4.0
+  },
+  {
+   "block": "Blot 1",
+   "peptide_id": "SP3",
+   "gene": "Bpr",
+   "mean": 1.434232,
+   "median": 1.353683,
+   "sd": 0.346303,
+   "cv": 0.241455,
+   "min": 1.135303,
+   "max": 1.813711,
+   "rank_mean": 2.0,
+   "rank_median": 2.0,
+   "rank_shift": 0.0
+  },
+  {
+   "block": "Blot 1",
+   "peptide_id": "SP5",
+   "gene": "Mpr",
+   "mean": 1.416782,
+   "median": 1.432171,
+   "sd": 0.201256,
+   "cv": 0.142052,
+   "min": 1.208273,
+   "max": 1.609902,
+   "rank_mean": 3.0,
+   "rank_median": 1.0,
+   "rank_shift": 2.0
+  },
+  {
+   "block": "Blot 1",
+   "peptide_id": "SP7",
+   "gene": "PenP",
+   "mean": 1.050888,
+   "median": 1.166,
+   "sd": 0.244201,
+   "cv": 0.232376,
+   "min": 0.770407,
+   "max": 1.216259,
+   "rank_mean": 4.0,
+   "rank_median": 3.0,
+   "rank_shift": 1.0
+  },
+  {
+   "block": "Blot 1",
+   "peptide_id": "SP2",
+   "gene": "AprE",
+   "mean": 0.980632,
+   "median": 1.028178,
+   "sd": 0.319671,
+   "cv": 0.325985,
+   "min": 0.63985,
+   "max": 1.273867,
+   "rank_mean": 5.0,
+   "rank_median": 4.0,
+   "rank_shift": 1.0
+  },
+  {
+   "block": "Blot 1",
+   "peptide_id": "SP6",
+   "gene": "Pel",
+   "mean": 0.792612,
+   "median": 0.942396,
+   "sd": 0.48073,
+   "cv": 0.606514,
+   "min": 0.254822,
+   "max": 1.180619,
+   "rank_mean": 6.0,
+   "rank_median": 6.0,
+   "rank_shift": 0.0
+  },
+  {
+   "block": "Blot 1",
+   "peptide_id": "SP1",
+   "gene": "AmyE",
+   "mean": 0.396637,
+   "median": 0.417534,
+   "sd": 0.229824,
+   "cv": 0.579431,
+   "min": 0.157079,
+   "max": 0.615298,
+   "rank_mean": 7.0,
+   "rank_median": 7.0,
+   "rank_shift": 0.0
+  },
+  {
+   "block": "Blot 1",
+   "peptide_id": "SP8",
+   "gene": "PhoA",
+   "mean": 0.360552,
+   "median": 0.259602,
+   "sd": 0.272384,
+   "cv": 0.755463,
+   "min": 0.153055,
+   "max": 0.669,
+   "rank_mean": 8.0,
+   "rank_median": 8.0,
+   "rank_shift": 0.0
+  },
+  {
+   "block": "Blot 2",
+   "peptide_id": "SP19",
+   "gene": "YwaD",
+   "mean": 3.658974,
+   "median": 2.9571,
+   "sd": 2.301857,
+   "cv": 0.629099,
+   "min": 1.789759,
+   "max": 6.230063,
+   "rank_mean": 1.0,
+   "rank_median": 1.0,
+   "rank_shift": 0.0
+  },
+  {
+   "block": "Blot 2",
+   "peptide_id": "SP17",
+   "gene": "YqxI",
+   "mean": 2.080292,
+   "median": 1.947992,
+   "sd": 1.149283,
+   "cv": 0.552462,
+   "min": 1.002885,
+   "max": 3.29,
+   "rank_mean": 2.0,
+   "rank_median": 2.0,
+   "rank_shift": 0.0
+  },
+  {
+   "block": "Blot 2",
+   "peptide_id": "SP14",
+   "gene": "YncM",
+   "mean": 2.065681,
+   "median": 1.755526,
+   "sd": 1.188979,
+   "cv": 0.575587,
+   "min": 1.062517,
+   "max": 3.379,
+   "rank_mean": 3.0,
+   "rank_median": 3.0,
+   "rank_shift": 0.0
+  },
+  {
+   "block": "Blot 2",
+   "peptide_id": "SP15",
+   "gene": "YoaW",
+   "mean": 1.471857,
+   "median": 1.460191,
+   "sd": 0.080328,
+   "cv": 0.054576,
+   "min": 1.398,
+   "max": 1.55738,
+   "rank_mean": 4.0,
+   "rank_median": 4.0,
+   "rank_shift": 0.0
+  },
+  {
+   "block": "Blot 2",
+   "peptide_id": "SP11",
+   "gene": "XynA",
+   "mean": 1.038995,
+   "median": 0.740141,
+   "sd": 0.773035,
+   "cv": 0.744022,
+   "min": 0.46,
+   "max": 1.916844,
+   "rank_mean": 5.0,
+   "rank_median": 6.0,
+   "rank_shift": 1.0
+  },
+  {
+   "block": "Blot 2",
+   "peptide_id": "SP13",
+   "gene": "YlqB",
+   "mean": 0.931193,
+   "median": 1.050752,
+   "sd": 0.230927,
+   "cv": 0.247991,
+   "min": 0.665,
+   "max": 1.077827,
+   "rank_mean": 6.0,
+   "rank_median": 5.0,
+   "rank_shift": 1.0
+  },
+  {
+   "block": "Blot 2",
+   "peptide_id": "SP20",
+   "gene": "YweA",
+   "mean": 0.858962,
+   "median": 0.577036,
+   "sd": 0.490852,
+   "cv": 0.571448,
+   "min": 0.574103,
+   "max": 1.425746,
+   "rank_mean": 7.0,
+   "rank_median": 9.0,
+   "rank_shift": 2.0
+  },
+  {
+   "block": "Blot 2",
+   "peptide_id": "SP21",
+   "gene": "YwtF",
+   "mean": 0.851366,
+   "median": 0.255019,
+   "sd": 1.195358,
+   "cv": 1.404047,
+   "min": 0.071505,
+   "max": 2.227574,
+   "rank_mean": 8.0,
+   "rank_median": 12.0,
+   "rank_shift": 4.0
+  },
+  {
+   "block": "Blot 2",
+   "peptide_id": "SP18",
+   "gene": "YvgO",
+   "mean": 0.728627,
+   "median": 0.649,
+   "sd": 0.208711,
+   "cv": 0.286445,
+   "min": 0.57145,
+   "max": 0.96543,
+   "rank_mean": 9.0,
+   "rank_median": 8.0,
+   "rank_shift": 1.0
+  },
+  {
+   "block": "Blot 2",
+   "peptide_id": "SP16",
+   "gene": "YocH",
+   "mean": 0.702444,
+   "median": 0.677111,
+   "sd": 0.607507,
+   "cv": 0.864848,
+   "min": 0.108,
+   "max": 1.322222,
+   "rank_mean": 10.0,
+   "rank_median": 7.0,
+   "rank_shift": 3.0
+  },
+  {
+   "block": "Blot 2",
+   "peptide_id": "SP10",
+   "gene": "Vpr",
+   "mean": 0.550509,
+   "median": 0.524414,
+   "sd": 0.349289,
+   "cv": 0.634483,
+   "min": 0.215,
+   "max": 0.912114,
+   "rank_mean": 11.0,
+   "rank_median": 10.0,
+   "rank_shift": 1.0
+  },
+  {
+   "block": "Blot 2",
+   "peptide_id": "SP12",
+   "gene": "YbdN",
+   "mean": 0.319465,
+   "median": 0.425881,
+   "sd": 0.279866,
+   "cv": 0.876046,
+   "min": 0.002,
+   "max": 0.530513,
+   "rank_mean": 12.0,
+   "rank_median": 11.0,
+   "rank_shift": 1.0
+  },
+  {
+   "block": "Blot 2",
+   "peptide_id": "SP9",
+   "gene": "PhoB",
+   "mean": 0.047498,
+   "median": 0.012436,
+   "sd": 0.071769,
+   "cv": 1.510989,
+   "min": 0.0,
+   "max": 0.130058,
+   "rank_mean": 13.0,
+   "rank_median": 13.0,
+   "rank_shift": 0.0
+  },
+  {
+   "block": "Blot 3",
+   "peptide_id": "SP26",
+   "gene": "AbnA",
+   "mean": 1.912231,
+   "median": 1.867724,
+   "sd": 0.403527,
+   "cv": 0.211024,
+   "min": 1.532803,
+   "max": 2.336167,
+   "rank_mean": 1.0,
+   "rank_median": 1.0,
+   "rank_shift": 0.0
+  },
+  {
+   "block": "Blot 3",
+   "peptide_id": "SP32",
+   "gene": "EglS",
+   "mean": 1.28501,
+   "median": 1.320675,
+   "sd": 0.90031,
+   "cv": 0.700625,
+   "min": 0.367398,
+   "max": 2.166958,
+   "rank_mean": 2.0,
+   "rank_median": 2.0,
+   "rank_shift": 0.0
+  },
+  {
+   "block": "Blot 3",
+   "peptide_id": "SP23",
+   "gene": "NprB",
+   "mean": 1.162115,
+   "median": 0.068664,
+   "sd": 1.953293,
+   "cv": 1.680809,
+   "min": 0.000441,
+   "max": 3.41724,
+   "rank_mean": 3.0,
+   "rank_median": 9.0,
+   "rank_shift": 6.0
+  },
+  {
+   "block": "Blot 3",
+   "peptide_id": "SP22",
+   "gene": "YxaL",
+   "mean": 1.146928,
+   "median": 1.127924,
+   "sd": 0.304795,
+   "cv": 0.265749,
+   "min": 0.85208,
+   "max": 1.460781,
+   "rank_mean": 4.0,
+   "rank_median": 3.0,
+   "rank_shift": 1.0
+  },
+  {
+   "block": "Blot 3",
+   "peptide_id": "SP29",
+   "gene": "Csn",
+   "mean": 1.060394,
+   "median": 0.739563,
+   "sd": 0.560037,
+   "cv": 0.528141,
+   "min": 0.734556,
+   "max": 1.707062,
+   "rank_mean": 5.0,
+   "rank_median": 4.0,
+   "rank_shift": 1.0
+  },
+  {
+   "block": "Blot 3",
+   "peptide_id": "SP24",
+   "gene": "SacB",
+   "mean": 0.588739,
+   "median": 0.626654,
+   "sd": 0.206903,
+   "cv": 0.351434,
+   "min": 0.365501,
+   "max": 0.774063,
+   "rank_mean": 6.0,
+   "rank_median": 5.0,
+   "rank_shift": 1.0
+  },
+  {
+   "block": "Blot 3",
+   "peptide_id": "SP30",
+   "gene": "Bsn",
+   "mean": 0.520264,
+   "median": 0.317676,
+   "sd": 0.644726,
+   "cv": 1.239227,
+   "min": 0.001164,
+   "max": 1.241953,
+   "rank_mean": 7.0,
+   "rank_median": 8.0,
+   "rank_shift": 1.0
+  },
+  {
+   "block": "Blot 3",
+   "peptide_id": "SP27",
+   "gene": "BglS",
+   "mean": 0.428255,
+   "median": 0.602866,
+   "sd": 0.329349,
+   "cv": 0.769051,
+   "min": 0.048367,
+   "max": 0.63353,
+   "rank_mean": 8.0,
+   "rank_median": 6.0,
+   "rank_shift": 2.0
+  },
+  {
+   "block": "Blot 3",
+   "peptide_id": "SP31",
+   "gene": "CwlO",
+   "mean": 0.41237,
+   "median": 0.06833,
+   "sd": 0.599908,
+   "cv": 1.454779,
+   "min": 0.063702,
+   "max": 1.105079,
+   "rank_mean": 9.0,
+   "rank_median": 10.0,
+   "rank_shift": 1.0
+  },
+  {
+   "block": "Blot 3",
+   "peptide_id": "SP28",
+   "gene": "YolA",
+   "mean": 0.400284,
+   "median": 0.374505,
+   "sd": 0.220944,
+   "cv": 0.551968,
+   "min": 0.19336,
+   "max": 0.632986,
+   "rank_mean": 10.0,
+   "rank_median": 7.0,
+   "rank_shift": 3.0
+  },
+  {
+   "block": "Blot 3",
+   "peptide_id": "SP25",
+   "gene": "SacC",
+   "mean": 0.072829,
+   "median": 0.061206,
+   "sd": 0.078395,
+   "cv": 1.076426,
+   "min": 0.000894,
+   "max": 0.156386,
+   "rank_mean": 11.0,
+   "rank_median": 11.0,
+   "rank_shift": 0.0
+  }
+ ],
+ "replicates": [
+  {
+   "block": "Blot 1",
+   "peptide_id": "SP8",
+   "replicate": "Repli. 1",
+   "value": 0.669
+  },
+  {
+   "block": "Blot 1",
+   "peptide_id": "SP8",
+   "replicate": "Repli. 2",
+   "value": 0.153055
+  },
+  {
+   "block": "Blot 1",
+   "peptide_id": "SP8",
+   "replicate": "Repli. 3",
+   "value": 0.259602
+  },
+  {
+   "block": "Blot 1",
+   "peptide_id": "SP1",
+   "replicate": "Repli. 1",
+   "value": 0.157079
+  },
+  {
+   "block": "Blot 1",
+   "peptide_id": "SP1",
+   "replicate": "Repli. 2",
+   "value": 0.417534
+  },
+  {
+   "block": "Blot 1",
+   "peptide_id": "SP1",
+   "replicate": "Repli. 3",
+   "value": 0.615298
+  },
+  {
+   "block": "Blot 1",
+   "peptide_id": "SP6",
+   "replicate": "Repli. 1",
+   "value": 0.254822
+  },
+  {
+   "block": "Blot 1",
+   "peptide_id": "SP6",
+   "replicate": "Repli. 2",
+   "value": 0.942396
+  },
+  {
+   "block": "Blot 1",
+   "peptide_id": "SP6",
+   "replicate": "Repli. 3",
+   "value": 1.180619
+  },
+  {
+   "block": "Blot 1",
+   "peptide_id": "SP2",
+   "replicate": "Repli. 1",
+   "value": 0.63985
+  },
+  {
+   "block": "Blot 1",
+   "peptide_id": "SP2",
+   "replicate": "Repli. 2",
+   "value": 1.028178
+  },
+  {
+   "block": "Blot 1",
+   "peptide_id": "SP2",
+   "replicate": "Repli. 3",
+   "value": 1.273867
+  },
+  {
+   "block": "Blot 1",
+   "peptide_id": "SP7",
+   "replicate": "Repli. 1",
+   "value": 1.166
+  },
+  {
+   "block": "Blot 1",
+   "peptide_id": "SP7",
+   "replicate": "Repli. 2",
+   "value": 0.770407
+  },
+  {
+   "block": "Blot 1",
+   "peptide_id": "SP7",
+   "replicate": "Repli. 3",
+   "value": 1.216259
+  },
+  {
+   "block": "Blot 1",
+   "peptide_id": "SP5",
+   "replicate": "Repli. 1",
+   "value": 1.432171
+  },
+  {
+   "block": "Blot 1",
+   "peptide_id": "SP5",
+   "replicate": "Repli. 2",
+   "value": 1.208273
+  },
+  {
+   "block": "Blot 1",
+   "peptide_id": "SP5",
+   "replicate": "Repli. 3",
+   "value": 1.609902
+  },
+  {
+   "block": "Blot 1",
+   "peptide_id": "SP3",
+   "replicate": "Repli. 1",
+   "value": 1.135303
+  },
+  {
+   "block": "Blot 1",
+   "peptide_id": "SP3",
+   "replicate": "Repli. 2",
+   "value": 1.813711
+  },
+  {
+   "block": "Blot 1",
+   "peptide_id": "SP3",
+   "replicate": "Repli. 3",
+   "value": 1.353683
+  },
+  {
+   "block": "Blot 1",
+   "peptide_id": "SP4",
+   "replicate": "Repli. 1",
+   "value": 0.667686
+  },
+  {
+   "block": "Blot 1",
+   "peptide_id": "SP4",
+   "replicate": "Repli. 2",
+   "value": 3.15909
+  },
+  {
+   "block": "Blot 1",
+   "peptide_id": "SP4",
+   "replicate": "Repli. 3",
+   "value": 1.002657
+  },
+  {
+   "block": "Blot 2",
+   "peptide_id": "SP9",
+   "replicate": "Repli. 1",
+   "value": 0.0
+  },
+  {
+   "block": "Blot 2",
+   "peptide_id": "SP9",
+   "replicate": "Repli. 2",
+   "value": 0.130058
+  },
+  {
+   "block": "Blot 2",
+   "peptide_id": "SP9",
+   "replicate": "Repli. 3",
+   "value": 0.012436
+  },
+  {
+   "block": "Blot 2",
+   "peptide_id": "SP12",
+   "replicate": "Repli. 1",
+   "value": 0.002
+  },
+  {
+   "block": "Blot 2",
+   "peptide_id": "SP12",
+   "replicate": "Repli. 2",
+   "value": 0.425881
+  },
+  {
+   "block": "Blot 2",
+   "peptide_id": "SP12",
+   "replicate": "Repli. 3",
+   "value": 0.530513
+  },
+  {
+   "block": "Blot 2",
+   "peptide_id": "SP10",
+   "replicate": "Repli. 1",
+   "value": 0.215
+  },
+  {
+   "block": "Blot 2",
+   "peptide_id": "SP10",
+   "replicate": "Repli. 2",
+   "value": 0.912114
+  },
+  {
+   "block": "Blot 2",
+   "peptide_id": "SP10",
+   "replicate": "Repli. 3",
+   "value": 0.524414
+  },
+  {
+   "block": "Blot 2",
+   "peptide_id": "SP16",
+   "replicate": "Repli. 1",
+   "value": 0.108
+  },
+  {
+   "block": "Blot 2",
+   "peptide_id": "SP16",
+   "replicate": "Repli. 2",
+   "value": 0.677111
+  },
+  {
+   "block": "Blot 2",
+   "peptide_id": "SP16",
+   "replicate": "Repli. 3",
+   "value": 1.322222
+  },
+  {
+   "block": "Blot 2",
+   "peptide_id": "SP18",
+   "replicate": "Repli. 1",
+   "value": 0.649
+  },
+  {
+   "block": "Blot 2",
+   "peptide_id": "SP18",
+   "replicate": "Repli. 2",
+   "value": 0.57145
+  },
+  {
+   "block": "Blot 2",
+   "peptide_id": "SP18",
+   "replicate": "Repli. 3",
+   "value": 0.96543
+  },
+  {
+   "block": "Blot 2",
+   "peptide_id": "SP21",
+   "replicate": "Repli. 1",
+   "value": 2.227574
+  },
+  {
+   "block": "Blot 2",
+   "peptide_id": "SP21",
+   "replicate": "Repli. 2",
+   "value": 0.255019
+  },
+  {
+   "block": "Blot 2",
+   "peptide_id": "SP21",
+   "replicate": "Repli. 3",
+   "value": 0.071505
+  },
+  {
+   "block": "Blot 2",
+   "peptide_id": "SP20",
+   "replicate": "Repli. 1",
+   "value": 0.574103
+  },
+  {
+   "block": "Blot 2",
+   "peptide_id": "SP20",
+   "replicate": "Repli. 2",
+   "value": 0.577036
+  },
+  {
+   "block": "Blot 2",
+   "peptide_id": "SP20",
+   "replicate": "Repli. 3",
+   "value": 1.425746
+  },
+  {
+   "block": "Blot 2",
+   "peptide_id": "SP13",
+   "replicate": "Repli. 1",
+   "value": 0.665
+  },
+  {
+   "block": "Blot 2",
+   "peptide_id": "SP13",
+   "replicate": "Repli. 2",
+   "value": 1.050752
+  },
+  {
+   "block": "Blot 2",
+   "peptide_id": "SP13",
+   "replicate": "Repli. 3",
+   "value": 1.077827
+  },
+  {
+   "block": "Blot 2",
+   "peptide_id": "SP11",
+   "replicate": "Repli. 1",
+   "value": 0.46
+  },
+  {
+   "block": "Blot 2",
+   "peptide_id": "SP11",
+   "replicate": "Repli. 2",
+   "value": 1.916844
+  },
+  {
+   "block": "Blot 2",
+   "peptide_id": "SP11",
+   "replicate": "Repli. 3",
+   "value": 0.740141
+  },
+  {
+   "block": "Blot 2",
+   "peptide_id": "SP15",
+   "replicate": "Repli. 1",
+   "value": 1.398
+  },
+  {
+   "block": "Blot 2",
+   "peptide_id": "SP15",
+   "replicate": "Repli. 2",
+   "value": 1.55738
+  },
+  {
+   "block": "Blot 2",
+   "peptide_id": "SP15",
+   "replicate": "Repli. 3",
+   "value": 1.460191
+  },
+  {
+   "block": "Blot 2",
+   "peptide_id": "SP14",
+   "replicate": "Repli. 1",
+   "value": 3.379
+  },
+  {
+   "block": "Blot 2",
+   "peptide_id": "SP14",
+   "replicate": "Repli. 2",
+   "value": 1.755526
+  },
+  {
+   "block": "Blot 2",
+   "peptide_id": "SP14",
+   "replicate": "Repli. 3",
+   "value": 1.062517
+  },
+  {
+   "block": "Blot 2",
+   "peptide_id": "SP17",
+   "replicate": "Repli. 1",
+   "value": 3.29
+  },
+  {
+   "block": "Blot 2",
+   "peptide_id": "SP17",
+   "replicate": "Repli. 2",
+   "value": 1.002885
+  },
+  {
+   "block": "Blot 2",
+   "peptide_id": "SP17",
+   "replicate": "Repli. 3",
+   "value": 1.947992
+  },
+  {
+   "block": "Blot 2",
+   "peptide_id": "SP19",
+   "replicate": "Repli. 1",
+   "value": 6.230063
+  },
+  {
+   "block": "Blot 2",
+   "peptide_id": "SP19",
+   "replicate": "Repli. 2",
+   "value": 2.9571
+  },
+  {
+   "block": "Blot 2",
+   "peptide_id": "SP19",
+   "replicate": "Repli. 3",
+   "value": 1.789759
+  },
+  {
+   "block": "Blot 3",
+   "peptide_id": "SP25",
+   "replicate": "Repli. 1",
+   "value": 0.000894
+  },
+  {
+   "block": "Blot 3",
+   "peptide_id": "SP25",
+   "replicate": "Repli. 2",
+   "value": 0.061206
+  },
+  {
+   "block": "Blot 3",
+   "peptide_id": "SP25",
+   "replicate": "Repli. 3",
+   "value": 0.156386
+  },
+  {
+   "block": "Blot 3",
+   "peptide_id": "SP28",
+   "replicate": "Repli. 1",
+   "value": 0.19336
+  },
+  {
+   "block": "Blot 3",
+   "peptide_id": "SP28",
+   "replicate": "Repli. 2",
+   "value": 0.374505
+  },
+  {
+   "block": "Blot 3",
+   "peptide_id": "SP28",
+   "replicate": "Repli. 3",
+   "value": 0.632986
+  },
+  {
+   "block": "Blot 3",
+   "peptide_id": "SP31",
+   "replicate": "Repli. 1",
+   "value": 0.06833
+  },
+  {
+   "block": "Blot 3",
+   "peptide_id": "SP31",
+   "replicate": "Repli. 2",
+   "value": 0.063702
+  },
+  {
+   "block": "Blot 3",
+   "peptide_id": "SP31",
+   "replicate": "Repli. 3",
+   "value": 1.105079
+  },
+  {
+   "block": "Blot 3",
+   "peptide_id": "SP27",
+   "replicate": "Repli. 1",
+   "value": 0.048367
+  },
+  {
+   "block": "Blot 3",
+   "peptide_id": "SP27",
+   "replicate": "Repli. 2",
+   "value": 0.602866
+  },
+  {
+   "block": "Blot 3",
+   "peptide_id": "SP27",
+   "replicate": "Repli. 3",
+   "value": 0.63353
+  },
+  {
+   "block": "Blot 3",
+   "peptide_id": "SP30",
+   "replicate": "Repli. 1",
+   "value": 0.001164
+  },
+  {
+   "block": "Blot 3",
+   "peptide_id": "SP30",
+   "replicate": "Repli. 2",
+   "value": 0.317676
+  },
+  {
+   "block": "Blot 3",
+   "peptide_id": "SP30",
+   "replicate": "Repli. 3",
+   "value": 1.241953
+  },
+  {
+   "block": "Blot 3",
+   "peptide_id": "SP24",
+   "replicate": "Repli. 1",
+   "value": 0.365501
+  },
+  {
+   "block": "Blot 3",
+   "peptide_id": "SP24",
+   "replicate": "Repli. 2",
+   "value": 0.774063
+  },
+  {
+   "block": "Blot 3",
+   "peptide_id": "SP24",
+   "replicate": "Repli. 3",
+   "value": 0.626654
+  },
+  {
+   "block": "Blot 3",
+   "peptide_id": "SP29",
+   "replicate": "Repli. 1",
+   "value": 0.734556
+  },
+  {
+   "block": "Blot 3",
+   "peptide_id": "SP29",
+   "replicate": "Repli. 2",
+   "value": 0.739563
+  },
+  {
+   "block": "Blot 3",
+   "peptide_id": "SP29",
+   "replicate": "Repli. 3",
+   "value": 1.707062
+  },
+  {
+   "block": "Blot 3",
+   "peptide_id": "SP22",
+   "replicate": "Repli. 1",
+   "value": 0.85208
+  },
+  {
+   "block": "Blot 3",
+   "peptide_id": "SP22",
+   "replicate": "Repli. 2",
+   "value": 1.460781
+  },
+  {
+   "block": "Blot 3",
+   "peptide_id": "SP22",
+   "replicate": "Repli. 3",
+   "value": 1.127924
+  },
+  {
+   "block": "Blot 3",
+   "peptide_id": "SP23",
+   "replicate": "Repli. 1",
+   "value": 0.000441
+  },
+  {
+   "block": "Blot 3",
+   "peptide_id": "SP23",
+   "replicate": "Repli. 2",
+   "value": 3.41724
+  },
+  {
+   "block": "Blot 3",
+   "peptide_id": "SP23",
+   "replicate": "Repli. 3",
+   "value": 0.068664
+  },
+  {
+   "block": "Blot 3",
+   "peptide_id": "SP32",
+   "replicate": "Repli. 1",
+   "value": 0.367398
+  },
+  {
+   "block": "Blot 3",
+   "peptide_id": "SP32",
+   "replicate": "Repli. 2",
+   "value": 1.320675
+  },
+  {
+   "block": "Blot 3",
+   "peptide_id": "SP32",
+   "replicate": "Repli. 3",
+   "value": 2.166958
+  },
+  {
+   "block": "Blot 3",
+   "peptide_id": "SP26",
+   "replicate": "Repli. 1",
+   "value": 2.336167
+  },
+  {
+   "block": "Blot 3",
+   "peptide_id": "SP26",
+   "replicate": "Repli. 2",
+   "value": 1.867724
+  },
+  {
+   "block": "Blot 3",
+   "peptide_id": "SP26",
+   "replicate": "Repli. 3",
+   "value": 1.532803
+  }
+ ],
+ "validation": [
+  {
+   "block": "Validation blot",
+   "peptide_id": "SP2",
+   "replicate": "Repli. 1",
+   "value": 0.422701
+  },
+  {
+   "block": "Validation blot",
+   "peptide_id": "SP2",
+   "replicate": "Repli. 2",
+   "value": 0.119086
+  },
+  {
+   "block": "Validation blot",
+   "peptide_id": "SP2",
+   "replicate": "Repli. 3",
+   "value": 0.808111
+  },
+  {
+   "block": "Validation blot",
+   "peptide_id": "SP2",
+   "replicate": "Repli. 4",
+   "value": 0.662449
+  },
+  {
+   "block": "Validation blot",
+   "peptide_id": "SP3",
+   "replicate": "Repli. 1",
+   "value": 0.494364
+  },
+  {
+   "block": "Validation blot",
+   "peptide_id": "SP3",
+   "replicate": "Repli. 2",
+   "value": 0.264204
+  },
+  {
+   "block": "Validation blot",
+   "peptide_id": "SP3",
+   "replicate": "Repli. 3",
+   "value": 0.93663
+  },
+  {
+   "block": "Validation blot",
+   "peptide_id": "SP3",
+   "replicate": "Repli. 4",
+   "value": 0.68158
+  },
+  {
+   "block": "Validation blot",
+   "peptide_id": "SP32",
+   "replicate": "Repli. 1",
+   "value": 0.266037
+  },
+  {
+   "block": "Validation blot",
+   "peptide_id": "SP32",
+   "replicate": "Repli. 2",
+   "value": 0.823239
+  },
+  {
+   "block": "Validation blot",
+   "peptide_id": "SP32",
+   "replicate": "Repli. 3",
+   "value": 0.594681
+  },
+  {
+   "block": "Validation blot",
+   "peptide_id": "SP32",
+   "replicate": "Repli. 4",
+   "value": 1.280701
+  },
+  {
+   "block": "Validation blot",
+   "peptide_id": "SP26",
+   "replicate": "Repli. 1",
+   "value": 0.808461
+  },
+  {
+   "block": "Validation blot",
+   "peptide_id": "SP26",
+   "replicate": "Repli. 2",
+   "value": 1.026204
+  },
+  {
+   "block": "Validation blot",
+   "peptide_id": "SP26",
+   "replicate": "Repli. 3",
+   "value": 0.612836
+  },
+  {
+   "block": "Validation blot",
+   "peptide_id": "SP26",
+   "replicate": "Repli. 4",
+   "value": 1.268428
+  },
+  {
+   "block": "Validation blot",
+   "peptide_id": "SP5",
+   "replicate": "Repli. 1",
+   "value": 1.27956
+  },
+  {
+   "block": "Validation blot",
+   "peptide_id": "SP5",
+   "replicate": "Repli. 2",
+   "value": 0.763994
+  },
+  {
+   "block": "Validation blot",
+   "peptide_id": "SP5",
+   "replicate": "Repli. 3",
+   "value": 1.618869
+  },
+  {
+   "block": "Validation blot",
+   "peptide_id": "SP5",
+   "replicate": "Repli. 4",
+   "value": 0.933363
+  },
+  {
+   "block": "Validation blot",
+   "peptide_id": "SP19",
+   "replicate": "Repli. 1",
+   "value": 1.425675
+  },
+  {
+   "block": "Validation blot",
+   "peptide_id": "SP19",
+   "replicate": "Repli. 2",
+   "value": 1.083766
+  },
+  {
+   "block": "Validation blot",
+   "peptide_id": "SP19",
+   "replicate": "Repli. 3",
+   "value": 1.477059
+  },
+  {
+   "block": "Validation blot",
+   "peptide_id": "SP19",
+   "replicate": "Repli. 4",
+   "value": 1.406604
+  },
+  {
+   "block": "Validation blot",
+   "peptide_id": "SP4",
+   "replicate": "Repli. 1",
+   "value": 1.901522
+  },
+  {
+   "block": "Validation blot",
+   "peptide_id": "SP4",
+   "replicate": "Repli. 2",
+   "value": 2.476548
+  },
+  {
+   "block": "Validation blot",
+   "peptide_id": "SP4",
+   "replicate": "Repli. 3",
+   "value": 1.353494
+  },
+  {
+   "block": "Validation blot",
+   "peptide_id": "SP4",
+   "replicate": "Repli. 4",
+   "value": 1.209834
+  }
+ ],
+ "associations": [
+  {
+   "feature": "h_core9_mean_kd",
+   "rho_blot1": -0.083834,
+   "rho_blot2": -0.45117,
+   "rho_blot3": -0.423691,
+   "combined_rho": -0.368707,
+   "combined_lo95": -0.661578,
+   "combined_hi95": 0.021759,
+   "all_same_direction": true,
+   "family_wise_p_maxstat": 0.807838
+  },
+  {
+   "feature": "mrna_dg_first30nt",
+   "rho_blot1": -0.119763,
+   "rho_blot2": 0.239917,
+   "rho_blot3": 0.675907,
+   "combined_rho": 0.350468,
+   "combined_lo95": -0.042685,
+   "combined_hi95": 0.649634,
+   "all_same_direction": false,
+   "family_wise_p_maxstat": 0.871426
+  },
+  {
+   "feature": "c_prox6_frac_polar_STNQ",
+   "rho_blot1": null,
+   "rho_blot2": -0.125212,
+   "rho_blot3": -0.552771,
+   "combined_rho": -0.333299,
+   "combined_lo95": -0.668768,
+   "combined_hi95": 0.114932,
+   "all_same_direction": true,
+   "family_wise_p_maxstat": 0.915617
+  },
+  {
+   "feature": "h_core9_frac_hydrophobic",
+   "rho_blot1": -0.357567,
+   "rho_blot2": -0.328117,
+   "rho_blot3": -0.265645,
+   "combined_rho": -0.313237,
+   "combined_lo95": -0.624787,
+   "combined_hi95": 0.084357,
+   "all_same_direction": true,
+   "family_wise_p_maxstat": 0.95241
+  },
+  {
+   "feature": "frac_hydrophobic_AVILMFWY",
+   "rho_blot1": -0.428571,
+   "rho_blot2": -0.087912,
+   "rho_blot3": -0.390909,
+   "combined_rho": -0.274317,
+   "combined_lo95": -0.59812,
+   "combined_hi95": 0.126481,
+   "all_same_direction": true,
+   "family_wise_p_maxstat": 0.992202
+  },
+  {
+   "feature": "aromaticity",
+   "rho_blot1": -0.131739,
+   "rho_blot2": -0.379121,
+   "rho_blot3": -0.165145,
+   "combined_rho": -0.254549,
+   "combined_lo95": -0.584295,
+   "combined_hi95": 0.147337,
+   "all_same_direction": true,
+   "family_wise_p_maxstat": 0.996401
+  },
+  {
+   "feature": "aa_length",
+   "rho_blot1": -0.095238,
+   "rho_blot2": 0.129477,
+   "rho_blot3": 0.559625,
+   "combined_rho": 0.250336,
+   "combined_lo95": -0.151736,
+   "combined_hi95": 0.581323,
+   "all_same_direction": false,
+   "family_wise_p_maxstat": 0.997201
+  },
+  {
+   "feature": "isoelectric_point",
+   "rho_blot1": -0.263478,
+   "rho_blot2": -0.255846,
+   "rho_blot3": -0.181818,
+   "combined_rho": -0.232072,
+   "combined_lo95": -0.568339,
+   "combined_hi95": 0.170625,
+   "all_same_direction": true,
+   "family_wise_p_maxstat": 0.9998
+  },
+  {
+   "feature": "frac_leucine",
+   "rho_blot1": -0.214286,
+   "rho_blot2": 0.709767,
+   "rho_blot3": -0.391801,
+   "combined_rho": 0.19183,
+   "combined_lo95": -0.211224,
+   "combined_hi95": 0.539128,
+   "all_same_direction": false,
+   "family_wise_p_maxstat": 1.0
+  },
+  {
+   "feature": "n_prox_net_charge_ph7",
+   "rho_blot1": 0.096393,
+   "rho_blot2": -0.507718,
+   "rho_blot3": 0.14612,
+   "combined_rho": -0.169465,
+   "combined_lo95": -0.522523,
+   "combined_hi95": 0.233202,
+   "all_same_direction": false,
+   "family_wise_p_maxstat": 1.0
+  },
+  {
+   "feature": "n_prox_frac_basic_KR",
+   "rho_blot1": -0.011976,
+   "rho_blot2": 0.107587,
+   "rho_blot3": -0.544635,
+   "combined_rho": -0.166505,
+   "combined_lo95": -0.520305,
+   "combined_hi95": 0.23608,
+   "all_same_direction": false,
+   "family_wise_p_maxstat": 1.0
+  },
+  {
+   "feature": "net_charge_ph7",
+   "rho_blot1": -0.02381,
+   "rho_blot2": -0.310867,
+   "rho_blot3": -0.045455,
+   "combined_rho": -0.159412,
+   "combined_lo95": -0.514971,
+   "combined_hi95": 0.242949,
+   "all_same_direction": true,
+   "family_wise_p_maxstat": 1.0
+  },
+  {
+   "feature": "frac_glycine",
+   "rho_blot1": -0.095238,
+   "rho_blot2": 0.140303,
+   "rho_blot3": 0.324897,
+   "combined_rho": 0.156597,
+   "combined_lo95": -0.245663,
+   "combined_hi95": 0.512846,
+   "all_same_direction": false,
+   "family_wise_p_maxstat": 1.0
+  },
+  {
+   "feature": "mrna_dg_first60nt",
+   "rho_blot1": -0.619048,
+   "rho_blot2": 0.093407,
+   "rho_blot3": -0.109091,
+   "combined_rho": -0.153419,
+   "combined_lo95": -0.510443,
+   "combined_hi95": 0.24872,
+   "all_same_direction": false,
+   "family_wise_p_maxstat": 1.0
+  },
+  {
+   "feature": "n_prox_kr_count",
+   "rho_blot1": 0.086479,
+   "rho_blot2": -0.4764,
+   "rho_blot3": 0.151626,
+   "combined_rho": -0.152168,
+   "combined_lo95": -0.509495,
+   "combined_hi95": 0.249922,
+   "all_same_direction": false,
+   "family_wise_p_maxstat": 1.0
+  },
+  {
+   "feature": "kr_minus_de",
+   "rho_blot1": 0.086479,
+   "rho_blot2": -0.304462,
+   "rho_blot3": -0.100504,
+   "combined_rho": -0.151757,
+   "combined_lo95": -0.509183,
+   "combined_hi95": 0.250316,
+   "all_same_direction": false,
+   "family_wise_p_maxstat": 1.0
+  },
+  {
+   "feature": "n_prox_length",
+   "rho_blot1": -0.09581,
+   "rho_blot2": -0.201661,
+   "rho_blot3": 0.636005,
+   "combined_rho": 0.15043,
+   "combined_lo95": -0.251589,
+   "combined_hi95": 0.508177,
+   "all_same_direction": false,
+   "family_wise_p_maxstat": 1.0
+  },
+  {
+   "feature": "h_core9_start_1based",
+   "rho_blot1": -0.09581,
+   "rho_blot2": -0.201661,
+   "rho_blot3": 0.636005,
+   "combined_rho": 0.15043,
+   "combined_lo95": -0.251589,
+   "combined_hi95": 0.508177,
+   "all_same_direction": false,
+   "family_wise_p_maxstat": 1.0
+  },
+  {
+   "feature": "nt_gc_first30",
+   "rho_blot1": 0.145479,
+   "rho_blot2": -0.23481,
+   "rho_blot3": -0.138599,
+   "combined_rho": -0.120118,
+   "combined_lo95": -0.484914,
+   "combined_hi95": 0.280281,
+   "all_same_direction": false,
+   "family_wise_p_maxstat": 1.0
+  },
+  {
+   "feature": "frac_helix_breaker_GPS",
+   "rho_blot1": 0.371264,
+   "rho_blot2": -0.096419,
+   "rho_blot3": 0.218679,
+   "combined_rho": 0.119444,
+   "combined_lo95": -0.280911,
+   "combined_hi95": 0.484391,
+   "all_same_direction": false,
+   "family_wise_p_maxstat": 1.0
+  },
+  {
+   "feature": "mrna_dg_full_per_nt",
+   "rho_blot1": 0.02381,
+   "rho_blot2": -0.06044,
+   "rho_blot3": -0.263636,
+   "combined_rho": -0.114546,
+   "combined_lo95": -0.48058,
+   "combined_hi95": 0.28548,
+   "all_same_direction": false,
+   "family_wise_p_maxstat": 1.0
+  },
+  {
+   "feature": "c_prox6_gravy",
+   "rho_blot1": -0.28743,
+   "rho_blot2": -0.184319,
+   "rho_blot3": 0.090909,
+   "combined_rho": -0.113167,
+   "combined_lo95": -0.479505,
+   "combined_hi95": 0.286762,
+   "all_same_direction": false,
+   "family_wise_p_maxstat": 1.0
+  },
+  {
+   "feature": "frac_proline",
+   "rho_blot1": -0.02381,
+   "rho_blot2": 0.132926,
+   "rho_blot3": 0.162089,
+   "combined_rho": 0.109402,
+   "combined_lo95": -0.290257,
+   "combined_hi95": 0.476564,
+   "all_same_direction": false,
+   "family_wise_p_maxstat": 1.0
+  },
+  {
+   "feature": "mrna_dg_first48nt",
+   "rho_blot1": -0.443122,
+   "rho_blot2": 0.190346,
+   "rho_blot3": 0.346242,
+   "combined_rho": 0.105509,
+   "combined_lo95": -0.29386,
+   "combined_hi95": 0.473515,
+   "all_same_direction": false,
+   "family_wise_p_maxstat": 1.0
+  },
+  {
+   "feature": "frac_serine",
+   "rho_blot1": 0.380952,
+   "rho_blot2": -0.393398,
+   "rho_blot3": -0.031891,
+   "combined_rho": -0.104293,
+   "combined_lo95": -0.47256,
+   "combined_hi95": 0.294983,
+   "all_same_direction": false,
+   "family_wise_p_maxstat": 1.0
+  },
+  {
+   "feature": "gravy_kd",
+   "rho_blot1": -0.142857,
+   "rho_blot2": 0.065934,
+   "rho_blot3": -0.254545,
+   "combined_rho": -0.092821,
+   "combined_lo95": -0.463514,
+   "combined_hi95": 0.305522,
+   "all_same_direction": false,
+   "family_wise_p_maxstat": 1.0
+  },
+  {
+   "feature": "h_core9_frac_helix_breaker_GPS",
+   "rho_blot1": 0.169533,
+   "rho_blot2": -0.384371,
+   "rho_blot3": 0.147798,
+   "combined_rho": -0.086943,
+   "combined_lo95": -0.458848,
+   "combined_hi95": 0.310885,
+   "all_same_direction": false,
+   "family_wise_p_maxstat": 1.0
+  },
+  {
+   "feature": "kr_count",
+   "rho_blot1": 0.086479,
+   "rho_blot2": -0.264979,
+   "rho_blot3": 0.075898,
+   "combined_rho": -0.072599,
+   "combined_lo95": -0.447376,
+   "combined_hi95": 0.323867,
+   "all_same_direction": false,
+   "family_wise_p_maxstat": 1.0
+  },
+  {
+   "feature": "instability_index",
+   "rho_blot1": -0.166667,
+   "rho_blot2": -0.065934,
+   "rho_blot3": 0.0,
+   "combined_rho": -0.065189,
+   "combined_lo95": -0.441401,
+   "combined_hi95": 0.330515,
+   "all_same_direction": false,
+   "family_wise_p_maxstat": 1.0
+  },
+  {
+   "feature": "nt_gc3_fraction",
+   "rho_blot1": 0.333333,
+   "rho_blot2": -0.164835,
+   "rho_blot3": 0.154545,
+   "combined_rho": 0.057142,
+   "combined_lo95": -0.337691,
+   "combined_hi95": 0.434874,
+   "all_same_direction": false,
+   "family_wise_p_maxstat": 1.0
+  },
+  {
+   "feature": "frac_alanine",
+   "rho_blot1": -0.666667,
+   "rho_blot2": 0.222834,
+   "rho_blot3": 0.347036,
+   "combined_rho": 0.049495,
+   "combined_lo95": -0.344467,
+   "combined_hi95": 0.428636,
+   "all_same_direction": false,
+   "family_wise_p_maxstat": 1.0
+  },
+  {
+   "feature": "h_core9_frac_leucine",
+   "rho_blot1": -0.400501,
+   "rho_blot2": 0.423542,
+   "rho_blot3": -0.202479,
+   "combined_rho": 0.032868,
+   "combined_lo95": -0.359062,
+   "combined_hi95": 0.414944,
+   "all_same_direction": false,
+   "family_wise_p_maxstat": 1.0
+  },
+  {
+   "feature": "nt_gc_fraction",
+   "rho_blot1": -0.142857,
+   "rho_blot2": -0.236264,
+   "rho_blot3": 0.315072,
+   "combined_rho": -0.022518,
+   "combined_lo95": -0.406332,
+   "combined_hi95": 0.36805,
+   "all_same_direction": false,
+   "family_wise_p_maxstat": 1.0
+  },
+  {
+   "feature": "c_prox6_frac_small_AGS",
+   "rho_blot1": null,
+   "rho_blot2": 0.095695,
+   "rho_blot3": -0.156517,
+   "combined_rho": -0.016811,
+   "combined_lo95": -0.445273,
+   "combined_hi95": 0.417915,
+   "all_same_direction": false,
+   "family_wise_p_maxstat": 1.0
+  }
+ ],
+ "permutation": {
+  "observed": 0.368707,
+  "best_feature": "h_core9_mean_kd",
+  "null_median": 0.440633,
+  "null_p95": 0.597806,
+  "family_wise_p": 0.807838,
+  "n_features": 34,
+  "n_perm": 5000
+ },
+ "reliability": [
+  {
+   "block": "Blot 1",
+   "n_replicates": 3,
+   "n_replicate_pairs": 3,
+   "mean_inter_replicate_spearman": 0.47619,
+   "min_inter_replicate_spearman": 0.261905,
+   "max_inter_replicate_spearman": 0.595238,
+   "spearman_brown_reliability_of_mean": 0.731707,
+   "max_detectable_correlation": 0.855399
+  },
+  {
+   "block": "Blot 2",
+   "n_replicates": 3,
+   "n_replicate_pairs": 3,
+   "mean_inter_replicate_spearman": 0.580586,
+   "min_inter_replicate_spearman": 0.571429,
+   "max_inter_replicate_spearman": 0.593407,
+   "spearman_brown_reliability_of_mean": 0.805932,
+   "max_detectable_correlation": 0.897737
+  },
+  {
+   "block": "Blot 3",
+   "n_replicates": 3,
+   "n_replicate_pairs": 3,
+   "mean_inter_replicate_spearman": 0.418182,
+   "min_inter_replicate_spearman": 0.145455,
+   "max_inter_replicate_spearman": 0.681818,
+   "spearman_brown_reliability_of_mean": 0.683168,
+   "max_detectable_correlation": 0.82654
+  },
+  {
+   "block": "Validation blot",
+   "n_replicates": 4,
+   "n_replicate_pairs": 6,
+   "mean_inter_replicate_spearman": 0.428571,
+   "min_inter_replicate_spearman": -0.071429,
+   "max_inter_replicate_spearman": 0.75,
+   "spearman_brown_reliability_of_mean": 0.75,
+   "max_detectable_correlation": 0.866025
+  }
+ ],
+ "rbs": {
+  "rho": 0.514529,
+  "blot1": 0.261905,
+  "blot2": 0.631868,
+  "blot3": 0.490909,
+  "p_single": 0.0042,
+  "p_family": 0.011799,
+  "n_perm": 20000
+ },
+ "scatter": [
+  {
+   "block": "Blot 1",
+   "peptide_id": "SP4",
+   "gene": "Epr",
+   "mean": 1.609811,
+   "dg_rbs_plus48": -10.9,
+   "dg_cds_only48": -8.2,
+   "gravy_kd": 1.211111,
+   "net_charge_ph7": 1.488456
+  },
+  {
+   "block": "Blot 1",
+   "peptide_id": "SP3",
+   "gene": "Bpr",
+   "mean": 1.434232,
+   "dg_rbs_plus48": -8.2,
+   "dg_cds_only48": -8.2,
+   "gravy_kd": 0.483333,
+   "net_charge_ph7": 4.497338
+  },
+  {
+   "block": "Blot 1",
+   "peptide_id": "SP5",
+   "gene": "Mpr",
+   "mean": 1.416782,
+   "dg_rbs_plus48": -6.2,
+   "dg_cds_only48": -2.7,
+   "gravy_kd": 0.964706,
+   "net_charge_ph7": 3.487437
+  },
+  {
+   "block": "Blot 1",
+   "peptide_id": "SP7",
+   "gene": "PenP",
+   "mean": 1.050888,
+   "dg_rbs_plus48": -5.5,
+   "dg_cds_only48": -2.0,
+   "gravy_kd": 0.702778,
+   "net_charge_ph7": 3.563731
+  },
+  {
+   "block": "Blot 1",
+   "peptide_id": "SP2",
+   "gene": "AprE",
+   "mean": 0.980632,
+   "dg_rbs_plus48": -10.7,
+   "dg_cds_only48": -4.9,
+   "gravy_kd": 0.937931,
+   "net_charge_ph7": 2.498347
+  },
+  {
+   "block": "Blot 1",
+   "peptide_id": "SP6",
+   "gene": "Pel",
+   "mean": 0.792612,
+   "dg_rbs_plus48": -9.4,
+   "dg_cds_only48": -4.5,
+   "gravy_kd": 1.07619,
+   "net_charge_ph7": 1.498357
+  },
+  {
+   "block": "Blot 1",
+   "peptide_id": "SP1",
+   "gene": "AmyE",
+   "mean": 0.396637,
+   "dg_rbs_plus48": -12.4,
+   "dg_cds_only48": -0.8,
+   "gravy_kd": 1.251515,
+   "net_charge_ph7": 2.585521
+  },
+  {
+   "block": "Blot 1",
+   "peptide_id": "SP8",
+   "gene": "PhoA",
+   "mean": 0.360552,
+   "dg_rbs_plus48": -10.0,
+   "dg_cds_only48": -5.9,
+   "gravy_kd": 0.787097,
+   "net_charge_ph7": 3.496359
+  },
+  {
+   "block": "Blot 2",
+   "peptide_id": "SP19",
+   "gene": "YwaD",
+   "mean": 3.658974,
+   "dg_rbs_plus48": -10.3,
+   "dg_cds_only48": -7.4,
+   "gravy_kd": 1.029032,
+   "net_charge_ph7": 1.498357
+  },
+  {
+   "block": "Blot 2",
+   "peptide_id": "SP17",
+   "gene": "YqxI",
+   "mean": 2.080292,
+   "dg_rbs_plus48": -5.2,
+   "dg_cds_only48": -1.8,
+   "gravy_kd": 1.007143,
+   "net_charge_ph7": 0.586652
+  },
+  {
+   "block": "Blot 2",
+   "peptide_id": "SP14",
+   "gene": "YncM",
+   "mean": 2.065681,
+   "dg_rbs_plus48": -6.2,
+   "dg_cds_only48": -5.3,
+   "gravy_kd": 1.014286,
+   "net_charge_ph7": 3.496359
+  },
+  {
+   "block": "Blot 2",
+   "peptide_id": "SP15",
+   "gene": "YoaW",
+   "mean": 1.471857,
+   "dg_rbs_plus48": -7.0,
+   "dg_cds_only48": -5.3,
+   "gravy_kd": 1.2125,
+   "net_charge_ph7": 0.588341
+  },
+  {
+   "block": "Blot 2",
+   "peptide_id": "SP11",
+   "gene": "XynA",
+   "mean": 1.038995,
+   "dg_rbs_plus48": -7.5,
+   "dg_cds_only48": -3.1,
+   "gravy_kd": 0.985714,
+   "net_charge_ph7": 2.497358
+  },
+  {
+   "block": "Blot 2",
+   "peptide_id": "SP13",
+   "gene": "YlqB",
+   "mean": 0.931193,
+   "dg_rbs_plus48": -10.2,
+   "dg_cds_only48": -1.8,
+   "gravy_kd": 1.222222,
+   "net_charge_ph7": 1.488456
+  },
+  {
+   "block": "Blot 2",
+   "peptide_id": "SP20",
+   "gene": "YweA",
+   "mean": 0.858962,
+   "dg_rbs_plus48": -6.5,
+   "dg_cds_only48": -3.1,
+   "gravy_kd": 1.07,
+   "net_charge_ph7": 1.499346
+  },
+  {
+   "block": "Blot 2",
+   "peptide_id": "SP21",
+   "gene": "YwtF",
+   "mean": 0.851366,
+   "dg_rbs_plus48": -2.8,
+   "dg_cds_only48": 0.0,
+   "gravy_kd": -0.153846,
+   "net_charge_ph7": 8.498943
+  },
+  {
+   "block": "Blot 2",
+   "peptide_id": "SP18",
+   "gene": "YvgO",
+   "mean": 0.728627,
+   "dg_rbs_plus48": -16.0,
+   "dg_cds_only48": -4.3,
+   "gravy_kd": 1.023077,
+   "net_charge_ph7": 2.499336
+  },
+  {
+   "block": "Blot 2",
+   "peptide_id": "SP16",
+   "gene": "YocH",
+   "mean": 0.702444,
+   "dg_rbs_plus48": -12.4,
+   "dg_cds_only48": -7.8,
+   "gravy_kd": 1.052174,
+   "net_charge_ph7": 1.498357
+  },
+  {
+   "block": "Blot 2",
+   "peptide_id": "SP10",
+   "gene": "Vpr",
+   "mean": 0.550509,
+   "dg_rbs_plus48": -17.1,
+   "dg_cds_only48": -6.1,
+   "gravy_kd": 1.316129,
+   "net_charge_ph7": 2.498347
+  },
+  {
+   "block": "Blot 2",
+   "peptide_id": "SP12",
+   "gene": "YbdN",
+   "mean": 0.319465,
+   "dg_rbs_plus48": -14.7,
+   "dg_cds_only48": -4.1,
+   "gravy_kd": 1.008,
+   "net_charge_ph7": 1.497358
+  },
+  {
+   "block": "Blot 2",
+   "peptide_id": "SP9",
+   "gene": "PhoB",
+   "mean": 0.047498,
+   "dg_rbs_plus48": -13.2,
+   "dg_cds_only48": -6.9,
+   "gravy_kd": 0.6,
+   "net_charge_ph7": 2.499169
+  },
+  {
+   "block": "Blot 3",
+   "peptide_id": "SP26",
+   "gene": "AbnA",
+   "mean": 1.912231,
+   "dg_rbs_plus48": -10.8,
+   "dg_cds_only48": -3.2,
+   "gravy_kd": 0.184375,
+   "net_charge_ph7": 5.582524
+  },
+  {
+   "block": "Blot 3",
+   "peptide_id": "SP32",
+   "gene": "EglS",
+   "mean": 1.28501,
+   "dg_rbs_plus48": -5.8,
+   "dg_cds_only48": -3.3,
+   "gravy_kd": 1.310345,
+   "net_charge_ph7": 1.489445
+  },
+  {
+   "block": "Blot 3",
+   "peptide_id": "SP23",
+   "gene": "NprB",
+   "mean": 1.162115,
+   "dg_rbs_plus48": -6.8,
+   "dg_cds_only48": -5.0,
+   "gravy_kd": 0.789286,
+   "net_charge_ph7": 1.576619
+  },
+  {
+   "block": "Blot 3",
+   "peptide_id": "SP22",
+   "gene": "YxaL",
+   "mean": 1.146928,
+   "dg_rbs_plus48": -9.9,
+   "dg_cds_only48": -8.4,
+   "gravy_kd": 0.926829,
+   "net_charge_ph7": 2.498468
+  },
+  {
+   "block": "Blot 3",
+   "peptide_id": "SP29",
+   "gene": "Csn",
+   "mean": 1.060394,
+   "dg_rbs_plus48": -5.2,
+   "dg_cds_only48": -5.0,
+   "gravy_kd": 0.628571,
+   "net_charge_ph7": 1.50029
+  },
+  {
+   "block": "Blot 3",
+   "peptide_id": "SP24",
+   "gene": "SacB",
+   "mean": 0.588739,
+   "dg_rbs_plus48": -7.0,
+   "dg_cds_only48": -4.1,
+   "gravy_kd": 0.444828,
+   "net_charge_ph7": 2.497358
+  },
+  {
+   "block": "Blot 3",
+   "peptide_id": "SP30",
+   "gene": "Bsn",
+   "mean": 0.520264,
+   "dg_rbs_plus48": -14.4,
+   "dg_cds_only48": -4.9,
+   "gravy_kd": 1.2,
+   "net_charge_ph7": 1.488456
+  },
+  {
+   "block": "Blot 3",
+   "peptide_id": "SP27",
+   "gene": "BglS",
+   "mean": 0.428255,
+   "dg_rbs_plus48": -13.1,
+   "dg_cds_only48": -4.8,
+   "gravy_kd": 1.442857,
+   "net_charge_ph7": 1.498347
+  },
+  {
+   "block": "Blot 3",
+   "peptide_id": "SP31",
+   "gene": "CwlO",
+   "mean": 0.41237,
+   "dg_rbs_plus48": -10.1,
+   "dg_cds_only48": -6.7,
+   "gravy_kd": 0.86,
+   "net_charge_ph7": 2.73198
+  },
+  {
+   "block": "Blot 3",
+   "peptide_id": "SP28",
+   "gene": "YolA",
+   "mean": 0.400284,
+   "dg_rbs_plus48": -8.6,
+   "dg_cds_only48": -7.6,
+   "gravy_kd": 0.742857,
+   "net_charge_ph7": 2.497469
+  },
+  {
+   "block": "Blot 3",
+   "peptide_id": "SP25",
+   "gene": "SacC",
+   "mean": 0.072829,
+   "dg_rbs_plus48": -19.6,
+   "dg_cds_only48": -4.7,
+   "gravy_kd": 1.175,
+   "net_charge_ph7": 2.498347
+  }
+ ],
+ "models": [
+  {
+   "cv_scheme": "leave-one-peptide-out",
+   "model": "Baseline (predict training mean)",
+   "mean_within_blot_spearman": -1.0,
+   "mae": 0.257028
+  },
+  {
+   "cv_scheme": "leave-one-peptide-out",
+   "model": "Ridge (alpha=10)",
+   "mean_within_blot_spearman": -0.130259,
+   "mae": 0.307194
+  },
+  {
+   "cv_scheme": "leave-one-peptide-out",
+   "model": "Ridge (alpha=100)",
+   "mean_within_blot_spearman": -0.125919,
+   "mae": 0.260904
+  },
+  {
+   "cv_scheme": "leave-one-peptide-out",
+   "model": "Random forest (100 trees)",
+   "mean_within_blot_spearman": -0.186513,
+   "mae": 0.266539
+  },
+  {
+   "cv_scheme": "leave-one-peptide-out",
+   "model": "k-NN (k=5)",
+   "mean_within_blot_spearman": -0.118604,
+   "mae": 0.280447
+  },
+  {
+   "cv_scheme": "leave-one-blot-out",
+   "model": "Baseline (predict training mean)",
+   "mean_within_blot_spearman": 0.0,
+   "mae": 0.249199
+  },
+  {
+   "cv_scheme": "leave-one-blot-out",
+   "model": "Ridge (alpha=10)",
+   "mean_within_blot_spearman": -0.078455,
+   "mae": 0.309251
+  },
+  {
+   "cv_scheme": "leave-one-blot-out",
+   "model": "Ridge (alpha=100)",
+   "mean_within_blot_spearman": -0.043834,
+   "mae": 0.263866
+  },
+  {
+   "cv_scheme": "leave-one-blot-out",
+   "model": "Random forest (100 trees)",
+   "mean_within_blot_spearman": -0.14551,
+   "mae": 0.272436
+  },
+  {
+   "cv_scheme": "leave-one-blot-out",
+   "model": "k-NN (k=5)",
+   "mean_within_blot_spearman": -0.070467,
+   "mae": 0.263997
+  }
+ ],
+ "insample": [
+  {
+   "model": "Baseline (predict training mean)",
+   "in_sample_spearman": 0.0,
+   "in_sample_mae": 0.248996,
+   "honest_out_of_fold_spearman": -1.0
+  },
+  {
+   "model": "Ridge (alpha=10)",
+   "in_sample_spearman": 0.729382,
+   "in_sample_mae": 0.158877,
+   "honest_out_of_fold_spearman": -0.130259
+  },
+  {
+   "model": "Ridge (alpha=100)",
+   "in_sample_spearman": 0.673238,
+   "in_sample_mae": 0.209617,
+   "honest_out_of_fold_spearman": -0.125919
+  },
+  {
+   "model": "Random forest (100 trees)",
+   "in_sample_spearman": 0.964003,
+   "in_sample_mae": 0.105618,
+   "honest_out_of_fold_spearman": -0.186513
+  },
+  {
+   "model": "k-NN (k=5)",
+   "in_sample_spearman": 0.289277,
+   "in_sample_mae": 0.220646,
+   "honest_out_of_fold_spearman": -0.118604
+  }
+ ],
+ "uniprot": [
+  {
+   "peptide_id": "SP1",
+   "gene": "amyE",
+   "accession": "P00691",
+   "supplied_length": 33,
+   "native_signal_length": 27.0,
+   "supplied_last3": "ASA",
+   "native_last3": "LAG",
+   "exact_match": false,
+   "c_terminus_differs": true
+  },
+  {
+   "peptide_id": "SP2",
+   "gene": "aprE",
+   "accession": "P04189",
+   "supplied_length": 29,
+   "native_signal_length": 29.0,
+   "supplied_last3": "ASA",
+   "native_last3": "AQA",
+   "exact_match": false,
+   "c_terminus_differs": true
+  },
+  {
+   "peptide_id": "SP3",
+   "gene": "bpr",
+   "accession": "P16397",
+   "supplied_length": 30,
+   "native_signal_length": 30.0,
+   "supplied_last3": "ASA",
+   "native_last3": "AGA",
+   "exact_match": false,
+   "c_terminus_differs": true
+  },
+  {
+   "peptide_id": "SP4",
+   "gene": "epr",
+   "accession": "P16396",
+   "supplied_length": 27,
+   "native_signal_length": 27.0,
+   "supplied_last3": "ASA",
+   "native_last3": "AHA",
+   "exact_match": false,
+   "c_terminus_differs": true
+  },
+  {
+   "peptide_id": "SP5",
+   "gene": "mpr",
+   "accession": "P39790",
+   "supplied_length": 34,
+   "native_signal_length": 34.0,
+   "supplied_last3": "ASA",
+   "native_last3": "AKA",
+   "exact_match": false,
+   "c_terminus_differs": true
+  },
+  {
+   "peptide_id": "SP6",
+   "gene": "pel",
+   "accession": "P39116",
+   "supplied_length": 21,
+   "native_signal_length": 21.0,
+   "supplied_last3": "ASA",
+   "native_last3": "ANA",
+   "exact_match": false,
+   "c_terminus_differs": true
+  },
+  {
+   "peptide_id": "SP7",
+   "gene": "penP",
+   "accession": "P39824",
+   "supplied_length": 36,
+   "native_signal_length": 36.0,
+   "supplied_last3": "ASA",
+   "native_last3": "AEA",
+   "exact_match": false,
+   "c_terminus_differs": true
+  },
+  {
+   "peptide_id": "SP8",
+   "gene": "phoA",
+   "accession": "P19406",
+   "supplied_length": 31,
+   "native_signal_length": 41.0,
+   "supplied_last3": "ASA",
+   "native_last3": "ASA",
+   "exact_match": false,
+   "c_terminus_differs": false
+  },
+  {
+   "peptide_id": "SP9",
+   "gene": "phoB",
+   "accession": "P19405",
+   "supplied_length": 32,
+   "native_signal_length": 32.0,
+   "supplied_last3": "ASA",
+   "native_last3": "ASA",
+   "exact_match": true,
+   "c_terminus_differs": false
+  },
+  {
+   "peptide_id": "SP10",
+   "gene": "vpr",
+   "accession": "P29141",
+   "supplied_length": 31,
+   "native_signal_length": 28.0,
+   "supplied_last3": "ASA",
+   "native_last3": "VQA",
+   "exact_match": false,
+   "c_terminus_differs": true
+  },
+  {
+   "peptide_id": "SP11",
+   "gene": "xynA",
+   "accession": "P18429",
+   "supplied_length": 28,
+   "native_signal_length": 28.0,
+   "supplied_last3": "ASA",
+   "native_last3": "ASA",
+   "exact_match": true,
+   "c_terminus_differs": false
+  },
+  {
+   "peptide_id": "SP12",
+   "gene": "ybdN",
+   "accession": "O31436",
+   "supplied_length": 25,
+   "native_signal_length": 25.0,
+   "supplied_last3": "ASA",
+   "native_last3": "ASA",
+   "exact_match": true,
+   "c_terminus_differs": false
+  },
+  {
+   "peptide_id": "SP13",
+   "gene": "ylqB",
+   "accession": "O31737",
+   "supplied_length": 27,
+   "native_signal_length": 27.0,
+   "supplied_last3": "ASA",
+   "native_last3": "ADA",
+   "exact_match": false,
+   "c_terminus_differs": true
+  },
+  {
+   "peptide_id": "SP14",
+   "gene": "yncM",
+   "accession": "O31803",
+   "supplied_length": 42,
+   "native_signal_length": 47.0,
+   "supplied_last3": "ASA",
+   "native_last3": "AKA",
+   "exact_match": false,
+   "c_terminus_differs": true
+  },
+  {
+   "peptide_id": "SP15",
+   "gene": "yoaW",
+   "accession": "O34541",
+   "supplied_length": 24,
+   "native_signal_length": 24.0,
+   "supplied_last3": "ASA",
+   "native_last3": "ASA",
+   "exact_match": true,
+   "c_terminus_differs": false
+  },
+  {
+   "peptide_id": "SP16",
+   "gene": "yocH",
+   "accession": "O34669",
+   "supplied_length": 23,
+   "native_signal_length": 25.0,
+   "supplied_last3": "ASA",
+   "native_last3": "ASA",
+   "exact_match": false,
+   "c_terminus_differs": false
+  },
+  {
+   "peptide_id": "SP17",
+   "gene": "yqxI",
+   "accession": "P24812",
+   "supplied_length": 28,
+   "native_signal_length": null,
+   "supplied_last3": "ASA",
+   "native_last3": null,
+   "exact_match": false,
+   "c_terminus_differs": false
+  },
+  {
+   "peptide_id": "SP18",
+   "gene": "yvgO",
+   "accession": "O32211",
+   "supplied_length": 26,
+   "native_signal_length": 26.0,
+   "supplied_last3": "ASA",
+   "native_last3": "ASA",
+   "exact_match": true,
+   "c_terminus_differs": false
+  },
+  {
+   "peptide_id": "SP19",
+   "gene": "ywaD",
+   "accession": "P25152",
+   "supplied_length": 31,
+   "native_signal_length": 31.0,
+   "supplied_last3": "ASA",
+   "native_last3": "AHA",
+   "exact_match": false,
+   "c_terminus_differs": true
+  },
+  {
+   "peptide_id": "SP20",
+   "gene": "yweA",
+   "accession": "P39632",
+   "supplied_length": 30,
+   "native_signal_length": 30.0,
+   "supplied_last3": "ASA",
+   "native_last3": "AHA",
+   "exact_match": false,
+   "c_terminus_differs": true
+  },
+  {
+   "peptide_id": "SP21",
+   "gene": "ywtF",
+   "accession": "Q7WY78",
+   "supplied_length": 39,
+   "native_signal_length": null,
+   "supplied_last3": "ASA",
+   "native_last3": null,
+   "exact_match": false,
+   "c_terminus_differs": false
+  },
+  {
+   "peptide_id": "SP22",
+   "gene": "yxaL",
+   "accession": "P42111",
+   "supplied_length": 41,
+   "native_signal_length": 41.0,
+   "supplied_last3": "ASA",
+   "native_last3": "AYA",
+   "exact_match": false,
+   "c_terminus_differs": true
+  },
+  {
+   "peptide_id": "SP23",
+   "gene": "nprB",
+   "accession": "P39899",
+   "supplied_length": 28,
+   "native_signal_length": 28.0,
+   "supplied_last3": "ASA",
+   "native_last3": "ASA",
+   "exact_match": true,
+   "c_terminus_differs": false
+  },
+  {
+   "peptide_id": "SP24",
+   "gene": "sacB",
+   "accession": "P05655",
+   "supplied_length": 29,
+   "native_signal_length": 29.0,
+   "supplied_last3": "ASA",
+   "native_last3": "AFA",
+   "exact_match": false,
+   "c_terminus_differs": true
+  },
+  {
+   "peptide_id": "SP25",
+   "gene": "sacC",
+   "accession": "P05656",
+   "supplied_length": 24,
+   "native_signal_length": 24.0,
+   "supplied_last3": "ASA",
+   "native_last3": "ADA",
+   "exact_match": false,
+   "c_terminus_differs": true
+  },
+  {
+   "peptide_id": "SP26",
+   "gene": "abnA",
+   "accession": "P94522",
+   "supplied_length": 32,
+   "native_signal_length": 32.0,
+   "supplied_last3": "ASA",
+   "native_last3": "AEA",
+   "exact_match": false,
+   "c_terminus_differs": true
+  },
+  {
+   "peptide_id": "SP27",
+   "gene": "bglS",
+   "accession": "P04957",
+   "supplied_length": 28,
+   "native_signal_length": 28.0,
+   "supplied_last3": "ASA",
+   "native_last3": "ASA",
+   "exact_match": true,
+   "c_terminus_differs": false
+  },
+  {
+   "peptide_id": "SP28",
+   "gene": "yolA",
+   "accession": "O31994",
+   "supplied_length": 28,
+   "native_signal_length": 28.0,
+   "supplied_last3": "ASA",
+   "native_last3": "AKA",
+   "exact_match": false,
+   "c_terminus_differs": true
+  },
+  {
+   "peptide_id": "SP29",
+   "gene": "csn",
+   "accession": "O07921",
+   "supplied_length": 35,
+   "native_signal_length": 35.0,
+   "supplied_last3": "ASA",
+   "native_last3": "VFA",
+   "exact_match": false,
+   "c_terminus_differs": true
+  },
+  {
+   "peptide_id": "SP30",
+   "gene": "bsn",
+   "accession": "O32150",
+   "supplied_length": 28,
+   "native_signal_length": 26.0,
+   "supplied_last3": "ASA",
+   "native_last3": "ASA",
+   "exact_match": false,
+   "c_terminus_differs": false
+  },
+  {
+   "peptide_id": "SP31",
+   "gene": "cwlO",
+   "accession": "P40767",
+   "supplied_length": 30,
+   "native_signal_length": 30.0,
+   "supplied_last3": "ASA",
+   "native_last3": "ASA",
+   "exact_match": false,
+   "c_terminus_differs": false
+  },
+  {
+   "peptide_id": "SP32",
+   "gene": "eglS",
+   "accession": "P10475",
+   "supplied_length": 29,
+   "native_signal_length": 29.0,
+   "supplied_last3": "ASA",
+   "native_last3": "ASA",
+   "exact_match": true,
+   "c_terminus_differs": false
+  }
+ ],
+ "native_motifs": [
+  {
+   "motif": "ASA",
+   "n": 12
+  },
+  {
+   "motif": "AHA",
+   "n": 3
+  },
+  {
+   "motif": "AKA",
+   "n": 3
+  },
+  {
+   "motif": "AEA",
+   "n": 2
+  },
+  {
+   "motif": "ADA",
+   "n": 2
+  },
+  {
+   "motif": "LAG",
+   "n": 1
+  },
+  {
+   "motif": "AQA",
+   "n": 1
+  },
+  {
+   "motif": "AGA",
+   "n": 1
+  },
+  {
+   "motif": "ANA",
+   "n": 1
+  },
+  {
+   "motif": "VQA",
+   "n": 1
+  },
+  {
+   "motif": "AYA",
+   "n": 1
+  },
+  {
+   "motif": "AFA",
+   "n": 1
+  },
+  {
+   "motif": "VFA",
+   "n": 1
+  }
+ ],
+ "cross_assay": [
+  {
+   "peptide_id": "SP6",
+   "gene": "Pel",
+   "block": "Blot 1",
+   "blot_n": 8,
+   "mean": 0.792612,
+   "within_blot_rank": 6.0,
+   "within_blot_pct": 0.375,
+   "fu_amys_activity_U_per_mL": 1487.85,
+   "fu_fold_vs_native_sp": 1.684994
+  },
+  {
+   "peptide_id": "SP17",
+   "gene": "YqxI",
+   "block": "Blot 2",
+   "blot_n": 13,
+   "mean": 2.080292,
+   "within_blot_rank": 2.0,
+   "within_blot_pct": 0.923077,
+   "fu_amys_activity_U_per_mL": 1394.15,
+   "fu_fold_vs_native_sp": 1.578879
+  },
+  {
+   "peptide_id": "SP27",
+   "gene": "BglS",
+   "block": "Blot 3",
+   "blot_n": 11,
+   "mean": 0.428255,
+   "within_blot_rank": 8.0,
+   "within_blot_pct": 0.363636,
+   "fu_amys_activity_U_per_mL": 1379.55,
+   "fu_fold_vs_native_sp": 1.562344
+  },
+  {
+   "peptide_id": "SP24",
+   "gene": "SacB",
+   "block": "Blot 3",
+   "blot_n": 11,
+   "mean": 0.588739,
+   "within_blot_rank": 6.0,
+   "within_blot_pct": 0.545455,
+   "fu_amys_activity_U_per_mL": 1019.1,
+   "fu_fold_vs_native_sp": 1.154134
+  },
+  {
+   "peptide_id": "SP15",
+   "gene": "YoaW",
+   "block": "Blot 2",
+   "blot_n": 13,
+   "mean": 1.471857,
+   "within_blot_rank": 4.0,
+   "within_blot_pct": 0.769231,
+   "fu_amys_activity_U_per_mL": 871.0,
+   "fu_fold_vs_native_sp": 0.98641
+  }
+ ]
+};
+</script>
+<script>
+const TABS=[["s-verdict","Verdict"],["s-data","The measurements"],["s-screen","Feature screen"],
+  ["s-lead","The one lead"],["s-model","Can we model?"],["s-seq","What the sequences are"],
+  ["s-limits","Limits"]];
+const BLOTS=["Blot 1","Blot 2","Blot 3"];
+const CBLOT={"Blot 1":"var(--s1)","Blot 2":"var(--s2)","Blot 3":"var(--s3)"};
+const fmt=(v,d=2)=>v===null||v===undefined||Number.isNaN(v)?"—":(v>=0&&d===2?"+":"")+v.toFixed(d);
+const f2=(v,d=2)=>v===null||v===undefined?"—":v.toFixed(d);
+const esc=s=>String(s).replace(/[&<>]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;"}[c]));
+
+/* ---------- tooltip ---------- */
+const tt=document.getElementById("tt");
+function bindTip(el,html){
+  el.addEventListener("pointerenter",e=>{tt.innerHTML=html;tt.style.opacity=1;move(e)});
+  el.addEventListener("pointermove",move);
+  el.addEventListener("pointerleave",()=>tt.style.opacity=0);
+  function move(e){
+    const p=12; let x=e.clientX+p, y=e.clientY+p;
+    const r=tt.getBoundingClientRect();
+    if(x+r.width>innerWidth-8) x=e.clientX-r.width-p;
+    if(y+r.height>innerHeight-8) y=e.clientY-r.height-p;
+    tt.style.left=x+"px"; tt.style.top=y+"px";
+  }
+}
+/* ---------- tiny svg helper ---------- */
+const NS="http://www.w3.org/2000/svg";
+function el(tag,attrs={},parent){const n=document.createElementNS(NS,tag);
+  for(const k in attrs) n.setAttribute(k,attrs[k]); if(parent)parent.appendChild(n); return n;}
+function svgRoot(w,h){const s=document.createElementNS(NS,"svg");
+  s.setAttribute("viewBox",`0 0 ${w} ${h}`); s.setAttribute("width",w); s.setAttribute("height",h);
+  s.setAttribute("role","img"); return s;}
+
+/* ============ 1. VERDICT ============ */
+function verdict(){
+  const P=DATA.permutation, R=DATA.rbs;
+  const ceil=DATA.reliability.filter(r=>BLOTS.includes(r.block))
+    .reduce((a,r)=>a+r.max_detectable_correlation,0)/3;
+  const oof=DATA.models.filter(m=>!m.model.startsWith("Baseline"));
+  const worstOof=Math.max(...oof.map(m=>m.mean_within_blot_spearman));
+  const rf=DATA.insample.find(m=>m.model.includes("forest"));
+  return `
+  <div class="verdict">
+    <div class="vcard" style="--vc:var(--critical)">
+      <div class="k">Model-based prediction</div>
+      <div class="a">No — and it was tested</div>
+      <p>Four model families, two cross-validation schemes, split at peptide level.
+      Every out-of-fold score was negative (best ${fmt(worstOof)}). The same random forest
+      scores ${f2(rf.in_sample_spearman)} in-sample. With 32 peptides and 34 correlated
+      features a model memorises the set and learns nothing transferable.</p>
+    </div>
+    <div class="vcard" style="--vc:var(--good)">
+      <div class="k">Biological information</div>
+      <div class="a">Yes — one lead</div>
+      <p>The exploratory screen of 34 descriptors found nothing above chance. But one
+      hypothesis taken from the literature — mRNA accessibility at the translation-initiation
+      region — holds in all three blots (&rho; ${fmt(R.rho)}, p = ${R.p_single.toFixed(4)}).
+      That is a lead to design an experiment around, not a rule.</p>
+    </div>
+  </div>
+
+  <div class="tiles">
+    <div class="tile"><div class="v">32</div><div class="l">peptides, split 8 / 13 / 11 across three blots</div></div>
+    <div class="tile"><div class="v">${fmt(P.observed)}</div><div class="l">best feature correlation in the screen</div></div>
+    <div class="tile"><div class="v">${fmt(P.null_median)}</div><div class="l">what chance alone produces</div></div>
+    <div class="tile"><div class="v">${f2(ceil)}</div><div class="l">reliability ceiling — a real effect was detectable</div></div>
+  </div>
+
+  <div class="card">
+    <h2>The shape of the answer</h2>
+    <p class="lede">Two questions with different answers, so they should not be collapsed into one.</p>
+    <p>The data support <strong>description, candidate prioritisation within each blot, and one
+    hypothesis worth testing</strong>. They do not support a predictive model or a design rule.
+    The binding constraints are structural rather than biological: an effective sample size of
+    8, 13 and 11 because the three blots share no common scale; a cleavage region that was
+    deliberately held constant, so it could never vary; and a library that happens to sit in a
+    narrow band of the most-studied feature.</p>
+    <p>None of that refutes the underlying goal. Fix the calibration and raise the peptide
+    count and the same question becomes answerable.</p>
+    <div class="note">Every number on this page is computed from
+    <code>Information_for_Baris_corrected.xlsx</code> by the scripts in
+    <code>ouput/analysis/</code> and <code>ddls_claude/analysis/</code>. Nothing is illustrative.</div>
+  </div>`;
+}
+
+/* ============ 2. MEASUREMENTS ============ */
+function replicatePlot(){
+  const W=1080,FH=220,PL=44,PR=14,PT=26,PB=58,gap=26;
+  const H=(FH+gap)*3;
+  const s=svgRoot(W,H);
+  BLOTS.forEach((b,bi)=>{
+    const rows=DATA.summary.filter(d=>d.block===b).sort((a,c)=>a.mean-c.mean);
+    const reps=DATA.replicates.filter(d=>d.block===b);
+    const y0=bi*(FH+gap);
+    const maxv=Math.max(...reps.map(d=>d.value))*1.08;
+    const iw=W-PL-PR, ih=FH-PT-PB;
+    const X=i=>PL+iw*((i+0.5)/rows.length);
+    const Y=v=>y0+PT+ih-(v/maxv)*ih;
+    const g=el("g",{},s);
+    el("text",{x:PL,y:y0+14,class:"ftitle"},g).textContent=`${b} — ${rows.length} peptides`;
+    // gridlines
+    const ticks=[0,1,2,3,4,5,6].filter(t=>t<=maxv);
+    ticks.forEach(t=>{
+      el("line",{x1:PL,x2:W-PR,y1:Y(t),y2:Y(t),stroke:"var(--grid)","stroke-width":1},g);
+      el("text",{x:PL-7,y:Y(t)+3.5,class:"ax","text-anchor":"end"},g).textContent=t;
+    });
+    // reference line at 1 = gel mean
+    el("line",{x1:PL,x2:W-PR,y1:Y(1),y2:Y(1),stroke:"var(--axis)","stroke-width":1.5,
+      "stroke-dasharray":"4 3"},g);
+    el("text",{x:W-PR,y:Y(1)-5,class:"ax","text-anchor":"end"},g).textContent="gel mean";
+    rows.forEach((r,i)=>{
+      const x=X(i);
+      el("line",{x1:x,x2:x,y1:y0+PT,y2:y0+PT+ih,stroke:"var(--grid)","stroke-width":1,opacity:.5},g);
+      reps.filter(d=>d.peptide_id===r.peptide_id).forEach((d,k)=>{
+        const c=el("circle",{cx:x+(k-1)*4.4,cy:Y(d.value),r:3.6,fill:CBLOT[b],
+          stroke:"var(--surface-1)","stroke-width":2,opacity:.95},g);
+        bindTip(c,`<b>${esc(r.peptide_id)}</b>${r.gene?" · "+esc(r.gene):""}<br>${esc(d.replicate)}: ${f2(d.value)}<br>${esc(b)}`);
+      });
+      const m=el("rect",{x:x-9,y:Y(r.mean)-1.5,width:18,height:3,rx:1.5,fill:"var(--text-primary)"},g);
+      bindTip(m,`<b>${esc(r.peptide_id)}</b>${r.gene?" · "+esc(r.gene):""}<br>mean ${f2(r.mean)} · median ${f2(r.median)}<br>CV ${f2(r.cv)}`);
+      const lab=el("text",{x:x,y:y0+PT+ih+15,class:"ax","text-anchor":"end",
+        transform:`rotate(-52 ${x} ${y0+PT+ih+15})`},g);
+      lab.textContent=r.peptide_id;
+    });
+    el("line",{x1:PL,x2:W-PR,y1:y0+PT+ih,y2:y0+PT+ih,stroke:"var(--axis)","stroke-width":1},g);
+    el("text",{x:6,y:y0+PT+ih/2,class:"axlab","text-anchor":"middle",
+      transform:`rotate(-90 6 ${y0+PT+ih/2})`},g).textContent="fold-change";
+  });
+  return s;
+}
+function measurements(){
+  const shift=DATA.summary.filter(d=>d.rank_shift>=2).sort((a,b)=>b.rank_shift-a.rank_shift);
+  const cv1=DATA.summary.filter(d=>d.cv>1);
+  const d=document.createElement("div");
+  d.innerHTML=`
+  <div class="card">
+    <h2>What was measured</h2>
+    <p class="lede">Each dot is one replicate; the black bar is the peptide mean. Peptides are
+    ordered by mean within each blot. <strong>The three panels have separate y-axes and are not
+    comparable</strong> — each blot was normalised to its own gel mean, which is the dashed line.</p>
+    <div class="legend">
+      <span><i style="background:var(--s1)"></i>Blot 1</span>
+      <span><i style="background:var(--s2)"></i>Blot 2</span>
+      <span><i style="background:var(--s3)"></i>Blot 3</span>
+      <span><i style="background:var(--text-primary);border-radius:1px;height:4px"></i>peptide mean</span>
+    </div>
+    <figure id="repfig"></figure>
+    <figcaption>Replicate-level values, faceted by blot. Hover any point for its value.</figcaption>
+  </div>
+
+  <div class="card">
+    <h2>Which rankings are trustworthy</h2>
+    <p class="lede">Ranking by mean and by median disagree for several candidates, because a
+    single extreme replicate drags the mean. These are the peptides whose standing depends on
+    which summary you choose.</p>
+    <table><thead><tr><th>Peptide</th><th>Gene</th><th>Blot</th><th class="num">Mean</th>
+    <th class="num">Median</th><th class="num">CV</th><th class="num">Rank by mean</th>
+    <th class="num">Rank by median</th></tr></thead><tbody>
+    ${shift.map(r=>`<tr><td><strong>${esc(r.peptide_id)}</strong></td><td>${esc(r.gene||"—")}</td>
+      <td>${esc(r.block)}</td><td class="num">${f2(r.mean)}</td><td class="num">${f2(r.median)}</td>
+      <td class="num">${f2(r.cv)}</td><td class="num">${r.rank_mean}</td>
+      <td class="num">${r.rank_median}</td></tr>`).join("")}
+    </tbody></table>
+    <p class="note"><strong>SP4</strong> leads Blot 1 by mean but falls to 5th by median — and it is
+    the peptide the thesis flags for a recurring secondary band, which is still unresolved.
+    <strong>SP23</strong>'s replicates are roughly 0.00, 0.07 and 3.42.
+    ${cv1.length} peptides have a standard deviation exceeding their own mean:
+    ${cv1.map(r=>esc(r.peptide_id)).join(", ")}.</p>
+    <h3>Candidates that are both high and reproducible</h3>
+    <p>Within their own blots only — there is no cross-blot ranking, because the data do not
+    support one. <strong>SP5</strong> (Blot 1, CV 0.14) and <strong>SP26</strong> (Blot 3, CV 0.21)
+    combine a high position with stable replicates. SP19 is far ahead in Blot 2 but with CV 0.63;
+    SP15 is much more consistent though lower.</p>
+    <details><summary>Full per-peptide table (all 32)</summary>
+    <table><thead><tr><th>Peptide</th><th>Gene</th><th>Blot</th><th class="num">Mean</th>
+    <th class="num">Median</th><th class="num">SD</th><th class="num">CV</th>
+    <th class="num">Min</th><th class="num">Max</th></tr></thead><tbody>
+    ${DATA.summary.slice().sort((a,b)=>a.block.localeCompare(b.block)||b.mean-a.mean)
+      .map(r=>`<tr><td>${esc(r.peptide_id)}</td><td>${esc(r.gene||"—")}</td><td>${esc(r.block)}</td>
+      <td class="num">${f2(r.mean)}</td><td class="num">${f2(r.median)}</td>
+      <td class="num">${f2(r.sd)}</td><td class="num">${f2(r.cv)}</td>
+      <td class="num">${f2(r.min)}</td><td class="num">${f2(r.max)}</td></tr>`).join("")}
+    </tbody></table></details>
+  </div>`;
+  d.querySelector("#repfig").appendChild(replicatePlot());
+  return d;
+}
+
+/* ============ 3. FEATURE SCREEN ============ */
+function forestPlot(){
+  const rows=DATA.associations.slice(0,16);
+  const W=1000,rowH=25,PL=320,PR=40,PT=34,PB=42;
+  const H=PT+rows.length*rowH+PB;
+  const s=svgRoot(W,H);
+  const iw=W-PL-PR, X=v=>PL+iw*((v+1)/2);
+  const nullP95=DATA.permutation.null_p95;
+  el("rect",{x:X(-nullP95),y:PT-8,width:X(nullP95)-X(-nullP95),height:rows.length*rowH+8,
+    fill:"var(--grid)",opacity:.55},s);
+  el("text",{x:X(0),y:PT-14,class:"ax","text-anchor":"middle"},s)
+    .textContent=`shaded = inside what chance produces (±${nullP95.toFixed(2)})`;
+  [-1,-0.5,0,0.5,1].forEach(t=>{
+    el("line",{x1:X(t),x2:X(t),y1:PT-8,y2:PT+rows.length*rowH,stroke:t===0?"var(--axis)":"var(--grid)",
+      "stroke-width":t===0?1.5:1},s);
+    el("text",{x:X(t),y:PT+rows.length*rowH+18,class:"ax","text-anchor":"middle"},s)
+      .textContent=t;
+  });
+  el("text",{x:X(0),y:PT+rows.length*rowH+34,class:"axlab","text-anchor":"middle"},s)
+    .textContent="Spearman ρ with secretion (combined across blots)";
+  rows.forEach((r,i)=>{
+    const y=PT+i*rowH+rowH/2;
+    el("text",{x:PL-12,y:y+4,class:"ax","text-anchor":"end"},s).textContent=r.feature;
+    if(r.combined_lo95!==null)
+      el("line",{x1:X(r.combined_lo95),x2:X(r.combined_hi95),y1:y,y2:y,
+        stroke:"var(--axis)","stroke-width":1.6},s);
+    [["rho_blot1","var(--s1)","Blot 1"],["rho_blot2","var(--s2)","Blot 2"],["rho_blot3","var(--s3)","Blot 3"]]
+      .forEach(([k,c,lab])=>{
+        if(r[k]===null)return;
+        const n=el("circle",{cx:X(r[k]),cy:y,r:4,fill:c,stroke:"var(--surface-1)","stroke-width":1.5},s);
+        bindTip(n,`<b>${esc(r.feature)}</b><br>${lab}: ρ ${fmt(r[k])}`);
+      });
+    const dm=el("rect",{x:X(r.combined_rho)-4,y:y-4,width:8,height:8,
+      fill:"var(--text-primary)",transform:`rotate(45 ${X(r.combined_rho)} ${y})`},s);
+    bindTip(dm,`<b>${esc(r.feature)}</b><br>combined ρ ${fmt(r.combined_rho)}<br>95% CI ${fmt(r.combined_lo95)} to ${fmt(r.combined_hi95)}<br>family-wise p = ${r.family_wise_p_maxstat===null?"—":r.family_wise_p_maxstat.toFixed(3)}`);
+  });
+  return s;
+}
+function nullPlot(){
+  const P=DATA.permutation;
+  const W=640,H=250,PL=50,PR=20,PT=20,PB=52;
+  const s=svgRoot(W,H);
+  const iw=W-PL-PR, ih=H-PT-PB;
+  const lo=0, hi=0.9, X=v=>PL+iw*((v-lo)/(hi-lo));
+  // schematic density of the null around its median (illustrative envelope of the real stats)
+  const med=P.null_median, p95=P.null_p95;
+  const sd=(p95-med)/1.645;
+  const pts=[];
+  for(let v=lo;v<=hi;v+=0.005){
+    const d=Math.exp(-0.5*Math.pow((v-med)/sd,2));
+    pts.push([X(v),PT+ih-d*ih*0.92]);
+  }
+  el("path",{d:"M"+pts.map(p=>p.join(",")).join("L")+`L${X(hi)},${PT+ih}L${X(lo)},${PT+ih}Z`,
+    fill:"var(--s1)",opacity:.18},s);
+  el("path",{d:"M"+pts.map(p=>p.join(",")).join("L"),fill:"none",stroke:"var(--s1)","stroke-width":2},s);
+  [[med,"var(--s1)","chance median "+med.toFixed(2),-1],
+   [P.observed,"var(--s2)","observed best "+P.observed.toFixed(2),1]].forEach(([v,c,lab,side])=>{
+    el("line",{x1:X(v),x2:X(v),y1:PT,y2:PT+ih,stroke:c,"stroke-width":2.2},s);
+    const t=el("text",{x:X(v)+side*7,y:PT+12,class:"ax","text-anchor":side>0?"start":"end"},s);
+    t.textContent=lab; t.setAttribute("fill",c);
+  });
+  el("line",{x1:PL,x2:W-PR,y1:PT+ih,y2:PT+ih,stroke:"var(--axis)","stroke-width":1},s);
+  [0,0.2,0.4,0.6,0.8].forEach(t=>el("text",{x:X(t),y:PT+ih+18,class:"ax","text-anchor":"middle"},s)
+    .textContent=t.toFixed(1));
+  el("text",{x:PL+iw/2,y:H-10,class:"axlab","text-anchor":"middle"},s)
+    .textContent="largest |ρ| found when the outcome is shuffled";
+  return s;
+}
+function screen(){
+  const P=DATA.permutation;
+  const d=document.createElement("div");
+  d.innerHTML=`
+  <div class="card">
+    <h2>Screening 34 features found nothing above chance</h2>
+    <p class="lede">Each feature was correlated with secretion <strong>within each blot
+    separately</strong>; the diamond combines those three effects by meta-analysis, never by
+    pooling blot-normalised values. Every confidence interval crosses zero.</p>
+    <div class="legend">
+      <span><i style="background:var(--s1)"></i>Blot 1</span>
+      <span><i style="background:var(--s2)"></i>Blot 2</span>
+      <span><i style="background:var(--s3)"></i>Blot 3</span>
+      <span><i style="background:var(--text-primary);transform:rotate(45deg)"></i>combined, 95% CI</span>
+    </div>
+    <figure id="forestfig"></figure>
+    <figcaption>Top 16 of 34 robust features by |combined ρ|.</figcaption>
+  </div>
+
+  <div class="card">
+    <h2>The decisive test</h2>
+    <p class="lede">With 34 correlated descriptors and three small blots, some feature will
+    look good by luck. To measure how good, the outcome was shuffled within each blot
+    ${P.n_perm.toLocaleString()} times and the <em>entire screen</em> re-run each time.</p>
+    <div class="tiles">
+      <div class="tile"><div class="v">${fmt(P.observed)}</div><div class="l">best real feature (${esc(P.best_feature)})</div></div>
+      <div class="tile"><div class="v">${fmt(P.null_median)}</div><div class="l">median best on shuffled data</div></div>
+      <div class="tile"><div class="v">${P.family_wise_p.toFixed(2)}</div><div class="l">family-wise p-value</div></div>
+    </div>
+    <figure id="nullfig"></figure>
+    <figcaption>The real result sits <strong>below</strong> what shuffling produces. Curve is a
+    normal envelope fitted to the permutation median and 95th percentile.</figcaption>
+    <p class="note">Six features do point the same way in all three blots, all hydrophobicity-related.
+    That is not six findings — those features are mutually correlated at |ρ| ≥ 0.8, so it is one
+    property measured six ways, and it sits inside the chance band.</p>
+  </div>
+
+  <div class="card">
+    <h2>Why the null is credible</h2>
+    <p class="lede">A null result is only meaningful if the measurement could have detected an
+    effect. Inter-replicate agreement sets a ceiling on any correlation that could be observed.</p>
+    <table><thead><tr><th>Blot</th><th class="num">Replicates</th>
+      <th class="num">Mean inter-replicate ρ</th><th class="num">Reliability of the mean</th>
+      <th class="num">Max detectable ρ</th></tr></thead><tbody>
+    ${DATA.reliability.map(r=>`<tr><td>${esc(r.block)}</td><td class="num">${r.n_replicates}</td>
+      <td class="num">${f2(r.mean_inter_replicate_spearman)}</td>
+      <td class="num">${f2(r.spearman_brown_reliability_of_mean)}</td>
+      <td class="num">${f2(r.max_detectable_correlation)}</td></tr>`).join("")}
+    </tbody></table>
+    <p class="note">A feature perfectly predicting true secretion could correlate with these
+    measurements at about <strong>0.86</strong> — far above the 0.37 observed. Noise is not the
+    explanation.</p>
+  </div>`;
+  d.querySelector("#forestfig").appendChild(forestPlot());
+  d.querySelector("#nullfig").appendChild(nullPlot());
+  return d;
+}
+
+/* ============ 4. THE LEAD ============ */
+function rbsScatter(){
+  const W=1020,FW=320,FH=250,gapx=20,PL=52,PB=48,PT=28;
+  const s=svgRoot(W,FH+10);
+  BLOTS.forEach((b,bi)=>{
+    const pts=DATA.scatter.filter(d=>d.block===b);
+    const x0=bi*(FW+gapx);
+    const xs=pts.map(p=>p.dg_rbs_plus48), ys=pts.map(p=>p.mean);
+    const xmin=Math.min(...xs)-1, xmax=Math.max(...xs)+1;
+    const ymax=Math.max(...ys)*1.1;
+    const iw=FW-PL+20, ih=FH-PT-PB;
+    const X=v=>x0+PL+(v-xmin)/(xmax-xmin)*(iw-30);
+    const Y=v=>PT+ih-(v/ymax)*ih;
+    const g=el("g",{},s);
+    el("text",{x:x0+PL,y:14,class:"ftitle"},g).textContent=b;
+    const rho=DATA.rbs["blot"+(bi+1)];
+    el("text",{x:x0+PL,y:28,class:"ax"},g).textContent=`ρ = ${fmt(rho)}  ·  n = ${pts.length}`;
+    [0,1,2,3,4,5,6].filter(t=>t<=ymax).forEach(t=>{
+      el("line",{x1:x0+PL,x2:x0+PL+iw-30,y1:Y(t),y2:Y(t),stroke:"var(--grid)","stroke-width":1},g);
+      el("text",{x:x0+PL-7,y:Y(t)+3.5,class:"ax","text-anchor":"end"},g).textContent=t;
+    });
+    pts.forEach(p=>{
+      const c=el("circle",{cx:X(p.dg_rbs_plus48),cy:Y(p.mean),r:4.5,fill:CBLOT[b],
+        stroke:"var(--surface-1)","stroke-width":2},g);
+      bindTip(c,`<b>${esc(p.peptide_id)}</b>${p.gene?" · "+esc(p.gene):""}<br>ΔG ${f2(p.dg_rbs_plus48,1)} kcal/mol<br>secretion ${f2(p.mean)}<br>${esc(b)}`);
+    });
+    el("line",{x1:x0+PL,x2:x0+PL+iw-30,y1:PT+ih,y2:PT+ih,stroke:"var(--axis)","stroke-width":1},g);
+    // x ticks at whole kcal/mol steps
+    const step=Math.ceil((xmax-xmin)/5);
+    for(let t=Math.ceil(xmin/step)*step;t<=xmax;t+=step){
+      el("line",{x1:X(t),x2:X(t),y1:PT+ih,y2:PT+ih+4,stroke:"var(--axis)","stroke-width":1},g);
+      el("text",{x:X(t),y:PT+ih+16,class:"ax","text-anchor":"middle"},g).textContent=t;
+    }
+    el("text",{x:x0+PL+(iw-30)/2,y:FH-10,class:"axlab","text-anchor":"middle"},g)
+      .textContent="ΔG (kcal/mol) →  less structured";
+    if(bi===0) el("text",{x:x0+10,y:PT+ih/2,class:"axlab","text-anchor":"middle",
+      transform:`rotate(-90 ${x0+10} ${PT+ih/2})`},g).textContent="fold-change";
+  });
+  return s;
+}
+function lead(){
+  const R=DATA.rbs;
+  const d=document.createElement("div");
+  d.innerHTML=`
+  <div class="card">
+    <h2>mRNA accessibility at the translation-initiation region</h2>
+    <p class="lede">This hypothesis is not ours. Fu et al. (2018) propose that a <em>less
+    negative</em> folding energy near the start codon leaves the ribosome-binding site
+    accessible, favouring secretion — predicting a <strong>positive</strong> correlation. It only
+    became computable once the thesis supplied the shared 5′ context.</p>
+    <div class="tiles">
+      <div class="tile"><div class="v">${fmt(R.rho)}</div><div class="l">combined ρ, all three blots positive</div></div>
+      <div class="tile"><div class="v">${R.p_single.toFixed(4)}</div><div class="l">one-sided p, single hypothesis</div></div>
+      <div class="tile"><div class="v">${R.p_family.toFixed(3)}</div><div class="l">p corrected for 3 window sizes</div></div>
+      <div class="tile"><div class="v">0</div><div class="l">sign flips under leave-one-out</div></div>
+    </div>
+    <figure id="rbsfig"></figure>
+    <figcaption>Each panel is one blot on its own scale. Hover any point for the peptide.</figcaption>
+    <p class="note">Why a different test from the screen: this is a <strong>single directional
+    hypothesis specified in the literature</strong>, not the best of 34 descriptors. Judging it
+    against the screen's best-of-34 null (0.60) would be the wrong test — but treating it as
+    confirmed would be the wrong conclusion.</p>
+  </div>
+
+  <div class="card">
+    <h2>How much weight it deserves</h2>
+    <p class="lede">More than anything else here, but not yet something to build on.</p>
+    <ul>
+      <li><strong>It is not fully independent of the exploratory work.</strong> A coding-sequence-only
+      version of this feature family was in the 34-feature screen and ranked second. This is a
+      refinement of a family already examined, not clean out-of-sample confirmation.</li>
+      <li><strong>The window is still approximate.</strong> The true transcription start site is not
+      stated, so the real initiation region is longer than the window used.</li>
+      <li><strong>No mechanism is established.</strong> Folding energy is a computed quantity, and an
+      association across 32 peptides is not evidence that mRNA structure causes the difference.</li>
+      <li><strong>It is not a GC or length proxy.</strong> It correlates moderately with GC (−0.39) and
+      length (+0.39), but those tested alone give −0.02 and +0.25.</li>
+      <li>Against a reliability ceiling of 0.86, ρ ≈ 0.5 is a moderate effect, not a strong one.</li>
+    </ul>
+    <h3>What would settle it</h3>
+    <p>The actual transcription start site and full 5′UTR, so the window matches the published
+    definition — and a prospective test: peptides chosen to differ in predicted initiation-region
+    accessibility while holding composition roughly constant, measured on <strong>one gel</strong>.</p>
+  </div>`;
+  d.querySelector("#rbsfig").appendChild(rbsScatter());
+  return d;
+}
+
+/* ============ 5. MODEL ============ */
+function modelPlot(){
+  const rows=DATA.insample.filter(m=>!m.model.startsWith("Baseline"));
+  const W=900,PL=210,PR=60,PT=40,PB=50,rowH=58;
+  const H=PT+rows.length*rowH+PB;
+  const s=svgRoot(W,H);
+  const iw=W-PL-PR, X=v=>PL+iw*((v+1)/2);
+  [-1,-0.5,0,0.5,1].forEach(t=>{
+    el("line",{x1:X(t),x2:X(t),y1:PT-10,y2:PT+rows.length*rowH-10,
+      stroke:t===0?"var(--axis)":"var(--grid)","stroke-width":t===0?1.5:1},s);
+    el("text",{x:X(t),y:PT+rows.length*rowH+8,class:"ax","text-anchor":"middle"},s).textContent=t;
+  });
+  el("text",{x:PL+iw/2,y:PT+rows.length*rowH+26,class:"axlab","text-anchor":"middle"},s)
+    .textContent="Spearman ρ between predicted and actual ranking";
+  rows.forEach((r,i)=>{
+    const yb=PT+i*rowH;
+    el("text",{x:PL-12,y:yb+6,class:"ax","text-anchor":"end"},s).textContent=r.model;
+    const bars=[["in_sample_spearman","var(--s4)","fitted and scored on the same peptides"],
+                ["honest_out_of_fold_spearman","var(--s1)","predicting held-out peptides"]];
+    bars.forEach(([k,c,lab],j)=>{
+      const v=r[k], y=yb-6+j*17;
+      const x1=X(0), x2=X(v);
+      const b=el("rect",{x:Math.min(x1,x2),y:y,width:Math.max(2,Math.abs(x2-x1)),height:13,
+        rx:3.5,fill:c},s);
+      bindTip(b,`<b>${esc(r.model)}</b><br>${lab}<br>ρ = ${fmt(v)}`);
+      const t=el("text",{x:x2+(v>=0?6:-6),y:y+10,class:"ax",
+        "text-anchor":v>=0?"start":"end"},s);
+      t.textContent=fmt(v);
+    });
+  });
+  return s;
+}
+function model(){
+  const d=document.createElement("div");
+  const cv=DATA.models.filter(m=>!m.model.startsWith("Baseline"));
+  d.innerHTML=`
+  <div class="card">
+    <h2>The gap that answers the question</h2>
+    <p class="lede">A model fitted and scored on the same 32 peptides looks excellent. The same
+    model, trained without each peptide and asked to predict it, does worse than guessing.</p>
+    <div class="legend">
+      <span><i style="background:var(--s4)"></i>In-sample — fitted and scored on the same peptides</span>
+      <span><i style="background:var(--s1)"></i>Out-of-fold — predicting held-out peptides</span>
+    </div>
+    <figure id="modfig"></figure>
+    <figcaption>With 34 features and 32 observations a model memorises the dataset completely
+    while learning nothing transferable.</figcaption>
+    <p class="note">This is the most useful exhibit for “is it worth training a model?”. Any figure
+    resembling the yellow bars — and such figures are easy to produce — is measuring memorisation.</p>
+  </div>
+
+  <div class="card">
+    <h2>Out-of-fold performance, both validation schemes</h2>
+    <p class="lede"><strong>Leave-one-blot-out</strong> is the realistic test: it asks whether a
+    model trained on two blots can rank peptides measured in a third, separate experiment.</p>
+    <table><thead><tr><th>Model</th><th>Validation scheme</th>
+      <th class="num">Out-of-fold ρ</th><th class="num">MAE</th></tr></thead><tbody>
+    ${cv.map(r=>`<tr><td>${esc(r.model)}</td><td>${esc(r.cv_scheme)}</td>
+      <td class="num">${fmt(r.mean_within_blot_spearman)}</td>
+      <td class="num">${f2(r.mae)}</td></tr>`).join("")}
+    </tbody></table>
+    <p class="note">Every value is negative — the signature of fitting noise and carrying it to
+    held-out data. No permutation null is needed to interpret a score at or below zero.</p>
+    <h3>Decision</h3>
+    <p><strong>A predictive model is not defensible on this dataset, and no synthetic sequence
+    should be proposed from one.</strong> The constraint is not the algorithm; it is 32 peptides
+    split across three non-comparable blots with 34 correlated descriptors. The measurements are
+    reliable enough that a real effect would have shown, so this is a genuine negative.</p>
+  </div>`;
+  d.querySelector("#modfig").appendChild(modelPlot());
+  return d;
+}
+
+/* ============ 6. SEQUENCES ============ */
+function motifPlot(){
+  const rows=DATA.native_motifs.slice().sort((a,b)=>b.n-a.n);
+  const W=760,PL=70,PR=120,PT=30,PB=40,rowH=26;
+  const H=PT+rows.length*rowH+PB;
+  const s=svgRoot(W,H);
+  const max=Math.max(...rows.map(r=>r.n),32);
+  const iw=W-PL-PR, X=v=>PL+(v/max)*iw;
+  el("text",{x:PL,y:16,class:"ax"},s).textContent="native (UniProt annotation)";
+  rows.forEach((r,i)=>{
+    const y=PT+i*rowH;
+    el("text",{x:PL-10,y:y+13,class:"ax","text-anchor":"end"},s).textContent=r.motif;
+    const b=el("rect",{x:PL,y:y+2,width:Math.max(2,X(r.n)-PL),height:14,rx:3.5,
+      fill:r.motif==="ASA"?"var(--s1)":"var(--axis)"},s);
+    bindTip(b,`<b>${esc(r.motif)}</b><br>${r.n} of 30 annotated peptides`);
+    el("text",{x:X(r.n)+7,y:y+13,class:"ax"},s).textContent=r.n;
+  });
+  const y=PT+rows.length*rowH+6;
+  el("text",{x:PL-10,y:y+13,class:"ax","text-anchor":"end",
+    "font-weight":"600"},s).textContent="ASA";
+  const b2=el("rect",{x:PL,y:y+2,width:X(32)-PL,height:14,rx:3.5,fill:"var(--s2)"},s);
+  bindTip(b2,"<b>Supplied library</b><br>all 32 peptides end A-S-A");
+  el("text",{x:X(32)+7,y:y+13,class:"ax","font-weight":"600"},s).textContent="32 — supplied";
+  return s;
+}
+function seq(){
+  const u=DATA.uniprot;
+  const exact=u.filter(r=>r.exact_match).length;
+  const diff=u.filter(r=>r.c_terminus_differs).length;
+  const ann=u.filter(r=>r.native_last3).length;
+  const d=document.createElement("div");
+  d.innerHTML=`
+  <div class="card">
+    <h2>The cleavage region was engineered, not inherited</h2>
+    <p class="lede">The thesis identifies all 32 peptides as native <em>B. subtilis</em> 168
+    signal peptides. Checking each against its UniProt entry shows the native C-termini are
+    diverse — but every supplied peptide ends A-S-A.</p>
+    <div class="tiles">
+      <div class="tile"><div class="v">${exact} / 32</div><div class="l">match their native signal peptide exactly</div></div>
+      <div class="tile"><div class="v">${diff} / ${ann}</div><div class="l">differ from native at the C-terminus</div></div>
+      <div class="tile"><div class="v">32 / 32</div><div class="l">supplied peptides ending A-S-A</div></div>
+      <div class="tile"><div class="v">${DATA.native_motifs.length}</div><div class="l">distinct native C-terminal motifs</div></div>
+    </div>
+    <figure id="motiffig"></figure>
+    <figcaption>Native C-terminal tripeptides (grey, blue where ASA) against the supplied
+    library (orange, bottom). A constant cannot explain variation between peptides.</figcaption>
+    <p class="note">This answers an open question and is a defensible design choice — it holds
+    signal-peptidase processing constant. It also means the library could never report on
+    C-region effects, by construction, and that the A-x-A motif Fu et al. associate with good
+    performers is here a <strong>design constant, not a variable</strong>.</p>
+  </div>
+
+  <div class="card">
+    <h2>Consequences</h2>
+    <ul>
+      <li><strong>These are engineered peptides, not wild-type ones.</strong> Comparisons to
+      published results on “the pel signal peptide” compare different molecules. SP6/Pel natively
+      ends ANA; SP1/AmyE natively ends LAG — not an A-x-A motif at all — and is six residues
+      longer here.</li>
+      <li><strong>A candidate explanation for some poor performers.</strong> SP1/AmyE is the classic
+      <em>B. subtilis</em> secretion tag and ranks 7th of 8 in its blot, while also being one of
+      the most heavily modified peptides in the set.</li>
+      <li><strong>Caveat.</strong> UniProt SIGNAL annotations are often predictions rather than
+      experimentally determined sites, so a length disagreement may reflect the predictor. The
+      composition result does not depend on this — 32-of-32 uniform against a 13-way-diverse
+      background is not an annotation artefact.</li>
+    </ul>
+    <details open><summary>Per-peptide comparison against UniProt</summary>
+    <table><thead><tr><th>Peptide</th><th>Gene</th><th>Accession</th>
+      <th class="num">Supplied len</th><th class="num">Native len</th>
+      <th>Supplied −3−2−1</th><th>Native −3−2−1</th><th>Exact match</th></tr></thead><tbody>
+    ${u.map(r=>`<tr><td><strong>${esc(r.peptide_id)}</strong></td><td>${esc(r.gene)}</td>
+      <td>${esc(r.accession||"—")}</td><td class="num">${r.supplied_length??"—"}</td>
+      <td class="num">${r.native_signal_length??"—"}</td>
+      <td class="seqrow">${esc(r.supplied_last3)}</td>
+      <td class="seqrow">${r.native_last3?(r.c_terminus_differs?'<span class="hl">'+esc(r.native_last3)+'</span>':esc(r.native_last3)):"—"}</td>
+      <td>${r.exact_match?"yes":"no"}</td></tr>`).join("")}
+    </tbody></table></details>
+  </div>
+
+  <div class="card">
+    <h2>Does amylase performance predict collagen performance?</h2>
+    <p class="lede">Five peptides are also among the 15 best performers in Fu et al., who measured
+    α-amylase secretion by enzyme activity.</p>
+    <table><thead><tr><th>Peptide</th><th>Gene</th><th>Blot</th>
+      <th class="num">Collagen rank</th><th class="num">AmyS activity (U/mL)</th>
+      <th class="num">vs native SP</th></tr></thead><tbody>
+    ${DATA.cross_assay.map(r=>`<tr><td><strong>${esc(r.peptide_id)}</strong></td>
+      <td>${esc(r.gene)}</td><td>${esc(r.block)}</td>
+      <td class="num">${r.within_blot_rank} of ${r.blot_n}</td>
+      <td class="num">${f2(r.fu_amys_activity_U_per_mL,1)}</td>
+      <td class="num">${f2(r.fu_fold_vs_native_sp)}×</td></tr>`).join("")}
+    </tbody></table>
+    <p class="note">Rank agreement is <strong>ρ = −0.20</strong> (n = 5). Their single best amylase
+    peptide sits in the bottom half for collagen. But note the finding above: these are not the
+    same sequences Fu et al. measured, so this is confounded with the C-terminal modification and
+    is suggestive at best. Target-dependence is independently documented by all three sources.</p>
+  </div>`;
+  d.querySelector("#motiffig").appendChild(motifPlot());
+  return d;
+}
+
+/* ============ 7. LIMITS ============ */
+function limits(){
+  return `
+  <div class="card">
+    <h2>What this analysis cannot say</h2>
+    <ul>
+      <li><strong>Association is not causation.</strong> Nothing here establishes mechanism. A null
+      on association is also not evidence that signal-peptide sequence is biologically irrelevant
+      to secretion — only that these descriptors do not track these measurements at this n.</li>
+      <li><strong>Region boundaries are computed, not observed.</strong> No SignalP, no experimental
+      cleavage data. The h/c boundary is demonstrably unstable, so those features were reported
+      as sensitivity only.</li>
+      <li><strong>The folding energies are not initiation-region energies</strong> in the published
+      sense — the true transcription start site is unknown.</li>
+      <li><strong>No cross-blot scale exists.</strong> All rankings are within-blot. There is no
+      unified ranking here because the data do not support one.</li>
+      <li><strong>The other-protein table</strong> has four peptides and undefined category
+      thresholds. It is context, not validation.</li>
+      <li><strong>SP31 and the SP9 zero</strong> are unresolved data questions, carried through
+      rather than patched.</li>
+      <li><strong>Generalisation.</strong> Results apply to this collagen construct, host, assay and
+      conditions.</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h2>What would make the question answerable</h2>
+    <ul>
+      <li><strong>A shared reference sample on every blot.</strong> One or two identical control lanes
+      per gel would put values on a common scale with an auditable method. At present the blot
+      boundary is an impassable wall, and it is the single largest structural limitation.</li>
+      <li><strong>More peptides measured comparably.</strong> Effective sample sizes are 8, 13 and 11.
+      This matters more than any analytical refinement.</li>
+      <li><strong>Raw densitometry.</strong> Would let the normalisation be audited, the SP9 zero
+      resolved, and the SP4 secondary band assessed.</li>
+      <li><strong>The transcription start site and full 5′UTR.</strong> Needed to test the one positive
+      lead against its published definition.</li>
+      <li><strong>Variation in the C-region</strong>, if cleavage effects are of interest — this library
+      holds it constant.</li>
+    </ul>
+    <h3>If a model is attempted later</h3>
+    <p>Split at peptide/design level, never at replicate-row level, and treat prediction of
+    peptides from a <strong>new experimental batch</strong> as the honest test. Set a held-out set
+    aside before modelling begins.</p>
+    <p class="note">Any proposed new sequence or “high performer” is a hypothesis for experimental
+    testing, not a proven design.</p>
+  </div>`;
+}
+
+/* ---------- wire up ---------- */
+const nav=document.getElementById("nav");
+TABS.forEach(([id,label],i)=>{
+  const b=document.createElement("button");
+  b.textContent=label; b.setAttribute("aria-selected",i===0);
+  b.onclick=()=>{
+    document.querySelectorAll("section").forEach(s=>s.classList.remove("on"));
+    document.getElementById(id).classList.add("on");
+    [...nav.children].forEach(c=>c.setAttribute("aria-selected",c===b));
+    scrollTo({top:0,behavior:"smooth"});
+  };
+  nav.appendChild(b);
+});
+function mount(id,content){
+  const s=document.getElementById(id);
+  if(typeof content==="string") s.innerHTML=content; else s.appendChild(content);
+}
+mount("s-verdict",verdict());
+mount("s-data",measurements());
+mount("s-screen",screen());
+mount("s-lead",lead());
+mount("s-model",model());
+mount("s-seq",seq());
+mount("s-limits",limits());
+
+const tb=document.getElementById("themeBtn");
+function applyTheme(t){
+  if(t) document.documentElement.setAttribute("data-theme",t);
+  else document.documentElement.removeAttribute("data-theme");
+  const dark=t==="dark"||(!t&&matchMedia("(prefers-color-scheme: dark)").matches);
+  tb.textContent=dark?"Light":"Dark";
+}
+let stored=null;
+try{stored=localStorage.getItem("sp-theme")}catch(e){}
+applyTheme(stored);
+// Keep the button label correct if the OS theme changes while no explicit choice is stored.
+matchMedia("(prefers-color-scheme: dark)").addEventListener("change",()=>{
+  if(!document.documentElement.hasAttribute("data-theme")) applyTheme(null);
+});
+tb.onclick=()=>{
+  const dark=document.documentElement.getAttribute("data-theme")==="dark"
+    ||(!document.documentElement.hasAttribute("data-theme")&&matchMedia("(prefers-color-scheme: dark)").matches);
+  const next=dark?"light":"dark";
+  applyTheme(next);
+  try{localStorage.setItem("sp-theme",next)}catch(e){}
+};
+</script>
+</body>
+</html>

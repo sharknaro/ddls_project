@@ -1,0 +1,13 @@
+feature_name,definition,unit,assumption_and_limit
+aa_length,Length of listed amino-acid sequence,count,Exact listed sequence; boundaries unverified
+N5_KR_count; N5_basic_fraction,K+R count and proportion in first 5 AA,count; fraction,"Positional N5 window, not a validated N-region annotation"
+core_hydrophobic_AVILMFWY_fraction,"Fraction of A,V,I,L,M,F,W,Y in heuristic core aa[4:-3]",fraction,Heuristic core positions 5 through L-3; not verified H-region
+core_mean_Kyte_Doolittle; whole_mean_Kyte_Doolittle,Mean residue hydropathy using Kyte-Doolittle scale,scale mean,Standard residue scale; averages depend on positional window
+core_GS_fraction; core_ST_fraction; whole_GS_fraction; whole_ST_fraction,Residue fraction in named composition groups,fraction,Transparent composition summaries; groups not mechanistic claims
+whole_KRDE_net_charge_sidechain_proxy; whole_KRDE_net_charge_per_residue,"K+R-D-E, ignoring termini and pH-dependent partial charges",count; count/residue,"Simple charge proxy, not pI or formal charge calculation"
+whole_polar_NQST_fraction; whole_proline_fraction; whole_cysteine_fraction,Composition fractions,fraction,Full listed sequence
+C5_AXA_like_motif,Indicator that final three residues fit A-x-A,binary,Pattern scan only; cleavage motif/site unverified
+N5_GC_fraction; first_30nt_GC_fraction; first_30nt_AU_fraction; first_30nt_CpG_dinucleotide_count; whole_CDS_GC_fraction,Nucleotide composition/count metrics,fraction/count,Only listed SP coding sequence; no initiation context or host reference
+MFE fields,Minimum free energy from ViennaRNA RNA.fold on CDS or fixed first-nucleotide windows,kcal/mol,"T→U; default settings; truncated CDS only, not full mRNA or translation initiation region"
+codon_adaptation_or_RBS_metric,Not calculated,NA,Requires host codon reference or verified RBS/full transcript context
+translation check,Listed nt translated in standard frame and compared to listed AA,boolean,SP31 does not match: nt encodes MRKSL... whereas listed AA begins VRKSL...; retained as supplied and flagged

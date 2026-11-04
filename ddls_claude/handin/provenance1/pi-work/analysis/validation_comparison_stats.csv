@@ -1,0 +1,2 @@
+n,spearman_rho,spearman_p,pearson_r,pearson_p,rank_spearman_rho,rank_spearman_p,paired_wilcoxon_stat,paired_wilcoxon_p,mean_validation_minus_main,median_validation_minus_main
+7,0.6785714285714287,0.09375025395983135,0.48247533884158816,0.27282966494608923,0.6923450994227357,0.08472434870236943,1.0,0.03125,-0.7568104614761905,-0.5438458805833333

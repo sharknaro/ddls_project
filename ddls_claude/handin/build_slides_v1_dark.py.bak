@@ -1,0 +1,519 @@
+#!/usr/bin/env python3
+"""Build slides.html — a reveal.js deck using the dashboard's design language.
+
+Charts are drawn as native inline SVG from the same data the dashboard uses, not embedded
+matplotlib screenshots. reveal.js supplies navigation only; its theme is fully overridden.
+"""
+from pathlib import Path
+
+ROOT = Path(__file__).resolve().parents[2]
+DATA_JS = ROOT / 'ddls_claude' / 'app' / 'data.js'
+OUT = ROOT / 'ddls_claude' / 'handin' / 'package' / 'slides.html'
+
+data_js = DATA_JS.read_text(encoding='utf-8')
+
+TEMPLATE = r"""<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Signal peptides &amp; collagen secretion</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reveal.css">
+<script src="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reveal.js"></script>
+<style>
+:root{
+  --surface:#15181a; --panel:#1f2428; --line:#333b40;
+  --ink:#f0efec; --ink2:#c3c2b7; --muted:#8e9398;
+  --grid:#2c3337; --axis:#404a50;
+  --s1:#3987e5; --s2:#d95926; --s3:#199e70; --s4:#c98500;
+  --good:#0ca30c; --bad:#d03b3b;
+}
+.reveal{background:var(--surface); color:var(--ink);
+  font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;
+  font-size:30px; font-weight:400;}
+.reveal .slides{text-align:left}
+.reveal h1,.reveal h2,.reveal h3{
+  text-transform:none!important; font-weight:640; letter-spacing:-0.025em;
+  color:var(--ink); margin:0 0 .18em; line-height:1.14;}
+.reveal h1{font-size:1.72em} .reveal h2{font-size:1.18em} .reveal h3{font-size:.76em}
+.reveal p{margin:0 0 .5em}
+.eyebrow{color:var(--s3); font-size:.46em; letter-spacing:.15em; text-transform:uppercase;
+  font-weight:600; margin-bottom:.9em}
+.sub{color:var(--ink2); font-size:.6em; line-height:1.45; max-width:30em}
+.small{color:var(--muted); font-size:.47em; line-height:1.5; max-width:46em}
+.note{color:var(--muted); font-size:.44em; line-height:1.5; margin-top:.9em; max-width:52em}
+.grid{display:grid; grid-template-columns:1fr 1fr; gap:26px; align-items:center}
+.g64{display:grid; grid-template-columns:1.5fr 1fr; gap:26px; align-items:center}
+.panel{background:var(--panel); border:1px solid var(--line); border-radius:12px;
+  padding:16px 19px}
+.panel.accent{border-left:3px solid var(--acc)}
+.tiles{display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr)); gap:14px}
+.tile{background:var(--panel); border:1px solid var(--line); border-radius:11px; padding:15px 17px}
+.tile .v{font-size:1.05em; font-weight:660; letter-spacing:-.025em; line-height:1.1}
+.tile .l{font-size:.4em; color:var(--ink2); line-height:1.4; margin-top:5px}
+.blue{color:var(--s1)} .orange{color:var(--s2)} .green{color:var(--s3)}
+.yellow{color:var(--s4)} .bad{color:var(--bad)} .ok{color:var(--good)}
+.reveal ul{font-size:.62em; line-height:1.55; margin:0; padding-left:1.1em}
+.reveal li{margin-bottom:.5em} .reveal li::marker{color:var(--muted)}
+.reveal table{font-size:.5em; border-collapse:collapse; width:100%; margin-top:.2em}
+.reveal th,.reveal td{padding:7px 11px; border-bottom:1px solid var(--line); text-align:left}
+.reveal th{color:var(--muted); font-weight:600; font-size:.92em}
+.num{text-align:right!important; font-variant-numeric:tabular-nums}
+.chart{width:100%}
+.chart svg{display:block; width:100%; height:auto; overflow:visible}
+.legend{display:flex; gap:20px; font-size:.44em; color:var(--ink2); margin:0 0 10px;
+  align-items:center; flex-wrap:wrap}
+.legend i{width:11px;height:11px;border-radius:3px;display:inline-block;margin-right:7px;
+  vertical-align:-1px}
+.ax{font-size:11.5px; fill:var(--muted)} .axl{font-size:12.5px; fill:var(--ink2)}
+.ft{font-size:13px; fill:var(--ink); font-weight:600}
+.reveal .progress{color:var(--s1)} .reveal .controls{color:var(--muted)}
+.reveal .slide-number{background:transparent; color:var(--muted); font-size:14px}
+code{font-family:ui-monospace,Menlo,monospace; background:#23292e; padding:1px 6px;
+  border-radius:4px; font-size:.92em}
+</style>
+</head>
+<body>
+<div class="reveal"><div class="slides">
+
+<section data-s="title">
+  <div class="eyebrow">DDLS project · data-driven life science</div>
+  <h1>Do signal-peptide features predict<br>collagen secretion in <em>B. subtilis</em>?</h1>
+  <p class="sub" style="margin-top:.7em">32 peptides · three Western blots · one collagen construct</p>
+  <p class="small" style="margin-top:1.6em">Baris Akar · bakar@dtu.dk · 4 November 2026<br>
+  Data owner: Alexiou et al., thesis chapter 2</p>
+</section>
+
+<section>
+  <div class="eyebrow">The question</div>
+  <h2>Three questions from the data owner</h2>
+  <ul style="margin-top:.6em">
+    <li>Do sequence, nucleotide or physicochemical features relate to secretion?</li>
+    <li>If so, can they identify or design high-secretion candidates?</li>
+    <li><strong>Is it worth training a model?</strong></li>
+  </ul>
+  <div class="panel" style="margin-top:1.1em;--acc:var(--s3)">
+    <p class="small" style="margin:0">The owner stated that a well-supported negative result
+    would be informative, and cautioned against analysing only the best performers — the exact
+    flaw they had seen in the published literature.</p>
+  </div>
+</section>
+
+<section>
+  <div class="eyebrow">The data</div>
+  <h2>Effective n is 8, 13 and 11 — not 32</h2>
+  <div class="legend">
+    <span><i style="background:var(--s1)"></i>Blot 1</span>
+    <span><i style="background:var(--s2)"></i>Blot 2</span>
+    <span><i style="background:var(--s3)"></i>Blot 3</span>
+    <span><i style="background:var(--ink);height:4px;border-radius:1px"></i>peptide mean</span>
+  </div>
+  <div class="chart" id="c-reps"></div>
+  <p class="note">Each blot was divided by the mean of a <em>different</em> peptide subset, so
+  the three panels share no numeric scale. The dashed line is each gel's own mean.</p>
+</section>
+
+<section>
+  <div class="eyebrow">Method</div>
+  <h2>Four rules — three of them the owner's own cautions</h2>
+  <ul style="margin-top:.6em">
+    <li><strong>Never pool the blots.</strong> Combine per-blot <em>effects</em> by meta-analysis,
+    never the values.</li>
+    <li><strong>One value per peptide.</strong> 96 replicate rows → 32 observations before any test.</li>
+    <li><strong>All 32 candidates</strong>, never only the top performers.</li>
+    <li><strong>Split at peptide level</strong>, scaling fitted inside training folds only.</li>
+  </ul>
+  <p class="note">34 descriptors computed <em>before</em> any outcome was consulted, so feature
+  choice could not be steered by results. Region boundaries were tested for stability under four
+  settings; boundary-dependent features were demoted to sensitivity only.</p>
+</section>
+
+<section>
+  <div class="eyebrow">Result 1</div>
+  <h2>No feature survives the screen</h2>
+  <div class="legend">
+    <span><i style="background:var(--s1)"></i>Blot 1</span>
+    <span><i style="background:var(--s2)"></i>Blot 2</span>
+    <span><i style="background:var(--s3)"></i>Blot 3</span>
+    <span><i style="background:var(--ink);transform:rotate(45deg)"></i>combined, 95% CI</span>
+    <span><i style="background:var(--grid)"></i>inside the chance band</span>
+  </div>
+  <div class="chart" id="c-forest"></div>
+  <p class="note">Top 10 of 34 descriptors. Every confidence interval crosses zero; every
+  combined estimate sits inside what chance alone produces.</p>
+</section>
+
+<section>
+  <div class="eyebrow">The trap</div>
+  <h2>0.37 looks fine — until you calibrate it</h2>
+  <div class="g64">
+    <div class="chart" id="c-null"></div>
+    <div>
+      <div class="panel" style="margin-bottom:12px"><span class="v orange"
+        style="font-size:1.05em;font-weight:660">0.369</span>
+        <div class="l" style="font-size:.4em;color:var(--ink2);margin-top:4px">best real feature</div></div>
+      <div class="panel" style="margin-bottom:12px"><span class="v blue"
+        style="font-size:1.05em;font-weight:660">0.441</span>
+        <div class="l" style="font-size:.4em;color:var(--ink2);margin-top:4px">median best-of-panel
+        on <em>shuffled</em> data</div></div>
+      <div class="panel"><span class="v" style="font-size:1.05em;font-weight:660">p = 0.81</span>
+        <div class="l" style="font-size:.4em;color:var(--ink2);margin-top:4px">family-wise</div></div>
+    </div>
+  </div>
+  <p class="note">5,000 within-blot permutations, the whole 34-feature screen re-run each time.
+  <strong>The best real feature is weaker than chance.</strong></p>
+</section>
+
+<section>
+  <div class="eyebrow">Result 2</div>
+  <h2>The null is informative, not underpowered</h2>
+  <div class="g64">
+    <div class="chart" id="c-ceiling"></div>
+    <div>
+      <table>
+        <tr><th>Blot</th><th class="num">Inter-rep ρ</th><th class="num">Max detectable ρ</th></tr>
+        <tr><td>Blot 1</td><td class="num">0.476</td><td class="num">0.855</td></tr>
+        <tr><td>Blot 2</td><td class="num">0.581</td><td class="num">0.898</td></tr>
+        <tr><td>Blot 3</td><td class="num">0.418</td><td class="num">0.827</td></tr>
+      </table>
+      <p class="small" style="margin-top:14px">Spearman–Brown reliability of a 3-replicate mean.
+      A feature perfectly predicting true secretion could correlate at <strong>~0.86</strong>.</p>
+    </div>
+  </div>
+  <p class="note">There was room to detect a moderate effect. None appeared — so this is a
+  genuine negative, not a noisy assay.</p>
+</section>
+
+<section>
+  <div class="eyebrow">Result 3</div>
+  <h2>In-sample fit is not performance</h2>
+  <div class="legend">
+    <span><i style="background:var(--s4)"></i>In-sample — fitted and scored on the same peptides</span>
+    <span><i style="background:var(--s1)"></i>Out-of-fold — predicting held-out peptides</span>
+  </div>
+  <div class="chart" id="c-models"></div>
+  <p class="note">34 features, 32 observations → the model memorises the set and learns nothing
+  transferable. <strong>Every out-of-fold score is negative under both validation schemes</strong>,
+  including leave-one-blot-out — the realistic test of a new experiment.</p>
+</section>
+
+<section>
+  <div class="eyebrow">Why it could not work</div>
+  <h2>The library suppresses its own variation</h2>
+  <div class="g64">
+    <div class="chart" id="c-motif"></div>
+    <div>
+      <div class="panel" style="margin-bottom:12px">
+        <p class="small" style="margin:0">Native C-termini span <strong>13 motifs</strong>. All 32
+        supplied peptides end <strong class="orange">A-S-A</strong>. Only <strong>8 of 32</strong>
+        match their native sequence exactly.</p></div>
+      <div class="panel">
+        <p class="small" style="margin:0">The cleavage region was <strong>engineered</strong>, not
+        inherited — so the A-x-A motif Fu et al. link to good performers is a
+        <em>constant</em> here, not a variable.</p></div>
+    </div>
+  </div>
+  <p class="note">Hydrophobicity is range-restricted too: GRAVY median 1.01, with 26 of 32 between
+  0.6 and 1.4 — sitting on the optimum published by Grasso et al.
+  <strong class="orange">SP1/AmyE</strong>, the classic secretion tag, ranks 7th of 8 and is among
+  the most modified peptides.</p>
+</section>
+
+<section>
+  <div class="eyebrow">Why it could not work</div>
+  <h2>Four reasons, in order</h2>
+  <ul style="margin-top:.5em">
+    <li><strong>No signal to learn.</strong> Best feature 0.369; shuffled data gives 0.441.
+    Nothing for a model to combine.</li>
+    <li><strong>Effective n is 8 / 13 / 11</strong> against 34 features → memorisation, not learning.</li>
+    <li><strong>Not a noise problem.</strong> Reliability ceiling 0.86 — there was room to see an effect.</li>
+    <li><strong>Design holds key features fixed.</strong> Constant cleavage region, constant
+    mature-protein start, restricted hydrophobicity range.</li>
+  </ul>
+  <div class="panel" style="margin-top:1em">
+    <p class="small" style="margin:0">A negative result about <em>this dataset's shape</em> — not
+    about the biology, and not a criticism of the experiment.</p>
+  </div>
+</section>
+
+<section>
+  <div class="eyebrow">The one honest positive</div>
+  <h2>mRNA accessibility at the initiation region</h2>
+  <div class="chart" id="c-rbs"></div>
+  <div class="grid" style="margin-top:14px">
+    <p class="small" style="margin:0">Positive in <strong>all three blots</strong>, in the direction
+    Fu et al. predicted. Combined ρ <strong class="green">+0.515</strong>; one-sided permutation
+    p = <strong>0.0042</strong> (0.0118 corrected for three window sizes). Computable only because
+    the thesis supplied the shared RBS.</p>
+    <p class="small" style="margin:0"><strong>Caveat:</strong> a coding-only version of this family
+    was already in the 34-feature screen — a refinement, <strong>not clean out-of-sample
+    confirmation</strong>. True transcription start site unknown. No mechanism established.</p>
+  </div>
+</section>
+
+<section>
+  <div class="eyebrow">Recommendation</div>
+  <h2>What the owner can and cannot act on</h2>
+  <div class="grid" style="align-items:start">
+    <div class="panel accent" style="--acc:var(--good)">
+      <h3 class="ok" style="margin-bottom:.5em">Can</h3>
+      <p class="small" style="margin:0">
+      Prioritise <strong>SP5</strong> (CV 0.14) and <strong>SP26</strong> (CV 0.21) — high and
+      reproducible within their own blots.<br><br>
+      Treat <strong>SP4</strong> with caution — 1st by mean, 5th by median, plus the unresolved
+      secondary band.<br><br>
+      Test the mRNA-accessibility hypothesis.</p>
+    </div>
+    <div class="panel accent" style="--acc:var(--bad)">
+      <h3 class="bad" style="margin-bottom:.5em">Cannot</h3>
+      <p class="small" style="margin:0">
+      Build a cross-blot ranking.<br><br>
+      Train a predictive model or propose synthetic designs.<br><br>
+      Claim a mechanism.<br><br>
+      Assume transfer to another protein target — five peptides shared with Fu et al. give
+      ρ = −0.20.</p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="eyebrow">Next steps</div>
+  <h2>What would make the question answerable</h2>
+  <ul style="margin-top:.5em">
+    <li><strong>A shared reference lane on every gel.</strong> The single largest fix — it turns
+    three incomparable blots into one dataset. Nothing analytical substitutes for it.</li>
+    <li><strong>More peptides on that common scale.</strong> Grasso et al. needed ~4,400.</li>
+    <li><strong>Raw densitometry</strong> — audit normalisation, resolve the SP9 zero, assess SP4's
+    secondary band.</li>
+    <li><strong>Transcription start site and 5′UTR</strong> — to test the lead properly.</li>
+    <li><strong>Confirm two anomalies:</strong> SP31's <code>V</code> vs <code>M</code>, and whether
+    the uniform A-S-A was intentional.</li>
+  </ul>
+</section>
+
+<section>
+  <div class="eyebrow">AI-use disclosure</div>
+  <h2>Who did what</h2>
+  <ul style="margin-top:.5em">
+    <li><strong>Agent A (data owner)</strong> — experimental data, project goal, assay account,
+    domain constraints.</li>
+    <li><strong>Agent B (Claude)</strong> — essentially all computational work: QC, features,
+    statistics, machine learning, literature, dashboard, report drafting. Generated and altered
+    <em>no</em> measurement; flagged anomalies rather than patching them.</li>
+    <li><strong>Person (I)</strong> — research question, interviews, constraints, challenged AI
+    interpretations, re-ran scripts and traced every number to source.</li>
+  </ul>
+  <div class="panel" style="margin-top:1em">
+    <p class="small" style="margin:0">That verification caught a real defect: a stale background
+    process had overwritten the modelling outputs with a different random-forest configuration
+    than the committed script specified. Re-run, and recorded rather than quietly fixed.</p>
+  </div>
+</section>
+
+</div></div>
+
+<script>
+__DATA__
+</script>
+<script>
+const NS="http://www.w3.org/2000/svg";
+const BLOTS=["Blot 1","Blot 2","Blot 3"];
+const CB={"Blot 1":"var(--s1)","Blot 2":"var(--s2)","Blot 3":"var(--s3)"};
+function el(t,a,p){const n=document.createElementNS(NS,t);for(const k in a)n.setAttribute(k,a[k]);
+  if(p)p.appendChild(n);return n;}
+function svg(w,h){const s=document.createElementNS(NS,"svg");
+  s.setAttribute("viewBox","0 0 "+w+" "+h);s.setAttribute("role","img");return s;}
+const f2=v=>(v>=0?"+":"")+v.toFixed(2);
+
+/* replicate strip, three facets side by side */
+function reps(){
+  const W=1180,H=450,PL=40,PT=30,PB=62,gx=26,FW=(W-gx*2)/3;
+  const s=svg(W,H);
+  BLOTS.forEach((b,bi)=>{
+    const rows=DATA.summary.filter(d=>d.block===b).sort((a,c)=>a.mean-c.mean);
+    const rep=DATA.replicates.filter(d=>d.block===b);
+    const x0=bi*(FW+gx), ih=H-PT-PB, iw=FW-PL;
+    const mx=Math.max.apply(null,rep.map(d=>d.value))*1.08;
+    const X=i=>x0+PL+iw*((i+0.5)/rows.length), Y=v=>PT+ih-(v/mx)*ih;
+    const g=el("g",{},s);
+    el("text",{x:x0+PL,y:16,class:"ft"},g).textContent=b+" — "+rows.length+" peptides";
+    for(let t=0;t<=Math.ceil(mx);t++){
+      el("line",{x1:x0+PL,x2:x0+PL+iw,y1:Y(t),y2:Y(t),stroke:"var(--grid)","stroke-width":1},g);
+      el("text",{x:x0+PL-6,y:Y(t)+4,class:"ax","text-anchor":"end"},g).textContent=t;}
+    el("line",{x1:x0+PL,x2:x0+PL+iw,y1:Y(1),y2:Y(1),stroke:"var(--axis)","stroke-width":1.5,
+      "stroke-dasharray":"4 3"},g);
+    rows.forEach((r,i)=>{
+      const x=X(i);
+      rep.filter(d=>d.peptide_id===r.peptide_id).forEach((d,k)=>{
+        el("circle",{cx:x+(k-1)*3.6,cy:Y(d.value),r:3.1,fill:CB[b],
+          stroke:"var(--surface)","stroke-width":1.4},g);});
+      el("rect",{x:x-7,y:Y(r.mean)-1.4,width:14,height:2.8,rx:1.4,fill:"var(--ink)"},g);
+      el("text",{x:x,y:PT+ih+13,class:"ax","text-anchor":"end",
+        transform:"rotate(-56 "+x+" "+(PT+ih+13)+")"},g).textContent=r.peptide_id;});
+    el("line",{x1:x0+PL,x2:x0+PL+iw,y1:PT+ih,y2:PT+ih,stroke:"var(--axis)","stroke-width":1},g);
+    if(bi===0)el("text",{x:8,y:PT+ih/2,class:"axl","text-anchor":"middle",
+      transform:"rotate(-90 8 "+(PT+ih/2)+")"},g).textContent="fold-change";});
+  return s;
+}
+
+/* forest, top 12 */
+function forest(){
+  const rows=DATA.associations.slice(0,10), rh=34, PL=330, PR=34, PT=14, W=1180;
+  const H=PT+rows.length*rh+48, s=svg(W,H);
+  const iw=W-PL-PR, X=v=>PL+iw*((v+1)/2), p95=DATA.permutation.null_p95;
+  el("rect",{x:X(-p95),y:PT-6,width:X(p95)-X(-p95),height:rows.length*rh+4,
+    fill:"var(--grid)",opacity:.6},s);
+  [-1,-.5,0,.5,1].forEach(t=>{
+    el("line",{x1:X(t),x2:X(t),y1:PT-6,y2:PT+rows.length*rh,
+      stroke:t===0?"var(--axis)":"var(--grid)","stroke-width":t===0?1.5:1},s);
+    el("text",{x:X(t),y:PT+rows.length*rh+17,class:"ax","text-anchor":"middle"},s).textContent=t;});
+  rows.forEach((r,i)=>{
+    const y=PT+i*rh+rh/2;
+    el("text",{x:PL-11,y:y+4,class:"ax","text-anchor":"end"},s).textContent=r.feature;
+    if(r.combined_lo95!==null)
+      el("line",{x1:X(r.combined_lo95),x2:X(r.combined_hi95),y1:y,y2:y,
+        stroke:"var(--axis)","stroke-width":1.5},s);
+    [["rho_blot1","var(--s1)"],["rho_blot2","var(--s2)"],["rho_blot3","var(--s3)"]]
+      .forEach(p=>{if(r[p[0]]!==null)el("circle",{cx:X(r[p[0]]),cy:y,r:3.8,fill:p[1],
+        stroke:"var(--surface)","stroke-width":1.3},s);});
+    el("rect",{x:X(r.combined_rho)-4,y:y-4,width:8,height:8,fill:"var(--ink)",
+      transform:"rotate(45 "+X(r.combined_rho)+" "+y+")"},s);});
+  return s;
+}
+
+/* permutation null envelope */
+function nullc(){
+  const P=DATA.permutation,W=620,H=430,PL=50,PR=24,PT=22,PB=58,s=svg(W,H);
+  const iw=W-PL-PR,ih=H-PT-PB,lo=0,hi=.9,X=v=>PL+iw*((v-lo)/(hi-lo));
+  const sd=(P.null_p95-P.null_median)/1.645;let d="";
+  for(let v=lo;v<=hi;v+=.004){
+    const y=PT+ih-Math.exp(-.5*Math.pow((v-P.null_median)/sd,2))*ih*.9;
+    d+=(d?"L":"M")+X(v)+","+y;}
+  el("path",{d:d+"L"+X(hi)+","+(PT+ih)+"L"+X(lo)+","+(PT+ih)+"Z",fill:"var(--s1)",opacity:.2},s);
+  el("path",{d:d,fill:"none",stroke:"var(--s1)","stroke-width":2.2},s);
+  [[P.null_median,"var(--s1)","chance",1,0],[P.observed,"var(--s2)","observed",-1,1]].forEach(a=>{
+    el("line",{x1:X(a[0]),x2:X(a[0]),y1:PT,y2:PT+ih,stroke:a[1],"stroke-width":2.4},s);
+    const t=el("text",{x:X(a[0])+a[3]*9,y:PT+14+a[4]*20,class:"ax",
+      "text-anchor":a[3]>0?"start":"end"},s);
+    t.textContent=a[2]+" "+a[0].toFixed(2);t.setAttribute("fill",a[1]);});
+  el("line",{x1:PL,x2:W-PR,y1:PT+ih,y2:PT+ih,stroke:"var(--axis)","stroke-width":1},s);
+  [0,.2,.4,.6,.8].forEach(t=>el("text",{x:X(t),y:PT+ih+17,class:"ax","text-anchor":"middle"},s)
+    .textContent=t.toFixed(1));
+  el("text",{x:PL+iw/2,y:H-10,class:"axl","text-anchor":"middle"},s)
+    .textContent="largest |ρ| when the outcome is shuffled";
+  return s;
+}
+
+/* reliability: observed spread vs ceiling */
+function ceiling(){
+  const W=620,H=430,PL=50,PR=26,PT=24,PB=58,s=svg(W,H);
+  const iw=W-PL-PR,ih=H-PT-PB,X=v=>PL+iw*(v/1);
+  const obs=DATA.associations.map(a=>Math.abs(a.combined_rho)).filter(v=>v!==null);
+  const bins=new Array(20).fill(0);obs.forEach(v=>bins[Math.min(19,Math.floor(v*20))]++);
+  const mx=Math.max.apply(null,bins);
+  bins.forEach((n,i)=>{if(!n)return;
+    const h=(n/mx)*ih*.82;
+    el("rect",{x:X(i/20)+1,y:PT+ih-h,width:iw/20-2,height:h,rx:2,fill:"var(--s1)",opacity:.75},s);});
+  [[0.86,"var(--s3)","ceiling 0.86",-1,0],[DATA.permutation.observed,"var(--s2)","observed 0.37",1,1]]
+    .forEach(a=>{
+    el("line",{x1:X(a[0]),x2:X(a[0]),y1:PT,y2:PT+ih,stroke:a[1],"stroke-width":2.4},s);
+    const t=el("text",{x:X(a[0])+a[3]*9,y:PT+13+a[4]*20,class:"ax",
+      "text-anchor":a[3]>0?"start":"end"},s);
+    t.textContent=a[2];t.setAttribute("fill",a[1]);});
+  el("line",{x1:PL,x2:W-PR,y1:PT+ih,y2:PT+ih,stroke:"var(--axis)","stroke-width":1},s);
+  [0,.2,.4,.6,.8,1].forEach(t=>el("text",{x:X(t),y:PT+ih+17,class:"ax","text-anchor":"middle"},s)
+    .textContent=t.toFixed(1));
+  el("text",{x:PL+iw/2,y:H-10,class:"axl","text-anchor":"middle"},s)
+    .textContent="|combined ρ| per feature";
+  return s;
+}
+
+/* in-sample vs out-of-fold */
+function models(){
+  const rows=DATA.insample.filter(m=>m.model.indexOf("Baseline")!==0);
+  const W=1180,PL=250,PR=70,PT=22,rh=74,H=PT+rows.length*rh+40,s=svg(W,H);
+  const iw=W-PL-PR,X=v=>PL+iw*((v+1)/2);
+  [-1,-.5,0,.5,1].forEach(t=>{
+    el("line",{x1:X(t),x2:X(t),y1:PT-6,y2:PT+rows.length*rh-14,
+      stroke:t===0?"var(--axis)":"var(--grid)","stroke-width":t===0?1.5:1},s);
+    el("text",{x:X(t),y:PT+rows.length*rh+4,class:"ax","text-anchor":"middle"},s).textContent=t;});
+  el("text",{x:PL+iw/2,y:PT+rows.length*rh+24,class:"axl","text-anchor":"middle"},s)
+    .textContent="Spearman ρ between predicted and actual ranking";
+  rows.forEach((r,i)=>{
+    const yb=PT+i*rh;
+    el("text",{x:PL-12,y:yb+8,class:"ax","text-anchor":"end"},s).textContent=r.model;
+    [["in_sample_spearman","var(--s4)"],["honest_out_of_fold_spearman","var(--s1)"]]
+      .forEach((p,j)=>{
+      const v=r[p[0]],y=yb-6+j*19,x1=X(0),x2=X(v);
+      el("rect",{x:Math.min(x1,x2),y:y,width:Math.max(2,Math.abs(x2-x1)),height:15,rx:3.5,
+        fill:p[1]},s);
+      el("text",{x:x2+(v>=0?7:-7),y:y+12,class:"ax","text-anchor":v>=0?"start":"end"},s)
+        .textContent=f2(v);});});
+  return s;
+}
+
+/* native vs supplied cleavage motif */
+function motif(){
+  const rows=DATA.native_motifs.slice().sort((a,b)=>b.n-a.n);
+  const W=620,PL=60,PR=90,PT=22,rh=19,H=PT+(rows.length+2)*rh+14,s=svg(W,H);
+  const iw=W-PL-PR,X=v=>PL+(v/32)*iw;
+  el("text",{x:PL,y:12,class:"ax"},s).textContent="native (UniProt annotation)";
+  rows.forEach((r,i)=>{
+    const y=PT+i*rh;
+    el("text",{x:PL-9,y:y+11,class:"ax","text-anchor":"end"},s).textContent=r.motif;
+    el("rect",{x:PL,y:y+2,width:Math.max(2,X(r.n)-PL),height:11,rx:2.5,
+      fill:r.motif==="ASA"?"var(--s1)":"var(--axis)"},s);
+    el("text",{x:X(r.n)+6,y:y+11,class:"ax"},s).textContent=r.n;});
+  const y=PT+rows.length*rh+8;
+  el("text",{x:PL-9,y:y+11,class:"ax","text-anchor":"end","font-weight":"600"},s).textContent="ASA";
+  el("rect",{x:PL,y:y+2,width:X(32)-PL,height:11,rx:2.5,fill:"var(--s2)"},s);
+  el("text",{x:X(32)+6,y:y+11,class:"ax","font-weight":"600",fill:"var(--s2)"},s)
+    .textContent="32 — supplied";
+  return s;
+}
+
+/* RBS scatter, three facets */
+function rbs(){
+  const W=1180,H=370,PT=26,PB=50,gx=22,FW=(W-gx*2)/3,PL=46,s=svg(W,H);
+  BLOTS.forEach((b,bi)=>{
+    const pts=DATA.scatter.filter(d=>d.block===b),x0=bi*(FW+gx);
+    const xs=pts.map(p=>p.dg_rbs_plus48),ys=pts.map(p=>p.mean);
+    const xmin=Math.min.apply(null,xs)-1,xmax=Math.max.apply(null,xs)+1;
+    const ymax=Math.max.apply(null,ys)*1.12,ih=H-PT-PB,iw=FW-PL;
+    const X=v=>x0+PL+(v-xmin)/(xmax-xmin)*iw,Y=v=>PT+ih-(v/ymax)*ih;
+    const g=el("g",{},s);
+    el("text",{x:x0+PL,y:12,class:"ft"},g).textContent=b;
+    el("text",{x:x0+PL+iw,y:12,class:"ax","text-anchor":"end",fill:"var(--s3)"},g)
+      .textContent="ρ = "+f2(DATA.rbs["blot"+(bi+1)]);
+    for(let t=0;t<=Math.ceil(ymax);t++){
+      el("line",{x1:x0+PL,x2:x0+PL+iw,y1:Y(t),y2:Y(t),stroke:"var(--grid)","stroke-width":1},g);
+      el("text",{x:x0+PL-6,y:Y(t)+4,class:"ax","text-anchor":"end"},g).textContent=t;}
+    pts.forEach(p=>el("circle",{cx:X(p.dg_rbs_plus48),cy:Y(p.mean),r:4,fill:CB[b],
+      stroke:"var(--surface)","stroke-width":1.5},g));
+    el("line",{x1:x0+PL,x2:x0+PL+iw,y1:PT+ih,y2:PT+ih,stroke:"var(--axis)","stroke-width":1},g);
+    const st=Math.ceil((xmax-xmin)/4);
+    for(let t=Math.ceil(xmin/st)*st;t<=xmax;t+=st)
+      el("text",{x:X(t),y:PT+ih+16,class:"ax","text-anchor":"middle"},g).textContent=t;
+    el("text",{x:x0+PL+iw/2,y:H-8,class:"axl","text-anchor":"middle"},g)
+      .textContent="ΔG (kcal/mol) →  less structured";
+    if(bi===0)el("text",{x:x0+8,y:PT+ih/2,class:"axl","text-anchor":"middle",
+      transform:"rotate(-90 "+(x0+8)+" "+(PT+ih/2)+")"},g).textContent="fold-change";});
+  return s;
+}
+
+const CHARTS={"c-reps":reps,"c-forest":forest,"c-null":nullc,"c-ceiling":ceiling,
+  "c-models":models,"c-motif":motif,"c-rbs":rbs};
+for(const id in CHARTS){
+  const host=document.getElementById(id);
+  if(host) host.appendChild(CHARTS[id]());
+}
+Reveal.initialize({hash:true,slideNumber:'c/t',transition:'fade',controls:true,progress:true,center:true,
+  width:1280,height:760,margin:0.055,minScale:0.2,maxScale:1.6});
+</script>
+</body>
+</html>
+"""
+
+html = TEMPLATE.replace('__DATA__', data_js)
+OUT.write_text(html, encoding='utf-8')
+print(f'Wrote {OUT}  ({len(html)/1024:.0f} KB, {html.count("<section")} slides, '
+      f'{len(["x"])*7} native SVG charts, no raster figures)')

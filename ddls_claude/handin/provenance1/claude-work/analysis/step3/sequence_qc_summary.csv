@@ -1,0 +1,2 @@
+n_peptides,duplicate_ids,duplicate_aa_sequences,all_aa_alphabet_valid,all_nt_alphabet_valid,all_in_frame,all_translations_match,all_start_with_met,aa_length_min,aa_length_max
+32,0,0,True,True,True,False,False,21,42

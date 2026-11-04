@@ -1,0 +1,5 @@
+peptide_id,block,mean,within_block_mean_rank_desc,No,Low,Medium,High
+SP3,Blot 1,1.4342323163333333,2.0,3,1,1,2
+SP5,Blot 1,1.4167819650000002,3.0,2,2,1,2
+SP19,Blot 2,3.65897418,1.0,2,3,2,0
+SP26,Blot 3,1.9122314796666664,1.0,2,2,0,3
